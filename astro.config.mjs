@@ -1,26 +1,59 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
+import { unified } from '@astrojs/markdown-remark';
+import remarkMath from 'remark-math';
+import rehypeKatex from 'rehype-katex';
 
 // https://astro.build/config
 export default defineConfig({
+	// GitHub Pages
+	site: 'https://USERNAME.github.io',
+	base: '/matheticlab',
+
 	integrations: [
 		starlight({
-			title: 'My Docs',
-			social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/withastro/starlight' }],
+			title: 'Mathetic Labฅ',
+
+			customCss: [
+				'./src/styles/custom.css',
+			],
+
+			components: {
+				Head: './src/components/Head.astro',
+				ThemeSelect: './src/components/ThemeSelect.astro',
+				FieldAccordion: './src/components/FieldAccordion.astro',
+			},
+
+			social: [
+				{
+					icon: 'github',
+					label: 'GitHub',
+					href: 'https://github.com/withastro/starlight',
+				},
+			],
+
 			sidebar: [
 				{
 					label: 'Guides',
 					items: [
-						// Each item here is one entry in the navigation menu.
 						{ label: 'Example Guide', slug: 'guides/example' },
 					],
 				},
 				{
 					label: 'Reference',
-					items: [{ autogenerate: { directory: 'reference' } }],
+					items: [
+						{ autogenerate: { directory: 'reference' } },
+					],
 				},
 			],
 		}),
 	],
+
+	markdown: {
+		processor: unified({
+			remarkPlugins: [remarkMath],
+			rehypePlugins: [rehypeKatex],
+		}),
+	},
 });

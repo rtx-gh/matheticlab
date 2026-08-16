@@ -1,0 +1,67 @@
+---
+title: タイトル
+description: MDXコンポーネントのテスト
+---
+
+import { Card } from '@astrojs/starlight/components';
+
+# 見出し1
+
+## 見出し2
+
+これは普通のMarkdown部分です。
+
+<Card title="群の定義" icon="seti:folder">
+集合 \(G\) と二項演算があり、結合律・単位元・逆元の存在を満たすとき、
+\(G\) を**群**と呼びます。
+</Card>
+
+## 見出し2
+
+これは$a^2 + b^2 = c^2$です。<br/>
+これは $a^2 + b^2 = c^2$ です。
+
+あ
+
+$$
+	a^2 + b^2 = c^2
+$$
+
+蛇の補題
+
+
+[]( 定義ボックス )
+<div className="tikz-container">
+  <img
+    src="/tikz_svg/test.svg"
+    alt="可換図式"
+  />
+</div>
+
+<div class="definition-box">
+  <div class="definition-title">
+    <strong>定義1：射影的加群</strong>
+  </div>
+  <div class="definition-content">
+	環 $R$ 上の加群 $P$ について、任意の $R$-加群 $M,N$、任意の全射 $R$-加群準同型 $f:M\twoheadrightarrow N$ および	任意の $R$-加群準同型 $g:P\to N$ に対して、
+	$$
+		f\circ h=g
+	$$
+	を満たす $R$-加群準同型 $h:P\to M$ が存在するとき、$P$ を射影的加群と呼ぶ。
+  </div>
+</div>
+
+[](証明のアコーディオンボックス)
+<details class="proof-box">
+  <summary><strong>証明</strong></summary>
+  <div class="proof-content">
+	**十分性の証明**
+	ここに十分性の証明を書く。
+	**必要性の証明**
+	ここに必要性の証明を書く。
+  </div>
+</details>
+
+<Card title="ポイント">
+`.mdx` では、このようにMarkdownの中でStarlightのコンポーネントを使えます。
+</Card>

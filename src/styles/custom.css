@@ -1,0 +1,276 @@
+@import "katex/dist/katex.min.css";
+@import url('https://fonts.googleapis.com/css2?family=Parisienne&display=swap');
+
+
+/* ========================================
+   TikZ
+   ======================================== */
+
+.tikz-container {
+	display: flex;
+	justify-content: center;
+}
+
+.tikz-container img {
+	width: auto;
+	max-width: 100%;
+}
+
+
+/* ========================================
+   サイドバー開閉ボタン
+   ======================================== */
+
+.sidebar-toggle {
+	position: fixed;
+	left: var(--sl-sidebar-width);
+	top: 50%;
+	transform: translateY(-50%);
+
+	z-index: 100;
+
+	width: 28px;
+	height: 50px;
+
+	border: 1px solid var(--sl-color-gray-5);
+	border-radius: 0 6px 6px 0;
+
+	cursor: pointer;
+}
+
+
+/* サイドバーを閉じる */
+body.sidebar-closed .sidebar-pane {
+	display: none;
+}
+
+
+/* 閉じたときにボタンを左端へ */
+body.sidebar-closed .sidebar-toggle {
+	left: 0;
+}
+
+
+/* ========================================
+   定義ボックス
+   ======================================== */
+
+.definition-box {
+	margin: 1.5rem 0;
+
+	border: 2px solid var(--sl-color-accent);
+	border-radius: 4px;
+}
+
+.definition-title {
+	display: inline-block;
+
+	padding: 0.3rem 0.8rem;
+
+	background: var(--sl-color-accent);
+	color: white;
+
+	font-weight: bold;
+}
+
+.definition-content {
+	padding: 1rem;
+}
+
+
+/* ========================================
+   証明ボックス
+   ======================================== */
+
+.proof-box {
+	margin: 1.5rem 0;
+
+	border: 1px solid var(--sl-color-gray-5);
+	border-radius: 4px;
+}
+
+.proof-box summary {
+	padding: 0.7rem 1rem;
+
+	cursor: pointer;
+	font-weight: bold;
+
+	background: var(--sl-color-gray-6);
+}
+
+.proof-content {
+	padding: 1rem;
+}
+
+
+/* ========================================
+   Black
+   Darkベース
+   ======================================== */
+
+html[data-theme="dark"]:not([data-color-theme]) {
+	/* アクセントを白にする */
+	--sl-color-text-accent: #ffffff;
+
+	--sl-color-accent: #ffffff;
+	--sl-color-accent-high: #ffffff;
+	--sl-color-accent-low: #2d2d2d;
+}
+
+
+/* ========================================
+   Navy
+   Darkベース
+   青みを抑えた濃紺
+   ======================================== */
+
+html[data-theme="dark"][data-color-theme="navy"] {
+	/* 背景 */
+	--sl-color-bg: #1c2836;
+	--sl-color-bg-nav: #233448;
+	--sl-color-bg-sidebar: #192532;
+
+	/* アクセント */
+	--sl-color-text-accent: #3aa7e8;
+
+	--sl-color-accent: #3aa7e8;
+	--sl-color-accent-high: #75c2ef;
+	--sl-color-accent-low: #243e52;
+}
+
+
+/* ========================================
+   Sepia
+   Lightベース
+   ======================================== */
+
+html[data-theme="light"][data-color-theme="sepia"] {
+	/* 背景 */
+	--sl-color-bg: #f4ecd8;
+	--sl-color-bg-nav: #eee4cc;
+	--sl-color-bg-sidebar: #eadfc5;
+
+	/* アクセント */
+	--sl-color-text-accent: #79643b;
+
+	--sl-color-accent: #79643b;
+	--sl-color-accent-high: #5f4d2d;
+	--sl-color-accent-low: #e3d5b4;
+}
+
+
+/* ========================================
+   Green
+   Darkベース
+   従来のForestより明るめ
+   ======================================== */
+
+html[data-theme="light"][data-color-theme="green"] {
+	/* 背景 */
+	--sl-color-bg: #f4fbdc;
+	--sl-color-bg-nav: #eef8cd;
+	--sl-color-bg-sidebar: #e8f5c3;
+
+	/* アクセント */
+	--sl-color-text-accent: #558b2f;
+
+	--sl-color-accent: #689f38;
+	--sl-color-accent-high: #4f7d2a;
+	--sl-color-accent-low: #dcedc8;
+}
+
+
+/* ========================================
+   Pink
+   Lightベース
+   ======================================== */
+
+html[data-theme="light"][data-color-theme="pink"] {
+	/* 背景 */
+	--sl-color-bg: #fff5f8;
+	--sl-color-bg-nav: #fff0f4;
+	--sl-color-bg-sidebar: #ffe8ef;
+
+	/* アクセント */
+	--sl-color-text-accent: #e91e63;
+
+	--sl-color-accent: #d81b60;
+	--sl-color-accent-high: #ad1457;
+	--sl-color-accent-low: #ffd6e3;
+}
+ 
+
+.accordion details {
+  margin: 0.7rem 0;
+  scroll-margin-top: 5rem;
+}
+
+.accordion summary {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  cursor: pointer;
+  font-size: inherit;
+  font-weight: 600;
+
+  /* 分野名は常にピンク */
+  color: var(--sl-color-accent-high);
+
+  /* 標準マーカーを消す */
+  list-style: none !important;
+}
+
+/* ブラウザ標準の矢印を消す */
+.accordion summary::-webkit-details-marker {
+  display: none !important;
+}
+
+.accordion summary::marker {
+  content: "";
+}
+
+/* Starlight側が追加している矢印も消す */
+.accordion summary::before,
+.accordion summary::after {
+  content: none !important;
+  display: none !important;
+}
+
+.accordion summary:hover {
+  opacity: 0.7;
+}
+
+
+/* 自作の > */
+.accordion-arrow {
+  display: block;
+
+  width: 0.45rem;
+  height: 0.45rem;
+
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+
+  color: var(--sl-color-accent-high);
+
+  flex-shrink: 0;
+
+  /* 閉じた状態：> */
+  transform: rotate(-45deg);
+
+  /* 回転アニメーション */
+  transition: transform 0.25s ease;
+}
+
+
+/* 開いた状態：下向き */
+.accordion details[open] .accordion-arrow {
+  transform: rotate(45deg);
+}
+
+
+.accordion ul {
+  margin-top: 0.5rem;
+  margin-left: 1.5rem;
+}

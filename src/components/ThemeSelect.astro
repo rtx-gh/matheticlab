@@ -1,0 +1,152 @@
+---
+import Select from '@astrojs/starlight/components/Select.astro';
+---
+
+<starlight-theme-select>
+	<Select
+		icon="laptop"
+		label={Astro.locals.t('themeSelect.accessibleLabel')}
+		options={[
+			{
+				label: 'Pink',
+				selected: true,
+				value: 'pink',
+			},
+		]}
+		width="7em"
+	/>
+</starlight-theme-select>
+
+<script is:inline>
+	StarlightThemeProvider.updatePickers();
+</script>
+
+<script>
+	declare const StarlightThemeProvider: {
+		updatePickers: (theme?: string) => void;
+	};
+
+	type Theme =
+		| 'auto'
+		| 'dark'
+		| 'light'
+		| 'sepia'
+		| 'navy'
+		| 'green'
+		| 'pink';
+
+	const storageKey = 'starlight-theme';
+
+	const parseTheme = (theme: unknown): Theme =>
+		theme === 'auto' ||
+		theme === 'dark' ||
+		theme === 'light' ||
+		theme === 'sepia' ||
+		theme === 'navy' ||
+		theme === 'green' ||
+		theme === 'pink'
+			? theme
+			: 'auto';
+
+	const loadTheme = (): Theme =>
+		parseTheme(
+			typeof localStorage !== 'undefined' &&
+				localStorage.getItem(storageKey)
+		);
+
+	function storeTheme(theme: Theme): void {
+		if (typeof localStorage !== 'undefined') {
+			localStorage.setItem(
+				storageKey,
+				theme === 'auto' ? '' : theme
+			);
+		}
+	}
+
+	const getPreferredColorScheme = (): 'light' | 'dark' =>
+		matchMedia('(prefers-color-scheme: light)').matches
+			? 'light'
+			: 'dark';
+
+	function onThemeChange(theme: Theme): void {
+		StarlightThemeProvider.updatePickers(theme);
+
+		const root = document.documentElement;
+
+		// 前の独自テーマを解除
+		delete root.dataset.colorTheme;
+
+		switch (theme) {
+			case 'pink':
+				root.dataset.theme = 'light';
+				root.dataset.colorTheme = 'pink';
+				break;
+
+			case 'sepia':
+				root.dataset.theme = 'light';
+				root.dataset.colorTheme = 'sepia';
+				break;
+
+			case 'navy':
+				root.dataset.theme = 'dark';
+				root.dataset.colorTheme = 'navy';
+				break;
+
+			case 'green':
+				root.dataset.theme = 'light';
+				root.dataset.colorTheme = 'green';
+				break;
+
+			case 'light':
+				root.dataset.theme = 'light';
+				break;
+
+			case 'dark':
+				root.dataset.theme = 'dark';
+				break;
+
+			case 'auto':
+				root.dataset.theme = getPreferredColorScheme();
+				break;
+		}
+
+		storeTheme(theme);
+	}
+
+	matchMedia('(prefers-color-scheme: light)').addEventListener(
+		'change',
+		() => {
+			if (loadTheme() === 'auto') {
+				onThemeChange('auto');
+			}
+		}
+	);
+
+	class StarlightThemeSelect extends HTMLElement {
+		constructor() {
+			super();
+
+			onThemeChange(loadTheme());
+
+			this.querySelector('select')?.addEventListener(
+				'change',
+				(event) => {
+					if (
+						event.currentTarget instanceof HTMLSelectElement
+					) {
+						onThemeChange(
+							parseTheme(event.currentTarget.value)
+						);
+					}
+				}
+			);
+		}
+	}
+
+	if (!customElements.get('starlight-theme-select')) {
+		customElements.define(
+			'starlight-theme-select',
+			StarlightThemeSelect
+		);
+	}
+</script>

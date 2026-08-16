@@ -1,0 +1,115 @@
+---
+title: "リーマン予想"
+description: "素数定理、ゼータ関数、オイラー積からリーマン予想まで"
+---
+
+## 素数定理
+
+$$
+\pi(x) \sim \frac{x}{\log x}
+$$
+
+## ゼータ関数
+
+$$
+\zeta(s)
+=
+\sum_{n=1}^{\infty}\frac{1}{n^s}
+$$
+
+## オイラー積
+
+$$
+\zeta(s)
+=
+\prod_{p\text{ prime}}
+\frac{1}{1-p^{-s}}
+$$
+
+また、
+
+$$
+\frac{1}{1-p^{-s}}
+=
+1+p^{-s}+p^{-2s}+p^{-3s}+\cdots
+$$
+
+## 複素数のリーマンゼータ関数
+
+$\sigma=\operatorname{Re}(s)$、$t=\operatorname{Im}(s)$ とし、
+
+$$
+s=\sigma+it
+$$
+
+とする。
+
+すると
+
+$$
+n^{-s}
+=
+n^{-(\sigma+it)}
+=
+n^{-\sigma}e^{-it\log n}
+$$
+
+である。
+
+Euler の公式より、
+
+$$
+e^{-it\log n}
+=
+\cos(t\log n)-i\sin(t\log n)
+$$
+
+したがって、
+
+$$
+\left|e^{-it\log n}\right|=1
+$$
+
+なので、
+
+$$
+|n^{-s}|=n^{-\sigma}
+$$
+
+となる。
+
+よって、
+
+$$
+\sum_{n=1}^{\infty}|n^{-s}|
+=
+\sum_{n=1}^{\infty}\frac1{n^\sigma}
+$$
+
+である。
+
+$p$ 級数
+
+$$
+\sum_{n=1}^{\infty}\frac1{n^p}
+$$
+
+は
+
+$$
+p>1
+$$
+
+のとき収束するので、
+
+$$
+\operatorname{Re}(s)>1
+$$
+
+ならば
+
+$$
+\sum_{n=1}^{\infty}|n^{-s}|
+$$
+
+は収束する。
