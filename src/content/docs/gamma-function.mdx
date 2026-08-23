@@ -1,0 +1,331 @@
+---
+title: foo
+description: foo
+---
+
+階乗  
+↓連続性を付与  
+正の実数におけるガンマ関数  
+↓解析接続  
+$\Re(z)$ におけるガンマ関数
+
+## ガンマ関数 実数ver.
+
+<div class="definition-box">
+
+**定義：ガンマ関数（実数ver.）**
+
+$$
+\Gamma(x) = \dint_0^\infty t^{x-1} \e^{-t} \dd t
+\quad (x > 0)
+$$
+
+</div>
+
+まずは、ガンマ関数が収束することを実際に示していく。
+
+<div class="proposition-box">
+
+**命題：ガンマ関数（実数ver.）の収束性**
+
+</div>
+
+<div class="proposition-box">
+
+**命題1：**
+
+$$
+\Gamma(x+1) = x\Gamma(x)
+$$
+
+</div>
+
+<details class="proof-box">
+<summary>証明</summary>
+
+$$
+\Gamma(x+1)
+= \dint_0^\infty t^{(x+1)-1} \e^{-t} \dd t
+$$
+
+$$
+\phantom{\Gamma(x+1)}
+= \dint_0^\infty t^x \e^{-t} \dd t
+$$
+
+部分積分して、
+
+$$
+\phantom{\Gamma(x+1)}
+= \qty\big[t^x \qty\big(-\e^{-t})]_0^\infty
+-\dint_0^\infty
+\qty\big(
+\qty\big(xt^{x-1})
+\qty\big(-\e^{-t})
+)
+\dd t
+$$
+
+$$
+\phantom{\Gamma(x+1)}
+= 0 + x\dint_0^\infty t^{x-1} \e^{-t} \dd t
+$$
+
+$$
+\phantom{\Gamma(x+1)}
+= x\Gamma(x).
+\ \Box
+$$
+
+</details>
+
+<div class="proposition-box">
+
+**命題：**
+
+$$
+x \in \N \implies x\Gamma(x) = (x-1)!
+$$
+
+</div>
+
+<details class="proof-box">
+<summary>証明</summary>
+
+$n=0$ の場合
+
+$$
+\qquad \Gamma(0+1) = \Gamma(1)
+$$
+
+$$
+\qquad \phantom{\Gamma(0+1)}
+= \dint_0^\infty t^{1-1} \e^{-t} \dd t
+$$
+
+$$
+\qquad \phantom{\Gamma(0+1)}
+= \dint_0^\infty \e^{-t} \dd t
+$$
+
+$$
+\qquad \phantom{\Gamma(0+1)}
+= \qty\big[-\e^{-t}]_0^\infty
+$$
+
+$$
+\qquad \phantom{\Gamma(0+1)}
+= (-0)-(-1)
+$$
+
+$$
+\qquad \phantom{\Gamma(0+1)}
+= 1
+$$
+
+$$
+\qquad \phantom{\Gamma(0+1)}
+= 0!.
+$$
+
+$$
+\Gamma(x-1)=(x-2)!
+\implies
+\Gamma(x)=(x-1)!
+$$
+
+命題1より、
+
+$$
+\qquad \Gamma(x) = x\Gamma(x-1)
+$$
+
+仮定より、$\Gamma(x-1)=(x-2)!$ が成り立つから、
+
+$$
+\qquad \phantom{\Gamma(x)}
+= x \cdot (x-2)!
+$$
+
+$$
+\qquad \phantom{\Gamma(x)}
+= (x-1)!.
+\ \Box
+$$
+
+</details>
+
+<details class="faq-box">
+<summary>なぜ $\Gamma(x) = x!$ となるように定義しないの？</summary>
+
+この $1$ のずれによって、さまざまな公式が美しい形で記述できるというメリットがある。ガンマ関数 $\Leftrightarrow$ 階乗という書き換えが頻繁に行われるわけでもなく、階乗そのものには関心も本質もないので、ずれていても何ら問題ない。
+
+ドイツの古い論文では、ガンマ関数に相当するものを $\Pi(x) := x!$ と定義し、使用していたようだ。（[ガンマ関数：特殊関数グラフィックスライブラリー Special Functions](https://math-functions-1.watson.jp/sub1_spec_010.html)）
+
+実際、ドイツ人であるリーマンのリーマン予想の原型を述べた1859年の論文  
+"Über die Anzahl der Primzahlen unter einer gegebenen Grösse"  
+（和訳：与えられた数より小さい素数の個数について）  
+においても、$\Pi(x) = \Gamma(x+1)$ は用いられている。
+
+ちなみに、$\Gamma(x) = x!$ を成立させたい場合は、
+
+$$
+\Gamma(x) := \dint_0^\infty t^x \e^{-t} \dd t
+\quad (x > 0)
+$$
+
+と定義すればよい。
+
+</details>
+
+<div class="example-box">
+
+**例：**
+
+$$
+\Gamma\qty(\dfrac12) = \sqrt\pi
+$$
+
+</div>
+
+<details class="proof-box">
+<summary>証明</summary>
+
+$$
+\qquad
+\Gamma\qty(\dfrac12)
+=
+\dint_0^\infty
+t^{\frac12-1}
+\e^{-t}
+\dd t
+$$
+
+$$
+\qquad
+\phantom{\Gamma\qty(\dfrac12)}
+=
+\dint_0^\infty
+t^{-\frac12}
+\e^{-t}
+\dd t
+$$
+
+$t=s^2$ と変数変換すると、$\dd t=2s\dd s$ であるから、
+
+$$
+\qquad
+\phantom{\Gamma\qty(\dfrac12)}
+=
+\dint_0^\infty
+\qty(s^2)^{-\frac12}
+\e^{-s^2}
+hv
+$$
+
+$$
+\qquad
+\phantom{\Gamma\qty(\dfrac12)}
+=
+\dint_0^\infty
+s^{2\cdot(-\frac12)}
+\e^{-s^2}
+2s\dd s
+$$
+
+$$
+\qquad
+\phantom{\Gamma\qty(\dfrac12)}
+=
+\dint_0^\infty
+\cancel{s^{-1}}
+\e^{-s^2}
+2\cancel{s}
+\dd s
+$$
+
+$$
+\qquad
+\phantom{\Gamma\qty(\dfrac12)}
+=
+2\dint_0^\infty
+\e^{-s^2}
+\dd s
+$$
+
+$f(-s)=\e^{-(-s)^2}=\e^{-s^2}$ より、$f(s)=\e^{-s^2}$ は偶関数だから、
+
+$$
+\qquad
+\phantom{\Gamma\qty(\dfrac12)}
+=
+\dint_{-\infty}^\infty
+\e^{-s^2}
+\dd s
+$$
+
+ガウス積分
+
+$$
+\dint_{-\infty}^\infty
+\e^{-ax^2}
+\dd x
+=
+\sqrt{\dfrac{\pi}{a}}
+$$
+
+を用いて、
+
+$$
+\qquad
+\phantom{\Gamma\qty(\dfrac12)}
+=
+\sqrt{\pi}.
+\ \Box
+$$
+
+</details>
+
+## ガンマ関数 複素数ver.
+
+<div class="definition-box">
+
+**定義：ガンマ関数（複素数ver.）**
+
+$$
+\Gamma(z)
+=
+\dint_0^\infty
+t^{z-1}
+\e^{-t}
+\dd t
+\quad
+(\Re(z)>0)
+$$
+
+</div>
+
+こちらも収束領域において、実際に収束することを示す。
+
+<div class="proposition-box">
+
+**命題：ガンマ関数（複素数ver.）の収束性**
+
+</div>
+
+## ガンマ関数 その他
+
+<div class="proposition-box">
+
+**命題：**
+
+$$
+B(x,y)
+=
+\dfrac{\Gamma(x)\Gamma(y)}
+{\Gamma(x+y)}
+$$
+
+</div>
+
+## ガンマ関数の解析接続

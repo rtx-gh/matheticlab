@@ -1,0 +1,116 @@
+---
+title: foo
+description: foo
+---
+
+「広義リーマン積分」とは、「リーマン積分」という単語が含まれているが、関数と積分区間によっては、リーマン積分よりも強力な「ルベーグ積分」でも積分不可能な関数を積分することも可能である。
+
+それぞれがどのような性質による拡張なのかを表すと、以下の図のとおりである。
+
+![リーマン積分・広義リーマン積分・ルベーグ積分の関係](https://matheticlab.com/wp-content/uploads/2025/08/Riemann.png)
+
+すなわち、「広義リーマン積分」と「ルベーグ積分」はそれぞれの適性がある。
+
+広義リーマン積分では、関数と区間の組み合わせによって、多くの $\dint_{-\infty}^\infty f(x), \dint_a^\infty f(x), \dint_{-\infty}^b f(x)$ といった形の積分、が積分可能になる。
+
+ルベーグ積分では、例えばディリクレ関数
+
+$$
+f(x) =
+\begin{cases}
+1 \quad (x \in \Q) \\
+0 \quad (x \in \R \setminus \Q)
+\end{cases}
+$$
+
+が積分可能であり、
+
+<div class="proposition-box">
+
+**命題：**
+
+</div>
+
+<div class="proposition-box">
+
+**命題：絶対収束する広義リーマン積分はルベーグ積分可能**
+
+</div>
+
+<div class="definition-box">
+
+**定義：広義リーマン積分**
+
+$$
+\qquad
+\dint_a^\infty f(x) \dd x
+:=
+\dlim_{t \to \infty}
+\dint_a^t f(x) \dd x
+$$
+
+$$
+\qquad
+\dint_{-\infty}^b f(x) \dd x
+:=
+\dlim_{t \to -\infty}
+\dint_t^b f(x) \dd x
+$$
+
+$$
+\qquad
+\dint_{-\infty}^\infty f(x) \dd x
+:=
+\dlim_{t \to -\infty}
+\dint_t^a f(x) \dd x
++
+\dlim_{t \to \infty}
+\dint_a^t f(x) \dd x
+$$
+
+$$
+\qquad
+\dint_a^b f(x) \dd x
+:=
+\dlim_{t \to b^-}
+\dint_a^t f(x) \dd x,
+\qquad
+\text{ここで }
+\dlim_{x \to b^-}
+\bigl|f(x)\bigr|
+=
+\infty
+$$
+
+$$
+\qquad
+\dint_a^b f(x) \dd x
+:=
+\dlim_{t \to a^+}
+\dint_t^b f(x) \dd x,
+\qquad
+\text{ここで }
+\dlim_{x \to a^+}
+\bigl|f(x)\bigr|
+=
+\infty
+$$
+
+$$
+\qquad
+\dint_a^b f(x) \dd x
+:=
+\dlim_{t \to c^-}
+\dint_a^t f(x) \dd x
++
+\dlim_{t \to c^+}
+\dint_t^b f(x) \dd x,
+\qquad
+\text{ここで }
+\dlim_{x \to c}
+\bigl|f(x)\bigr|
+=
+\infty
+$$
+
+</div>

@@ -1,0 +1,117 @@
+---
+title: foo
+description: foo
+---
+
+<div class="definition-box">
+
+**定義：各点収束**
+
+</div>
+
+<div class="definition-box">
+
+**定義：一様収束**
+
+$$
+\A \varepsilon > 0,\,
+\E N \in \N,\,
+\A x \in \R,\,
+\A n \in \N,\,
+\qty\big[
+n \geq N
+\implies
+\bigl|f_n(x)-f(x)\bigr| < \varepsilon
+\big]
+$$
+
+</div>
+
+$f_N(x)=\dsum_{n=1}^N g_n(x)$ とすると、$\dsum_{n=1}^N g_n(x)$ が $g(x)$ に収束すれば、
+
+$$
+\dint_a^b
+\dlim_{N \to \infty}
+\left(
+\dsum_{n=1}^N g_n(x)
+\right)
+\dd x
+=
+\dlim_{N \to \infty}
+\dint_a^b
+\left(
+\dsum_{n=1}^N g_n(x)
+\right)
+\dd x
+$$
+
+<div class="theorem-box">
+
+**定理：一様収束関数の極限の交換定理**
+
+実関数の関数列 $f_n(x)$ が実関数 $f(x)$ に一様収束するとき、
+
+$$
+\qquad
+\dint_a^b
+\dlim_{n \to \infty}
+f_n(x)
+\dd x
+=
+\dlim_{n \to \infty}
+\dint_a^b
+f_n(x)
+\dd x
+$$
+
+が成り立つ。
+
+</div>
+
+<details class="proof-box">
+<summary>証明</summary>
+
+</details>
+
+<div class="corollary-box">
+
+**系：一様収束関数の極限の交換定理（無限和 ver.）**
+
+実関数の関数列
+
+$$
+f_n(x)
+=
+\dsum_{n=1}^N g_n(x)
+$$
+
+が実関数 $f(x)$ に一様収束するとき、
+
+$$
+\qquad
+\dint_a^b
+\left(
+\dsum_{n=1}^\infty g_n(x)
+\right)
+\dd x
+=
+\dsum_{n=1}^\infty
+\dint_a^b
+g_n(x)
+\dd x
+$$
+
+が成り立つ。
+
+</div>
+
+<details class="proof-box">
+<summary>証明</summary>
+
+</details>
+
+<div class="definition-box">
+
+**定義：絶対収束**
+
+</div>

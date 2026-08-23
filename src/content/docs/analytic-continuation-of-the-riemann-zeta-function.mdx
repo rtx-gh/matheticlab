@@ -1,0 +1,720 @@
+---
+title: foo
+description: foo
+---
+
+<div class="theorem-box">
+
+**定理：**
+
+</div>
+
+<div class="definition-box">
+
+**定義：ガンマ関数**
+
+$$
+\Gamma(z)
+=
+\dint_0^\infty
+t^{z-1}\e^{-t}
+\dd t
+\qquad
+\qty\big(\Re(z)>0)
+$$
+
+$$
+\Gamma(z)
+=
+\dlim_{n \to \infty}
+\dfrac{n^z n!}
+{\dprod_{k=0}^n (z+k)}
+$$
+
+</div>
+
+<div class="definition-box">
+
+**定義：リーマン（の）ゼータ関数**
+
+$$
+\zeta(z)
+=
+\dsum_{n=1}^\infty
+\dfrac1{n^z}
+\qquad
+\qty\big(\Re(z)>1)
+$$
+
+</div>
+
+リーマンゼータ関数のガンマ関数を用いた積分表示を証明する。これは、関数等式を導くうえで非常に重要な式である。
+
+<div class="theorem-box">
+
+**定理：ゼータ関数の積分表示①**
+
+$$
+\zeta(z)
+=
+\dfrac1{\Gamma(z)}
+\dint_0^\infty
+\dfrac{u^{z-1}}{\e^u-1}
+\dd u
+\qquad
+\qty\big(\Re(z)>1)
+$$
+
+</div>
+
+<details class="proof-box">
+<summary>証明</summary>
+
+$$
+\qquad
+\Gamma(z)
+=
+\dint_0^\infty
+t^{z-1}\e^{-t}
+\dd t
+\qquad
+(\Re(z)>0)
+$$
+
+$t=nu$ とすると、$\dd t=n\dd u$ であるから、
+
+$$
+\qquad
+\phantom{\Gamma(z)}
+=
+\dint_0^\infty
+(nu)^{z-1}\e^{-nu}
+n\dd u
+$$
+
+$$
+\qquad
+\phantom{\Gamma(z)}
+=
+\dint_0^\infty
+n^z
+\cancel{n^{-1}}
+u^{z-1}
+\e^{-nu}
+\cancel{n}
+\dd u
+$$
+
+$$
+\qquad
+\phantom{\Gamma(z)}
+=
+\dint_0^\infty
+n^z u^{z-1}\e^{-nu}
+\dd u
+$$
+
+両辺を $\dfrac1{n^z}$ で割って、
+
+$$
+\qquad
+\dfrac1{n^z}\Gamma(z)
+=
+\dint_0^\infty
+u^{z-1}\e^{-nu}
+\dd u
+$$
+
+ここで、両辺の和を取ると、
+
+$$
+\qquad
+\dsum_{n=1}^{\infty}
+\dfrac1{n^z}
+\Gamma(z)
+=
+\dsum_{n=1}^{\infty}
+\dint_0^\infty
+u^{z-1}\e^{-nu}
+\dd u
+$$
+
+$$
+\qquad
+\Gamma(z)
+\dsum_{n=1}^{\infty}
+\dfrac1{n^z}
+=
+\dsum_{n=1}^{\infty}
+\dint_0^\infty
+u^{z-1}\e^{-nu}
+\dd u
+\qquad
+(\Re(z)>1)
+$$
+
+（ただし、リーマンゼータ関数の定義より、絶対収束するためには、$\Re(z)>0$ から $\Re(z)>1$ に狭める必要がある。）
+
+$$
+\qquad
+\Gamma(z)\zeta(z)
+=
+\dsum_{n=1}^{\infty}
+\dint_0^\infty
+u^{z-1}\e^{-nu}
+\dd u
+$$
+
+$$
+\qquad
+\zeta(z)
+=
+\dfrac1{\Gamma(z)}
+\dsum_{n=1}^{\infty}
+\dint_0^\infty
+u^{z-1}\e^{-nu}
+\dd u
+$$
+
+現代解析では、自然数全体 $\mathbb{N}$ に数え上げ測度を入れると、
+
+$$
+\dsum_{n=1}^\infty f(n)
+=
+\dint_{\mathbb{N}}
+f(n)\,d\mu(n)
+$$
+
+とみなすことができる。したがって、
+
+$$
+\dsum_{n=1}^\infty
+\dint_0^\infty
+u^{s-1}e^{-nu}\,du
+$$
+
+は、
+
+$$
+\dint_{\mathbb{N}}
+\dint_0^\infty
+u^{s-1}e^{-nu}\,du\,d\mu(n)
+$$
+
+という重積分である。
+
+さらに、
+
+$$
+\dsum_{n=1}^\infty
+\dint_0^\infty
+|u^{s-1}e^{-nu}|\,du
+=
+\Gamma(\operatorname{Re}(s))
+\zeta(\operatorname{Re}(s))
+<\infty
+\qquad
+(\operatorname{Re}(s)>1)
+$$
+
+が成り立つので、フビニの定理（あるいはトネリの定理）より積分順序を交換できる。すなわち、
+
+$$
+\dsum_{n=1}^\infty
+\dint_0^\infty
+u^{s-1}e^{-nu}\,du
+=
+\dint_0^\infty
+\dsum_{n=1}^\infty
+u^{s-1}e^{-nu}\,du
+$$
+
+となる。
+
+$$
+\qquad
+\zeta(z)
+=
+\dfrac1{\Gamma(z)}
+\dint_0^\infty
+u^{z-1}
+\dsum_{n=1}^{\infty}
+\e^{-nu}
+\dd u
+$$
+
+$$
+\qquad
+\zeta(z)
+=
+\dfrac1{\Gamma(z)}
+\dint_0^\infty
+u^{z-1}
+\dsum_{n=1}^{\infty}
+\qty\big(\e^{-u})^n
+\dd u
+$$
+
+これは初項 $\qty\big(\e^{-u})^1=\e^{-u}$、公比 $\e^{-u}$ の等比級数であるから、等比級数の公式より、
+
+$$
+\qquad
+\zeta(z)
+=
+\dfrac1{\Gamma(z)}
+\dint_0^\infty
+u^{z-1}
+\cdot
+\dfrac{1\cdot\e^{-u}}{1-\e^{-u}}
+\dd u
+$$
+
+$$
+\qquad
+\zeta(z)
+=
+\dfrac1{\Gamma(z)}
+\dint_0^\infty
+u^{z-1}
+\cdot
+\dfrac{\e^{-u}}{1-\e^{-u}}
+\cdot
+\dfrac{\e^u}{\e^u}
+\dd u
+$$
+
+$$
+\qquad
+\zeta(z)
+=
+\dfrac1{\Gamma(z)}
+\dint_0^\infty
+\dfrac{u^{z-1}}{\e^u-1}
+\dd u.
+\quad \Box
+$$
+
+</details>
+
+<details class="proof-box">
+<summary>証明</summary>
+
+$$
+\qquad
+\Gamma(z)
+=
+\dint_0^\infty
+t^{z-1}\e^{-t}
+\dd t
+\qquad
+(\Re(z)>0)
+$$
+
+$t=nu$ とすると、$\dd t=n\dd u$ であるから、
+
+$$
+\qquad
+\phantom{\Gamma(z)}
+=
+\dint_0^\infty
+(nu)^{z-1}\e^{-nu}
+n\dd u
+$$
+
+$$
+\qquad
+\phantom{\Gamma(z)}
+=
+\dint_0^\infty
+n^z
+\cancel{n^{-1}}
+u^{z-1}
+\e^{-nu}
+\cancel{n}
+\dd u
+$$
+
+$$
+\qquad
+\phantom{\Gamma(z)}
+=
+\dint_0^\infty
+n^z u^{z-1}\e^{-nu}
+\dd u
+$$
+
+両辺を $\dfrac1{n^z}$ で割って、
+
+$$
+\qquad
+\dfrac1{n^z}\Gamma(z)
+=
+\dint_0^\infty
+u^{z-1}\e^{-nu}
+\dd u
+$$
+
+ここで、両辺の和を取ると、
+
+$$
+\qquad
+\dsum_{n=1}^{\infty}
+\dfrac1{n^z}
+\Gamma(z)
+=
+\dsum_{n=1}^{\infty}
+\dint_0^\infty
+u^{z-1}\e^{-nu}
+\dd u
+$$
+
+$$
+\qquad
+\Gamma(z)
+\dsum_{n=1}^{\infty}
+\dfrac1{n^z}
+=
+\dsum_{n=1}^{\infty}
+\dint_0^\infty
+u^{z-1}\e^{-nu}
+\dd u
+\qquad
+(\Re(z)>1)
+$$
+
+（ただし、リーマンゼータ関数の定義より、絶対収束するためには、$\Re(z)>0$ から $\Re(z)>1$ に狭める必要がある。）
+
+$$
+\qquad
+\Gamma(z)\zeta(z)
+=
+\dsum_{n=1}^{\infty}
+\dint_0^\infty
+u^{z-1}\e^{-nu}
+\dd u
+$$
+
+$$
+\qquad
+\zeta(z)
+=
+\dfrac1{\Gamma(z)}
+\dsum_{n=1}^{\infty}
+\dint_0^\infty
+u^{z-1}\e^{-nu}
+\dd u
+$$
+
+下の補題1により、$N\to\infty$ とすると、$\dsum_{n=1}^N\e^{-nu}$ は $\dsum_{n=1}^\infty\e^{-nu}$ に一様収束するため、**系：一様収束関数の極限の交換定理（無限和 ver.）**より、積分と総和を交換でき、さらに、$u^{z-1}$ は総和の外に出すことができるから、
+
+$$
+\qquad
+\zeta(z)
+=
+\dfrac1{\Gamma(z)}
+\dint_0^\infty
+u^{z-1}
+\dsum_{n=1}^{\infty}
+\e^{-nu}
+\dd u
+$$
+
+$$
+\qquad
+\zeta(z)
+=
+\dfrac1{\Gamma(z)}
+\dint_0^\infty
+u^{z-1}
+\dsum_{n=1}^{\infty}
+\qty\big(\e^{-u})^n
+\dd u
+$$
+
+これは初項 $\qty\big(\e^{-u})^1=\e^{-u}$、公比 $\e^{-u}$ の等比級数であるから、等比級数の公式より、
+
+$$
+\qquad
+\zeta(z)
+=
+\dfrac1{\Gamma(z)}
+\dint_0^\infty
+u^{z-1}
+\cdot
+\dfrac{1\cdot\e^{-u}}{1-\e^{-u}}
+\dd u
+$$
+
+$$
+\qquad
+\zeta(z)
+=
+\dfrac1{\Gamma(z)}
+\dint_0^\infty
+u^{z-1}
+\cdot
+\dfrac{\e^{-u}}{1-\e^{-u}}
+\cdot
+\dfrac{\e^u}{\e^u}
+\dd u
+$$
+
+$$
+\qquad
+\zeta(z)
+=
+\dfrac1{\Gamma(z)}
+\dint_0^\infty
+\dfrac{u^{z-1}}{\e^u-1}
+\dd u.
+\quad \Box
+$$
+
+</details>
+
+<div class="lemma-box">
+
+**補題1：**
+
+$$
+\dsum_{n=1}^N \e^{-nu}
+$$
+
+は $[\varepsilon,\infty)$ 上において、
+
+$$
+\dsum_{n=1}^\infty \e^{-nu}
+$$
+
+に一様収束する。
+
+</div>
+
+<details class="proof-box">
+<summary>証明</summary>
+
+$\dsum_{n=1}^N\e^{-nu}$ は $[\varepsilon,\infty)$ で
+
+$$
+\dsum_{n=1}^\infty\e^{-nu}
+=
+\dfrac1{\e^u-1}
+$$
+
+に一様収束。
+
+$$
+\Re(z)>1
+$$
+
+$$
+\qquad
+\mathrel{\phantom{=}}
+\dlim_{N\to\infty}
+\sup_{u\in[\varepsilon,\infty)}
+\left|
+\dsum_{n=1}^N\e^{-nu}
+-
+\dsum_{n=1}^\infty\e^{-nu}
+\right|
+$$
+
+$$
+\qquad
+=
+\dlim_{N\to\infty}
+\sup_{u\in[\varepsilon,\infty)}
+\bigl|
+\qty\big(
+\e^{-1\cdot u}
++\e^{-2\cdot u}
++\cdots
++\e^{-Nu}
+)
+-
+(
+\e^{-1\cdot u}
++\e^{-2\cdot u}
++\cdots
++\e^{-Nu}
++\cdots
+)
+\bigr|
+$$
+
+$$
+\qquad
+=
+\dlim_{N\to\infty}
+\sup_{u\in[\varepsilon,\infty)}
+\left|
+\e^{-(N+1)u}+\cdots
+\right|
+$$
+
+$$
+\qquad
+=
+\dlim_{N\to\infty}
+\sup_{u\in[\varepsilon,\infty)}
+\left|
+\dsum_{n=N+1}^\infty
+\e^{-nu}
+\right|
+$$
+
+$$
+\qquad
+=
+\dlim_{N\to\infty}
+\sup_{u\in[\varepsilon,\infty)}
+\dsum_{n=N+1}^\infty
+\e^{-nu}
+$$
+
+$n>0$ より、$\e^{-nu}$ は $u$ に関して単調減少関数であるから、$u\in[\varepsilon,\infty)$ で最大値を取るのは $\varepsilon$ のとき（$u=0$ に限りなく近いとき）である。よって、
+
+$$
+\qquad
+=
+\dlim_{N\to\infty}
+\dsum_{n=N+1}^\infty
+\e^{-n\varepsilon}
+$$
+
+これは初項 $\e^{-(N+1)u}$、公比 $\dfrac{}{}=\e^{-u}$ の等比級数であるから、無限等比級数の公式より、
+
+$$
+\qquad
+=
+\dlim_{N\to\infty}
+\dfrac{\e^{-(N+1)u}}
+{1-\e^{-u}}
+$$
+
+$$
+\qquad
+=
+\dlim_{N\to\infty}
+\dfrac{\e^{-Nu}\cdot\e^{-u}}
+{1-\e^{-u}}
+$$
+
+$$
+\qquad
+=
+\dfrac{\e^{-u}}
+{1-\e^{-u}}
+\dlim_{N\to\infty}
+\e^{-Nu}
+$$
+
+これは $\e^{-Nu}=\dfrac1{\e^{Nu}}$ と変形でき、$\dlim_{N\to\infty}\e^{Nu}=\infty$ が成り立つため、$\e^{-Nu}=\dfrac1{\e^{Nu}}$ の分母が無限大に発散すると考えられる。よって、
+
+$$
+\qquad
+=
+\dfrac{\e^{-u}}
+{1-\e^{-u}}
+\cdot0
+$$
+
+$$
+\qquad
+=0.
+$$
+
+したがって、$\dsum_{n=1}^N\e^{-nu}$ は $[\varepsilon,\infty)$ 上において、$\dsum_{n=1}^\infty\e^{-nu}$ に一様収束する。$\quad\Box$
+
+</details>
+
+<div class="theorem-box">
+
+**定理：関数等式**
+
+$$
+\zeta(s)
+=
+2^s
+\pi^{s-1}
+\sin\left(\dfrac{\pi s}{2}\right)
+\Gamma(1-s)
+\zeta(1-s)
+$$
+
+</div>
+
+<details class="proof-box">
+<summary>証明</summary>
+
+</details>
+
+<div class="definition-box">
+
+**定義：テータ関数**
+
+$$
+\vartheta(z,\tau)
+:=
+\dsum_{n=-\infty}^\infty
+\e^{\pi in^2\tau+2\pi inz}
+$$
+
+</div>
+
+$$
+\vartheta(z+1,\tau)
+=
+\vartheta(z,\tau)
+$$
+
+$$
+\vartheta(z+m\tau+n,\tau)
+=
+\e^{-\pi im^2\tau-2\pi imz}
+\tau(z,\tau)
+$$
+
+<div class="definition-box">
+
+**定義：フーリエ変換**
+
+$$
+\hat f(x)
+:=
+\dint_{-\infty}^\infty
+f(t)
+\e^{-2\pi\sqrt{-1}xt}
+\dd t
+$$
+
+</div>
+
+<div class="theorem-box">
+
+**定理：ポアソンの和公式**
+
+$f,\hat f\in L^1(\R)$ がシュワルツ関数であるとき、以下が成り立つ。
+
+$$
+\qquad
+\dsum_{n\in\Z}f(n)
+=
+\dsum_{n\in\Z}\hat f(n)
+$$
+
+</div>
+
+<div class="definition-box">
+
+**定義：完備リーマンゼータ関数**
+
+$$
+\xi(z)
+:=
+\pi^{-\frac{z}{2}}
+\Gamma\qty(\dfrac{z}{2})
+\zeta(z)
+$$
+
+</div>

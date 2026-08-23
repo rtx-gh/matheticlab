@@ -1,0 +1,849 @@
+---
+title: 測度論
+description: 外測度、ルベーグ測度、ルベーグ積分、収束定理、フビニ・トネリの定理
+---
+
+## 測度論の流れ
+
+位相論と測度論には、概念的に次のような対応がある。
+
+- 開集合系 → $\sigma$-加法族
+- 位相空間 → 可測空間
+- 開集合 → 可測集合
+
+また、
+
+$$
+\begin{array}{c}
+\text{ジョルダン測度} \\
+\downarrow \\
+\text{リーマン積分}
+\end{array}
+$$
+
+という関係がある。
+
+### 定理
+
+ジョルダン内測度とジョルダン外測度が一致することと、
+リーマン可積分性は対応する。
+
+測度の一般化の流れは、
+
+$$
+\begin{array}{c}
+\text{ジョルダン測度（リーマン積分）} \\
+\downarrow\ \text{一般化} \\
+\text{ルベーグ外測度} \\
+\downarrow\ \text{可測集合へ制限} \\
+\text{ルベーグ測度} \\
+\downarrow \\
+\text{ルベーグ積分}
+\end{array}
+$$
+
+と見ることができる。
+
+一般の測度論では、
+
+$$
+\begin{array}{c}
+\text{有限加法的測度} \\
+\downarrow\ \text{一般化} \\
+\text{外測度} \\
+\downarrow\ \text{可測集合へ制限} \\
+\text{測度}
+\end{array}
+$$
+
+となる。
+
+また、
+
+$$
+\text{集合}
+\longrightarrow
+\text{可測集合},
+\qquad
+\text{連続関数}
+\longrightarrow
+\text{可測関数}
+$$
+
+という一般化が行われる。
+
+ルベーグ積分を導入するメリットは、単にディリクレ関数のような特異な関数を積分できることにあるのではない。
+
+積分と極限の順序を入れ替える**ルベーグの優収束定理**や、二重積分の順序を入れ替える**フビニの定理**が、リーマン積分上で成立する類似の定理よりも、より簡単な条件で成り立つ点にある。
+
+---
+
+## 有限加法的測度
+
+### 定義：有限加法族
+
+集合 $X$ の部分集合族 $\mathcal F\subseteq 2^X$ が、
+
+$$
+\emptyset\in\mathcal F,
+$$
+
+$$
+A_1,A_2\in\mathcal F
+\implies
+A_1\cup A_2\in\mathcal F,
+$$
+
+$$
+A\in\mathcal F
+\implies
+A^c\in\mathcal F
+$$
+
+を満たすとき、$\mathcal F$ を有限加法族と呼ぶ。
+
+### 例
+
+1. $X=\{1,2,3\}$ に対する $\mathcal F=2^X$
+2. $X=\mathbb Z$ に対する
+
+$$
+\mathcal F
+=
+\left\{
+A\subseteq\mathbb Z
+\;\middle|\;
+A\text{ が有限集合、または }A^c\text{ が有限集合}
+\right\}
+$$
+
+### 定義：有限加法的測度
+
+台集合 $X$ とその部分集合族 $\mathcal F\subseteq 2^X$ に対して、
+
+$$
+\mu:\mathcal F\to[0,\infty]
+$$
+
+が
+
+$$
+\mu(\emptyset)=0
+$$
+
+および、互いに素な有限個の集合 $A_1,\ldots,A_n\in\mathcal F$ に対して、
+
+$$
+\mu\left(\bigcup_{i=1}^n A_i\right)
+=
+\sum_{i=1}^n\mu(A_i)
+$$
+
+を満たすとき、$\mu$ を**有限加法的測度**と呼ぶ。
+
+---
+
+## 外測度
+
+### 定義：外測度
+
+集合 $X$ に対して、写像
+
+$$
+\mu^*:2^X\to[0,\infty]
+$$
+
+が以下を満たすとき、$\mu^*$ を**外測度**と呼ぶ。
+
+1. 非負性
+
+$$
+\mu^*(\emptyset)=0
+$$
+
+2. 単調性
+
+$$
+A\subseteq B
+\implies
+\mu^*(A)\leq\mu^*(B)
+$$
+
+3. 可算劣加法性
+
+$$
+\mu^*\left(\bigcup_{i=1}^{\infty}A_i\right)
+\leq
+\sum_{i=1}^{\infty}\mu^*(A_i)
+$$
+
+---
+
+### 定義：ルベーグ外測度
+
+直方体
+
+$$
+I
+=
+[a_1,b_1]\times\cdots\times[a_n,b_n]
+\subseteq\mathbb R^n
+$$
+
+に対して、
+
+$$
+|I|
+=
+\prod_{i=1}^{n}(b_i-a_i)
+$$
+
+とする。
+
+$A\subseteq\mathbb R^n$ に対して、
+
+$$
+m^*(A)
+=
+\inf
+\left\{
+\sum_{i=1}^{\infty}|I_i|
+\;\middle|\;
+A\subseteq\bigcup_{i=1}^{\infty}I_i
+\right\}
+$$
+
+を $A$ の**ルベーグ外測度**と呼ぶ。
+
+### 命題：ルベーグ外測度は外測度
+
+ルベーグ外測度 $m^*$ は外測度である。
+
+すなわち、
+
+$$
+m^*(\emptyset)=0,
+$$
+
+$$
+A\subseteq B
+\implies
+m^*(A)\leq m^*(B),
+$$
+
+$$
+m^*\left(\bigcup_{i=1}^{\infty}A_i\right)
+\leq
+\sum_{i=1}^{\infty}m^*(A_i)
+$$
+
+が成り立つ。
+
+---
+
+### 定義：カラテオドリ可測
+
+外測度 $\mu^*$ に対して、集合 $A\subseteq X$ が
+
+$$
+\mu^*(E)
+=
+\mu^*(E\cap A)
++
+\mu^*(E\setminus A)
+$$
+
+を任意の $E\subseteq X$ に対して満たすとき、$A$ を
+**カラテオドリ可測**であるという。
+
+---
+
+### 定理：ルベーグ可測 $\iff$ カラテオドリ可測
+
+集合 $A\subseteq\mathbb R^n$ に対して、
+
+1. $A$ はルベーグ可測である。
+2. $A$ はカラテオドリ可測である。
+
+は同値である。
+
+---
+
+### 定義：ルベーグ測度
+
+ルベーグ外測度 $m^*$ をルベーグ可測集合族に制限したものを
+**ルベーグ測度**と呼ぶ。
+
+### 定理：ルベーグ測度は測度
+
+ルベーグ測度は測度である。
+
+---
+
+## 測度
+
+### 定義：$\sigma$-加法族
+
+$X$ を空でない集合とする。
+
+部分集合族
+
+$$
+\mathcal F\subseteq2^X
+$$
+
+が、
+
+$$
+X\in\mathcal F,
+$$
+
+$$
+A\in\mathcal F
+\implies
+A^c\in\mathcal F,
+$$
+
+$$
+A_1,A_2,\ldots\in\mathcal F
+\implies
+\bigcup_{i=1}^{\infty}A_i\in\mathcal F
+$$
+
+を満たすとき、$\mathcal F$ を $X$ 上の **$\sigma$-加法族**と呼ぶ。
+
+組
+
+$$
+(X,\mathcal F)
+$$
+
+を**可測空間**と呼び、$A\in\mathcal F$ を**可測集合**と呼ぶ。
+
+---
+
+### 定義：測度・測度空間
+
+$(X,\mathcal F)$ を可測空間とする。
+
+写像
+
+$$
+\mu:\mathcal F\to[0,\infty]
+$$
+
+が、
+
+$$
+\mu(\emptyset)=0
+$$
+
+および、互いに素な可測集合列 $\{A_i\}$ に対して、
+
+$$
+\mu\left(
+\bigcup_{i=1}^{\infty}A_i
+\right)
+=
+\sum_{i=1}^{\infty}\mu(A_i)
+$$
+
+を満たすとき、$\mu$ を**測度（measure）**と呼ぶ。
+
+この性質を**可算加法性**という。
+
+また、
+
+$$
+(X,\mathcal F,\mu)
+$$
+
+を**測度空間（measure space）**と呼ぶ。
+
+### 可測集合の例
+
+1. ボレル集合
+2. ルベーグ可測集合
+
+---
+
+## 可測関数
+
+---
+
+## ルベーグ積分
+
+### 指示関数
+
+集合 $E$ の指示関数を
+
+$$
+\chi_E(x)
+=
+\begin{cases}
+1 & (x\in E),\\
+0 & (x\notin E)
+\end{cases}
+$$
+
+と定義する。
+
+### 単関数
+
+$$
+\varphi(x)
+=
+\sum_{i=1}^{n}
+a_i\chi_{E_i}(x)
+$$
+
+の形の関数を単関数という。
+
+### 非負単関数のルベーグ積分
+
+非負単関数
+
+$$
+\varphi
+=
+\sum_{i=1}^{n}
+a_i\chi_{E_i}
+$$
+
+に対して、
+
+$$
+\int_X\varphi\,d\mu
+:=
+\sum_{i=1}^{n}
+a_i\mu(E_i)
+$$
+
+と定義する。
+
+---
+
+## 収束定理
+
+### 定理：ルベーグの優収束定理
+
+$(X,\mathcal F,\mu)$ を測度空間、$\{f_n\}$ をその上の可測関数列とする。
+
+以下を仮定する。
+
+1. $f_n\to f$
+2. ある可積分関数 $F$ が存在して、
+
+$$
+|f_n|\leq F
+\qquad(n\geq1)
+$$
+
+が成り立つ。
+
+このとき $f_n,f$ は可積分で、
+
+$$
+\lim_{n\to\infty}
+\int_X|f_n-f|\,d\mu
+=
+0
+$$
+
+が成り立つ。
+
+特に、
+
+$$
+\lim_{n\to\infty}
+\int_X f_n\,d\mu
+=
+\int_X f\,d\mu
+$$
+
+である。
+
+この $F$ を**優関数（dominating function）**と呼ぶ。
+
+<details>
+<summary><strong>証明</strong></summary>
+
+$|f_n|\leq F$ および $f_n\to f$ より、
+
+$$
+|f|\leq F.
+$$
+
+また、
+
+$$
+|f_n-f|
+\leq
+|f_n|+|f|
+\leq
+2F.
+$$
+
+したがって、
+
+$$
+2F-|f_n-f|\geq0.
+$$
+
+ファトゥーの補題より、
+
+$$
+\int_X
+\liminf_{n\to\infty}
+\left(2F-|f_n-f|\right)
+\,d\mu
+\leq
+\liminf_{n\to\infty}
+\int_X
+\left(2F-|f_n-f|\right)
+\,d\mu.
+$$
+
+$f_n\to f$ より左辺は
+
+$$
+\int_X2F\,d\mu
+$$
+
+である。
+
+したがって、
+
+$$
+\int_X2F\,d\mu
+\leq
+\int_X2F\,d\mu
+-
+\limsup_{n\to\infty}
+\int_X|f_n-f|\,d\mu.
+$$
+
+よって、
+
+$$
+\limsup_{n\to\infty}
+\int_X|f_n-f|\,d\mu
+\leq0.
+$$
+
+一方、
+
+$$
+\int_X|f_n-f|\,d\mu\geq0
+$$
+
+なので、
+
+$$
+\lim_{n\to\infty}
+\int_X|f_n-f|\,d\mu
+=
+0.
+$$
+
+さらに、
+
+$$
+\left|
+\int_Xf_n\,d\mu
+-
+\int_Xf\,d\mu
+\right|
+\leq
+\int_X|f_n-f|\,d\mu
+\to0.
+$$
+
+$\Box$
+
+</details>
+
+---
+
+### 定理：有界収束定理
+
+$(X,\mathcal F,\mu)$ を
+
+$$
+\mu(X)<\infty
+$$
+
+を満たす測度空間とする。
+
+可測関数列 $\{f_n\}$ が、
+
+1. $f_n\to f$
+2. ある定数 $M$ が存在して、
+
+$$
+|f_n|\leq M
+\qquad(n\geq1)
+$$
+
+を満たすとする。
+
+このとき、
+
+$$
+\lim_{n\to\infty}
+\int_X|f_n-f|\,d\mu
+=
+0
+$$
+
+が成り立つ。
+
+特に、
+
+$$
+\lim_{n\to\infty}
+\int_Xf_n\,d\mu
+=
+\int_Xf\,d\mu.
+$$
+
+---
+
+## フビニの定理
+
+### 定理：リーマン積分に対するフビニの定理
+
+適切な条件のもとで、
+
+$$
+\int_a^b
+\left(
+\int_c^d f(x,y)\,dy
+\right)dx
+=
+\int_a^b\int_c^d
+f(x,y)\,dy\,dx
+$$
+
+$$
+=
+\int_c^d
+\left(
+\int_a^b f(x,y)\,dx
+\right)dy.
+$$
+
+---
+
+### 定理：フビニの定理
+
+関数
+
+$$
+f:\mathbb R^m\times\mathbb R^n
+\to
+\overline{\mathbb R}
+$$
+
+が $\mathbb R^m\times\mathbb R^n$ 上可積分であるとする。
+
+このとき、$\mathbb R^m$ 上ほとんど至るところで
+$f(x,\cdot)$ は $\mathbb R^n$ 上可積分であり、
+
+$$
+x
+\mapsto
+\int_{\mathbb R^n}f(x,y)\,dy
+$$
+
+は $\mathbb R^m$ 上可積分である。
+
+さらに、
+
+$$
+\int_{\mathbb R^m\times\mathbb R^n}
+f(x,y)\,d(x,y)
+=
+\int_{\mathbb R^m}
+\left(
+\int_{\mathbb R^n}
+f(x,y)\,dy
+\right)dx.
+$$
+
+同様に、
+
+$$
+\int_{\mathbb R^m\times\mathbb R^n}
+f(x,y)\,d(x,y)
+=
+\int_{\mathbb R^n}
+\left(
+\int_{\mathbb R^m}
+f(x,y)\,dx
+\right)dy.
+$$
+
+ただし、
+
+$$
+\overline{\mathbb R}
+=
+\mathbb R\cup\{-\infty,+\infty\}.
+$$
+
+---
+
+### 定理：トネリの定理
+
+関数
+
+$$
+f:\mathbb R^m\times\mathbb R^n
+\to
+\overline{\mathbb R}
+$$
+
+が可測かつ非負値であるとする。
+
+このとき、
+
+$$
+\int_{\mathbb R^m\times\mathbb R^n}
+f(x,y)\,d(x,y)
+=
+\int_{\mathbb R^m}
+\left(
+\int_{\mathbb R^n}f(x,y)\,dy
+\right)dx
+$$
+
+$$
+=
+\int_{\mathbb R^n}
+\left(
+\int_{\mathbb R^m}f(x,y)\,dx
+\right)dy.
+$$
+
+この等式は値が $\infty$ となる場合にも成立する。
+
+---
+
+### 定理：フビニ・トネリの定理
+
+可測関数
+
+$$
+f:\mathbb R^m\times\mathbb R^n
+\to
+\overline{\mathbb R}
+$$
+
+に対して、
+
+$$
+\int_{\mathbb R^m\times\mathbb R^n}
+|f(x,y)|\,d(x,y)
+$$
+
+$$
+=
+\int_{\mathbb R^m}
+\left(
+\int_{\mathbb R^n}|f(x,y)|\,dy
+\right)dx
+$$
+
+$$
+=
+\int_{\mathbb R^n}
+\left(
+\int_{\mathbb R^m}|f(x,y)|\,dx
+\right)dy.
+$$
+
+さらに、この値が有限、すなわち $f$ が可積分であるなら、
+
+$$
+\int_{\mathbb R^m\times\mathbb R^n}
+f(x,y)\,d(x,y)
+$$
+
+$$
+=
+\int_{\mathbb R^m}
+\left(
+\int_{\mathbb R^n}f(x,y)\,dy
+\right)dx
+$$
+
+$$
+=
+\int_{\mathbb R^n}
+\left(
+\int_{\mathbb R^m}f(x,y)\,dx
+\right)dy
+$$
+
+が有限値で成立する。
+
+---
+
+### 定理：数え上げ測度とルベーグ測度に関するフビニ・トネリの定理
+
+$X=\mathbb N$ に数え上げ測度を、
+$Y=(0,\infty)$ にルベーグ測度を入れる。
+
+可測関数
+
+$$
+f:\mathbb N\times(0,\infty)
+\to
+\overline{\mathbb R}
+$$
+
+に対して、
+
+$$
+\sum_{n=1}^{\infty}
+\int_0^\infty
+|f(n,x)|\,dx
+=
+\int_0^\infty
+\left(
+\sum_{n=1}^{\infty}|f(n,x)|
+\right)dx.
+$$
+
+さらに、この値が有限なら、
+
+$$
+\sum_{n=1}^{\infty}
+\int_0^\infty
+f(n,x)\,dx
+=
+\int_0^\infty
+\left(
+\sum_{n=1}^{\infty}f(n,x)
+\right)dx.
+$$
+
+級数は数え上げ測度に関する積分とみなせるため、
+級数と積分の交換はフビニ・トネリの定理の応用として理解できる。
+
+---
+
+## $L^p$ 空間（関数空間）
+
+### 定義：$L^p$ 空間
+
+---
+
+## フーリエ級数・フーリエ変換
+
+### 定義：フーリエ級数
+
+### 定義：フーリエ変換
+
+### 定義：逆フーリエ変換

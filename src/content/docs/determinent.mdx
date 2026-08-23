@@ -1,0 +1,428 @@
+---
+title: 行列式・固有値
+description: 行列式、小行列式、余因子、固有値、固有ベクトルについて
+---
+
+## 行列式
+
+**行列式（determinant）**
+
+正方行列 $A=(a_{ij})$ に対して定義される交代和
+
+$$
+\det A
+=
+\sum_{\sigma\in\mathfrak{S}_n}
+\left(
+\operatorname{sgn}(\sigma)
+\prod_{i=1}^{n} a_{i,\sigma(i)}
+\right)
+$$
+
+を $A$ の**行列式**といい、
+
+$$
+\det A
+\qquad\text{または}\qquad
+|A|
+$$
+
+と表す。
+
+### 2次正方行列
+
+$$
+\begin{vmatrix}
+a & b \\
+c & d
+\end{vmatrix}
+=
+ad-bc
+$$
+
+### 3次正方行列
+
+$$
+\begin{vmatrix}
+a_{11} & a_{12} & a_{13} \\
+a_{21} & a_{22} & a_{23} \\
+a_{31} & a_{32} & a_{33}
+\end{vmatrix}
+$$
+
+は、
+
+$$
+\begin{aligned}
+={}&
+a_{11}a_{22}a_{33}
++a_{12}a_{23}a_{31}
++a_{13}a_{21}a_{32} \\
+&-a_{13}a_{22}a_{31}
+-a_{12}a_{21}a_{33}
+-a_{11}a_{23}a_{32}.
+\end{aligned}
+$$
+
+---
+
+## 行列式の性質
+
+行ベクトルを $a_1,a_2,\ldots,a_n$ とすると、任意の置換
+$\sigma\in\mathfrak{S}_n$ に対して、
+
+$$
+\det
+\begin{pmatrix}
+a_{\sigma(1)} \\
+a_{\sigma(2)} \\
+\vdots \\
+a_{\sigma(n)}
+\end{pmatrix}
+=
+\operatorname{sgn}(\sigma)
+\det
+\begin{pmatrix}
+a_1 \\
+a_2 \\
+\vdots \\
+a_n
+\end{pmatrix}.
+$$
+
+同様に、
+
+$$
+\det
+\left(
+a_{\sigma(1)},
+a_{\sigma(2)},
+\ldots,
+a_{\sigma(n)}
+\right)
+=
+\operatorname{sgn}(\sigma)
+\det
+\left(
+a_1,
+a_2,
+\ldots,
+a_n
+\right).
+$$
+
+また、
+
+$$
+\det A=\det A^{\top},
+$$
+
+$$
+\det(AB)=\det A\,\det B.
+$$
+
+$A$ が正則なら、
+
+$$
+\det(A^{-1})
+=
+(\det A)^{-1}.
+$$
+
+---
+
+## 小行列式・余因子・余因子行列
+
+**小行列式・余因子・余因子行列  
+（minor determinant, cofactor and adjugate matrix）**
+
+行列 $A$ の第 $i$ 行と第 $j$ 列を除いて得られる行列を、
+その位置 $(i,j)$ に対応する**小行列**といい、$A_{ij}$ などと表す。
+
+$A$ が正方行列であるとき、小行列 $A_{ij}$ の行列式
+
+$$
+\det A_{ij}
+$$
+
+を**小行列式**という。
+
+位置 $(i,j)$ に対応する**余因子**を
+
+$$
+C_{ij}
+=
+(-1)^{i+j}\det A_{ij}
+$$
+
+と定義する。
+
+余因子を並べた行列
+
+$$
+C=(C_{ij})
+$$
+
+の転置
+
+$$
+\operatorname{adj}(A)
+=
+C^{\top}
+$$
+
+を $A$ の**余因子行列**という。
+
+すなわち、
+
+$$
+\operatorname{adj}(A)
+=
+\left(
+(-1)^{i+j}\det A_{ij}
+\right)^{\top}.
+$$
+
+$A_{ij}$ だけでは何を指しているのか分かりにくいため、
+「小行列 $A_{ij}$」などと明記することがある。
+
+小行列を $M_{ij}$ と表すこともある。
+
+行列と同じく、小行列そのものは行数と列数が一致している必要はない。
+一方、その行列式である小行列式は正方行列に対してのみ定義される。
+
+### 小行列の例
+
+例えば、
+
+$$
+A=
+\begin{pmatrix}
+a_{11} & a_{12} & a_{13} & a_{14} \\
+a_{21} & a_{22} & a_{23} & a_{24} \\
+a_{31} & a_{32} & a_{33} & a_{34}
+\end{pmatrix}
+$$
+
+から第 $2$ 行と第 $3$ 列を除くと、
+
+$$
+A_{23}
+=
+\begin{pmatrix}
+a_{11} & a_{12} & a_{14} \\
+a_{31} & a_{32} & a_{34}
+\end{pmatrix}
+$$
+
+を得る。
+
+### 2次正方行列の余因子行列
+
+$$
+A=
+\begin{pmatrix}
+a & b \\
+c & d
+\end{pmatrix}
+$$
+
+ならば、
+
+$$
+\operatorname{adj}(A)
+=
+\begin{pmatrix}
+d & -b \\
+-c & a
+\end{pmatrix}.
+$$
+
+---
+
+## 逆行列の表示
+
+正則行列 $A$ に対して、
+
+$$
+A^{-1}
+=
+\frac{1}{\det A}
+\operatorname{adj}(A).
+$$
+
+特に、
+
+$$
+A=
+\begin{pmatrix}
+a & b \\
+c & d
+\end{pmatrix}
+$$
+
+ならば、
+
+$$
+\begin{aligned}
+A^{-1}
+&=
+\frac{1}
+{\det
+\begin{pmatrix}
+a & b \\
+c & d
+\end{pmatrix}}
+\operatorname{adj}
+\begin{pmatrix}
+a & b \\
+c & d
+\end{pmatrix}
+\\[1ex]
+&=
+\frac{1}{ad-bc}
+\begin{pmatrix}
+d & -b \\
+-c & a
+\end{pmatrix}.
+\end{aligned}
+$$
+
+---
+
+## 行列の対角化
+
+正方行列 $A$ に対し、正則行列 $P$ を用いて
+
+$$
+P^{-1}AP
+$$
+
+が対角行列になるとき、$A$ は**対角化可能**であるという。
+
+---
+
+## 固有値・固有ベクトル
+
+**固有値・固有ベクトル・固有方程式・固有多項式  
+（eigenvalue, eigenvector, characteristic equation, characteristic polynomial）**
+
+正方行列 $A$ に対して、
+
+$$
+A\mathbf{x}
+=
+\lambda\mathbf{x}
+$$
+
+を満たすスカラー $\lambda$ と零ベクトルでないベクトル
+$\mathbf{x}$ が存在するとき、
+
+$\lambda$ を $A$ の**固有値**、
+$\mathbf{x}$ を固有値 $\lambda$ に関する**固有ベクトル**という。
+
+単位行列 $I_n$ を用いると、
+
+$$
+A\mathbf{x}
+=
+\lambda I_n\mathbf{x}
+$$
+
+なので、
+
+$$
+(A-\lambda I_n)\mathbf{x}
+=
+\mathbf{0}
+$$
+
+と書ける。
+
+この連立一次方程式が非自明解
+
+$$
+\mathbf{x}\neq\mathbf{0}
+$$
+
+を持つための必要十分条件は、
+
+$$
+\det(A-\lambda I_n)=0
+$$
+
+である。
+
+この方程式を $A$ の**固有方程式**という。
+
+また、
+
+$$
+p_A(\lambda)
+=
+\det(\lambda I_n-A)
+$$
+
+または符号の流儀によって
+
+$$
+p_A(\lambda)
+=
+\det(A-\lambda I_n)
+$$
+
+を $A$ の**固有多項式**という。
+
+---
+
+## 固有空間
+
+**固有空間（eigenspace）**
+
+行列 $A$ の固有値 $\lambda$ に対して、
+
+$$
+E_\lambda
+=
+\left\{
+\mathbf{x}
+\mid
+A\mathbf{x}
+=
+\lambda\mathbf{x}
+\right\}
+$$
+
+とおく。
+
+これは、
+
+$$
+E_\lambda
+=
+\ker(A-\lambda I_n)
+$$
+
+と書くこともできる。
+
+$E_\lambda$ はベクトル空間の部分空間をなし、
+これを固有値 $\lambda$ に対応する**固有空間**という。
+
+なお、固有ベクトルそのものの集合は零ベクトルを含まないため、
+厳密にはそれだけでは部分ベクトル空間ではない。
+
+---
+
+## ケイリー・ハミルトンの定理
+
+**ケイリー・ハミルトンの定理（Cayley–Hamilton theorem）**
+
+$n$ 次正方行列 $A$ の固有多項式を $p_A(t)$ とすると、
+
+$$
+p_A(A)=O
+$$
+
+が成り立つ。
+
+すなわち、**任意の正方行列は自分自身の固有多項式を満たす。**

@@ -1,0 +1,98 @@
+---
+title: foo
+description: foo
+---
+
+#### 問題
+
+$V$ を有限次元複素ベクトル空間とし、$f \colon V \to V$ を線形写像であって
+
+$$
+\ker f^2 = \im f
+$$
+
+を満たすものとする。このとき、
+$V$ の次元は $3$ の倍数であることを示せ。
+
+#### 次元定理を用いた記号整理
+
+次元定理を用いると、
+
+$\dim V = \dim \ker f + \dim \im f$
+
+が成り立つ。
+
+$n := \dim V,\, r := \dim \im f,\, k := \dim \ker f$
+
+とする。すなわち、
+
+$n = k + r$
+
+#### $\ker f \subseteq \im f$ について
+
+$x \in \ker f$
+
+$\iff f(x) = 0$
+
+両辺を $f$ で送ると、
+
+$f^2(x) = f(0)$
+
+線形写像の性質より、
+
+$f(0) = 0$
+
+$x \in \ker f \implies x \in \ker f^2$
+
+$\ker f^2 = \im f$ より、
+
+$x \in \ker f \implies x \in \im f$
+
+$\iff \ker f \subseteq \im f$
+
+#### $f^2$ に対する次元定理
+
+$f^2$ の行き先は、$V \xrightarrow{f} V \xrightarrow{f} V$ となるから、$V \xrightarrow{f^2} V$ である。
+
+よって、次元定理を用いると、
+
+$\qquad \dim \ker f^2 + \dim \im f^2 = \dim V$
+
+$\dim V = n$ であるから、
+
+$\qquad \dim \ker f^2 + \dim \im f^2 = n$
+
+$\ker f^2 = \im f$ と $\dim \im f = r$より、
+
+$\qquad r + \dim \im f^2 = n$
+
+$\dim \im f^2 = n-r$
+
+#### $\im f$ への制限写像を考える
+
+##### $\im \varphi$ の次元
+
+$\varphi := f|_{\im f} \colon \im f \to V$
+
+$\qquad \im \varphi$
+
+$\qquad = \qty{\varphi(f(x)) \in V \mid x \in V}$
+
+$\varphi は $f$ の $\im f$ への制限写像であったから、
+
+$\qquad = \qty{f(f(x)) \in V \mid x \in V}$
+
+$\qquad = \qty{f^2(x) \in V \mid x \in V}$
+
+$\qquad = \im f^2$
+
+となる。よって、$\dim \im f^2 = n-r$ より、
+
+$\qquad \dim \im \varphi = n - r$
+
+##### $\ker \varphi$ の次元
+
+$\ker \varphi = \im f \cap \ker f$
+
+$\dim \ker \varphi = k$
+

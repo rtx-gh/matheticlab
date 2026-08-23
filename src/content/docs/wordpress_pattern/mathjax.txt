@@ -1,0 +1,225 @@
+<!-- wp:html -->
+<script>
+window.MathJax = {
+  loader: {
+    load: ['[tex]/physics','[tex]/cancel','[tex]/color']
+  },
+  chtml: {
+    linebreaks: { automatic: true }
+  },
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    displayMath: [['$$', '$$'], ['\\[', '\\]']],
+    processEscapes: true,
+    packages: {'[+]': ['ams', 'physics','cancel','color']},
+    macros: {
+      // 二項係数
+      perm: ["{}_{#1} \\mathrm{P}_{#2}", 2],
+      bc: ["{}_{#1} \\mathrm C_{#2}", 2],
+      comb: ["{}_{#1} \\mathrm C_{#2}", 2],
+      
+      // 大型演算子
+      dbigcap: "\\displaystyle\\bigcap",
+      dbigcup: "\\displaystyle\\bigcup",
+      ddv: "\\displaystyle\\dv",
+      dx: "\\mathrm{dx}",
+      dinf: "\\displaystyle\\inf",
+      dint: "\\displaystyle\\int",
+      diint: "\\displaystyle\\iint",
+      dlim: "\\displaystyle\\lim",
+      dliminf: "\\displaystyle\\liminf",
+      dlimsup: "\\displaystyle\\limsup",
+      doint: "\\displaystyle\\oint",
+      dpdv: "\\displaystyle\\pdv",
+      dprod: "\\displaystyle\\prod",
+      dsum: "\\displaystyle\\sum",
+      dsup: "\\displaystyle\\sup",
+      dmax: "\\displaystyle\\max",
+      dmin: "\\displaystyle\\min",
+      dbigoplus: "\\displaystyle\\bigoplus",
+      dbinom: "\\displaystyle\\binom",
+
+
+      // 位相幾何学
+      H: "\\mathrm{H}",
+
+      // 線形代数
+      subspace: "\\overset{部分空間}{\\subseteq}",
+
+      // 群論
+      subgroup: "\\overset{部分群}{\\subseteq}",
+      lhdeq: "\\trianglelefteq",
+      rhdeq: "\\trianglerighteq",
+      lhdneq: "\\lneq\\!\\!\\!\\!:\\!\\lhdeq",
+      rhdneq: "\\rneq\\!\\!\\!\\!:\\!\\rhdeq",
+      grouphom: "\\xrightarrow{群準同型}",
+      gcong: "\\overset{\\mathrm{group}}{\\cong}",
+
+      // 可換環論
+      fa: "\\mathfrak{a}",
+      fb: "\\mathfrak{b}",
+      fc: "\\mathfrak{c}",
+      m: "\\mathfrak{m}",
+      p: "\\mathfrak{p}",
+      subring: "\\overset{部分環}{\\subseteq}",
+      ideal: "\\overset{イデアル}{\\subseteq}",
+      idealneq: "\\overset{イデアル}{\\subsetneq}",
+      primeideal: "\\overset{素イデアル}{\\subsetneq}",
+      maxideal: "\\overset{極大イデアル}{\\subsetneq}",
+      ringhom: "\\xrightarrow{環準同型}",
+      unit: ["{#1}^{\\times}", 1],
+      zerodivisor: "\\overset{零因子}{\\in}",
+      nzerodivisor: "\\overset{零因子}{\\notin}",
+      primeelement: "\\overset{素元}{\\in}",
+      nprimeelement: "\\overset{素元}{\\notin}",
+      irreducible: "\\overset{既約元}{\\in}",
+      nirreducible: "\\overset{既約元}{\\notin}",
+      primitive: "\\overset{原始多項式}{\\in}",
+      nprimitive: "\\overset{原始多項式}{\\notin}",
+      intin: ["\\overset{整}{\\in_{#1}}", 1],
+      intsubseteq: ["\\overset{整}{\\subseteq_{#1}}", 1],
+      intsubsetneq: ["\\overset{整}{\\subsetneq_{#1}}", 1],
+      intcleq: ["\\overset{整閉包}{\\subseteq_{#1}}", 1],
+      intclneq: ["\\overset{整閉包}{\\subsetneq_{#1}}", 1],
+      associate: "\\overset{同伴}{\\sim}",
+      submod: ["\\overset{部分{#1}\\text{-}加群}{\\subseteq}", 1],
+      overto: ["\\overset{#1}{\\to}", 1],
+
+      // 体論
+      gal: "\\mathrm{Gal}",
+
+      // 圏論
+      hom: "\\operatorname{Hom}",
+      ran: "\\operatorname{Ran}",
+      sA: "\\mathscr{A}",
+      sB: "\\mathscr{B}",
+      sC: "\\mathscr{C}",
+      id: "\\mathrm{id}",
+      Ab: "\\mathbf{Ab}",
+      Set: "\\mathbf{Set}",
+      Grp: "\\mathbf{Grp}",
+      Ring: "\\mathbf{Ring}",
+      Mod: ["{#1}\\text{-}\\mathbf{Mod}", 1],
+      Vect: ["{#1}\\text{-}\\mathbf{Vect}", 1],
+      Top: "\\mathbf{Top}",
+      Ord: "\\mathbf{Ord}",
+      Rel: "\\mathbf{Rel}",
+      Cat: "\\mathbf{Cat}",
+      CAT: "\\mathbf{CAT}",
+      To: "\\Rightarrow",
+      op: "\\mathrm{op}",
+      ob: "\\mathrm{Ob}",
+
+      // 数学定数
+      e: "\\mathrm{e}",
+      i: "\\mathrm{i}",
+      B: "\\mathrm{B}",
+
+      // 座標軸
+      x: "\\mathrm{x}",
+      y: "\\mathrm{y}",
+      z: "\\mathrm{z}",
+
+      // 行列
+      M: "\\mathrm{M}",
+
+      // 記号論理学
+      A: "{}^\\forall",
+      E: "{}^\\exists",
+      lor: "\\overset{または}{\\ \\vee\\ }",
+      land: "\\overset{かつ}{\\ \\wedge\\ }",
+      implies: "\\overset{ならば}{\\ \\Longrightarrow\\ }",
+      iff: "\\overset{同値}{\\;\\Longleftrightarrow\\;}",
+      bottom: "\\overset{矛盾}{\\bot}",
+      defiff: "\\overset{\\mathrm{def}}{\\;\\Longleftrightarrow\\;}",
+
+      // 集合論
+      N: "\\mathbb{N}",
+      Z: "\\mathbb{Z}",
+      Q: "\\mathbb{Q}",
+      R: "\\mathbb{R}",
+      C: "\\mathbb{C}",
+      F: "\\mathcal{F}",
+      P: "\\mathcal{P}",
+      S: "\\mathcal{S}",
+      O: "\\mathcal{O}",
+      angle: ["\\left\\langle {#1} \\right\\rangle", 1],
+      bigangle: ["\\left\\langle {#1} \\rule{0pt}{2ex}\\right\\rangle", 1],
+      Bigangle: ["\\left\\langle {#1} \\rule{0pt}{2.5ex}\\right\\rangle", 1],
+      biggangle: ["\\left\\langle {#1} \\rule{0pt}{3ex}\\right\\rangle", 1],
+      Biggangle: ["\\left\\langle {#1} \\rule{0pt}{4ex}\\right\\rangle", 1],
+      sgn: "\\operatorname{sgn}",
+      spec: "\\operatorname{Spec}",
+      supp: "\\operatorname{Supp}",
+      span: "\\operatorname{span}",
+      V: "\\mathrm{V}",
+      adj: "\\operatorname{adj}",
+      bil: "\\operatorname{Bil}",
+      im: "\\operatorname{Im}",
+      Im: "\\operatorname{Im}",
+      ker: "\\operatorname{Ker}",
+      Ker: "\\operatorname{Ker}",
+      coker: "\\operatorname{Coker}",
+      coim: "\\operatorname{Coim}",
+      curl: "\\operatorname{curl}",
+      det: "\\operatorname{det}",
+      arcsin: "\\sin^{-1}",
+      arccos: "\\cos^{-1}",
+      arctan: "\\tan^{-1}",
+      arcsinh: "\\sinh^{-1}",
+      arccosh: "\\cosh^{-1}",
+      arctanh: "\\tanh^{-1}",
+      arc: ["\\stackrel{\\huge\\frown}{#1}", 1],
+      highlightbrace: ["\\textcolor{#1}{\\underbrace{\\textcolor{black}{#3}}_{\\substack{\\Vert \\\\ #2}}}", 3],
+      CancelColor: "\\color{red}",
+
+      vector: ["\\overrightarrow{\\mathrm{#1}}", 1]
+    }
+  },
+  options: {
+      enableMenu: false // これで「show math as」を無効化
+  }
+};
+</script>
+<script id="MathJax-script" defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js">
+</script>
+
+<style>
+/* クラス名を付けて安全に適用 */
+.roman-list {
+  list-style: none;        /* デフォルト番号を消す */
+  counter-reset: section;  /* カウンター初期化 */
+  padding: 0;
+  margin: 0 0 1em 0;
+  font-family: "Yu Gothic", sans-serif;
+  font-size: 1rem;         /* 基本文字サイズ */
+  line-height: 1.6;
+}
+
+.roman-list li {
+  counter-increment: section;
+  display: flex;           /* 番号と本文を横並び */
+  width: 100%;
+  margin-bottom: 0.5em;
+  align-items: flex-start;
+}
+
+.roman-list li::before {
+  content: "(" counter(section, lower-roman) ").";
+  flex: 0 0 3em;           /* 番号列の幅 */
+  text-align: right;
+  margin-right: 0.5em;
+  font-weight: bold;
+  color: #444;
+  font-size: 1rem;         /* 番号サイズ */
+}
+
+.roman-list li p {
+  flex: 1;                 /* 本文列は残り幅を占める */
+  font-size: 1rem;         /* 本文サイズ */
+  line-height: 1.6;
+  margin: 0;               /* 余白リセット */
+  color: #222;
+}
+</style>
+<!-- /wp:html -->

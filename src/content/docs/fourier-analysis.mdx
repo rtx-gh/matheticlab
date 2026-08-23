@@ -1,0 +1,115 @@
+---
+title: foo
+description: foo
+---
+
+<div class="definition-box">
+
+**定義：フーリエ級数**
+
+$$
+f(x)
+=
+\dfrac{a_0}{2}
++
+\dsum_{n=1}^\infty
+\qty(
+a_n \cos \dfrac{2\pi nx}{T}
++
+b_n \sin \dfrac{2\pi nx}{T}
+)
+$$
+
+ただし、
+
+$$
+a_n
+=
+\dfrac{2}{T}
+\dint_0^T
+f(x)
+\cos\dfrac{2\pi nx}{T}
+\dd x
+$$
+
+$$
+b_n
+=
+\dfrac{2}{T}
+\dint_0^T
+f(x)
+\sin\dfrac{2\pi nx}{T}
+\dd x
+$$
+
+</div>
+
+<div class="proposition-box">
+
+**命題：フーリエ係数の導出**
+
+</div>
+
+<div class="theorem-box">
+
+**定理：ディリクレの定理**
+
+</div>
+
+<div class="theorem-box">
+
+**定理：**
+
+</div>
+
+<div class="theorem-box">
+
+**定理：**
+
+</div>
+
+<div class="definition-box">
+
+**定義：フーリエ変換**
+
+$$
+\F\qty\big(f(x))
+=
+\hat f(\xi)
+:=
+\dint_{-\infty}^\infty
+f(x)
+\e^{-2\pi ix\xi}
+\dd x
+$$
+
+</div>
+
+<div class="definition-box">
+
+**定義：逆フーリエ変換**
+
+$$
+\F^{-1}\qty\big(\hat f(\xi))
+:=
+\dint_{-\infty}^\infty
+\hat f(\xi)
+\e^{2\pi ix\xi}
+\dd\xi
+$$
+
+</div>
+
+<div class="theorem-box">
+
+**定理：逆フーリエ変換**
+
+$$
+\F^{-1}\qty\Big(
+\F\qty\big(f(x))
+\Big)
+=
+f(x)
+$$
+
+</div>

@@ -4,11 +4,13 @@ import starlight from '@astrojs/starlight';
 import { unified } from '@astrojs/markdown-remark';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
+import macros from "katex-physics";
+import { katexMacros } from "./katex-macros.ts";
 
 // https://astro.build/config
 export default defineConfig({
 	// GitHub Pages
-	site: 'https://USERNAME.github.io',
+	site: 'https://matheticlab.com',
 	base: '/matheticlab',
 
 	integrations: [
@@ -53,7 +55,19 @@ export default defineConfig({
 	markdown: {
 		processor: unified({
 			remarkPlugins: [remarkMath],
-			rehypePlugins: [rehypeKatex],
+			rehypePlugins: [
+				[
+        			rehypeKatex,
+        			{
+    				  throwOnError: true,
+    				  globalGroup: true,
+        			  macros: {
+        			    ...katexMacros,
+        			    ...macros,
+        			  },
+        			},
+				]
+      		],
 		}),
 	},
 });

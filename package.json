@@ -14,6 +14,7 @@
     "@astrojs/starlight": "^0.41.7",
     "astro": "^7.1.6",
     "katex": "^0.18.4",
+    "katex-physics": "^1.0.2",
     "rehype-katex": "^7.0.1",
     "remark-math": "^6.0.0",
     "sharp": "^0.35.3"

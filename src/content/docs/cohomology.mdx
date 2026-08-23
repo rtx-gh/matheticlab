@@ -1,0 +1,135 @@
+---
+title: foo
+description: foo
+---
+
+## 複体
+
+<div class="definition-box">
+
+**定義：複体（complex）**
+
+$R$-加群の列
+
+$$
+\qquad
+(M^\bullet, d^\bullet)
+\equiv
+(M^n, d^n)_{n \in \Z}
+$$
+
+$$
+\qquad
+\phantom{(M^\bullet, d^\bullet)}
+\equiv
+\cdots
+\xrightarrow{d^{n-2}}
+M^{n-1}
+\xrightarrow{d^{n-1}}
+M^n
+\xrightarrow{d^n}
+M^{n+1}
+\xrightarrow{d^{n+1}}
+\cdots
+$$
+
+が任意の $n \in \Z$ に対して、
+
+$$
+\qquad
+d^n \circ d^{n-1} = 0
+$$
+
+を満たすとき、$(M^\bullet, d^\bullet)$ を**複体**と呼ぶ。
+
+また各 $d^n$ を**境界作用素**と呼ぶ。
+
+</div>
+
+## コホモロジー群の定義
+
+<div class="definition-box">
+
+**定義：コホモロジー群（cohomology group）**
+
+加群の複体
+
+$$
+\qquad
+(C^\bullet, \delta^\bullet)
+\equiv
+\cdots
+\xrightarrow{\delta^{n-2}}
+C^{n-1}
+\xrightarrow{\delta^{n-1}}
+C^n
+\xrightarrow{\delta^n}
+C^{n+1}
+\xrightarrow{\delta^{n+1}}
+\cdots
+$$
+
+において、各 $\delta^n$ が
+
+$$
+\qquad
+\delta^n \circ \delta^{n-1} = 0
+$$
+
+を満たすとき、$(C^\bullet, \delta^\bullet)$ を余鎖複体と呼ぶ。
+
+このとき、$\ker \delta^n$ の元をコサイクル、$\im \delta^{n-1}$ の元をコバウンダリと呼び、
+
+$$
+\qquad
+H^n(C^\bullet)
+:=
+\ker \delta^n / \im \delta^{n-1}
+$$
+
+を $n$ 次コホモロジー群と呼ぶ。
+
+</div>
+
+## 特異コホモロジー
+
+### 特異コホモロジー群 $H^n(X;G)$ の構成
+
+### コホモロジーの関手性とホモトピー同値
+
+<div class="definition-box">
+
+**定義：複体の圏（）**
+
+$R$-加群の複体を対象とし、複体の射を射とする圏を $R$-加群の**複体の圏**と呼び、$C(\Mod{R})$ と表す。
+
+</div>
+
+<div class="proposition-box">
+
+**命題：コホモロジーの関手性**
+
+$f \colon X^\bullet \to Y^\bullet$ を複体の射とする。このとき、$H^n(f) \colon H^n(X^\bullet) \to H^n(Y^\bullet)$ なる自然な射が誘導される。
+
+つまり、$H^n$ は $R$-加群の複体の圏 $C(\Mod{R})$ から加群の圏 $\Mod{R}$ への関手である。
+
+</div>
+
+## Čechコホモロジー
+
+## 層係数コホモロジー
+
+## 導来関手
+
+## 補助的命題
+
+<div class="proposition-box">
+
+**命題：**
+
+以下の命題は同値である。
+
+- $d^n \circ d^{n-1} = 0$
+- $\im d^{n-1} \subseteq \ker d^n$
+
+</div>

@@ -1,0 +1,326 @@
+---
+title: foo
+description: foo
+---
+
+<div class="definition-box">
+
+**定義：<ruby>上界<rt>じょうかい</rt></ruby>・<ruby>下界<rt>かかい</rt></ruby>**
+
+実数 $M$ が $X$ の上界であるとは、
+
+$$
+(\A x \in X)[x \leq M]
+$$
+
+$P$ を半順序集合、$A$ をその部分集合とするとき、$x \in P$ に対して、
+
+$$
+\qquad
+(\A a \in A)[a \leq x]
+$$
+
+が成り立つとき、$x$ を $A$ の**上界**と呼ぶ。
+
+また、
+
+$$
+\qquad
+(\A a \in A)[x \leq a]
+$$
+
+が成り立つとき、$x$ を $A$ の**下界**と呼ぶ。
+
+</div>
+
+<div class="definition-box">
+
+**定義：<ruby>上限<rt>じょうげん</rt></ruby>・<ruby>下限<rt>かげん</rt></ruby>**
+
+半順序集合 $S$ とその部分集合 $A$ に対して、$A$ の上界の全体のなす集合
+
+$$
+\qquad
+\{x \in X \mid \text{$x$ は $A$ の上界}\}
+$$
+
+に $X$ の半順序部分集合としての最小元が存在するとき、最小元
+
+$$
+\qquad
+\sup A
+:=
+\min
+\{x \in X \mid \text{$x$ は $A$ の上界}\}
+$$
+
+を $A$ の上限と呼ぶ。
+
+半順序集合 $X$ とその部分集合 $A$ に対して、$A$ の下界の全体のなす集合
+
+$$
+\qquad
+\{x \in X \mid \text{$x$ は $A$ の下界}\}
+$$
+
+に $X$ の半順序部分集合としての最大元が存在するとき、最大元
+
+$$
+\qquad
+\inf A
+:=
+\max
+\{x \in X \mid \text{$x$ は $A$ の下界}\}
+$$
+
+を $A$ の下限と呼ぶ。
+
+</div>
+
+よく挙げられる**上界**・**下界**の例として、「**最大値**と**上限**」、「**最小値**と**下限**」がある。
+
+<div class="definition-box">
+
+**定義：<ruby>上限<rt>じょうげん</rt></ruby>・<ruby>下限<rt>かげん</rt></ruby>**
+
+以下の性質を満たす $x \in \R$ を<ruby>**上限**<rt>じょうげん</rt></ruby>と呼ぶ。
+
+- $(\A a \in A)[a \leq x]$　（上界の定義）
+- $(\A \varepsilon > 0)(\E a \in A)[x-\varepsilon < a]$
+
+以下の性質を満たす $x \in \R$ を<ruby>**下限**<rt>かげん</rt></ruby>と呼ぶ。
+
+- $(\A a \in A)[x \leq a]$　（下界の定義）
+- $(\A \varepsilon > 0)(\E a \in A)[a < x+\varepsilon]$
+
+</div>
+
+<div class="proposition-box">
+
+**命題：上限・下限の定義の同値性**
+
+</div>
+
+<div class="proposition-box">
+
+**命題：上限・下限の一意性**
+
+上限・下限は存在すれば一意的である。
+
+</div>
+
+<div class="example-box">
+
+**例：**
+
+1. $\sup[0,1]=1$
+
+2. $\sup(0,1)=1$
+
+</div>
+
+$$
+\sup[0,1]=1
+$$
+
+$$
+\qquad
+(\A a \in [0,1])[0 \leq a \leq 1]
+$$
+
+$$
+\qquad
+(\A a \in [0,1])[a \leq 1]
+$$
+
+が成り立つ。
+
+$$
+\qquad
+(\A \varepsilon > 0)(\E 1 \in A)[1-\varepsilon < 1]
+$$
+
+任意の $\varepsilon > 0$ を取ると、
+
+$$
+\qquad
+0 \leq 1-\varepsilon < 1
+$$
+
+（$\varepsilon=1$ のとき $1-\varepsilon=0$）
+
+が成り立つから、$1-\varepsilon \in [0,1]=A$（例えば $a=1-\varepsilon$ を選べばよい）。
+
+したがって $\E a \in A$ に対して、
+
+$$
+\qquad
+a>1-\varepsilon
+$$
+
+（実際は等号を避ける必要がないが、定義の形に合わせると不等号で書ける）。
+
+したがって任意の $\varepsilon > 0$ に対して $A$ の元が $1-\varepsilon$ より大きいものが存在するので、$1$ はすべての上界の中で最小である。よって、
+
+$$
+\qquad
+1=\sup A.
+$$
+
+$a=1$ のとき、任意の $\varepsilon > 0$ に対して、
+
+$$
+\qquad
+1-\varepsilon<1
+$$
+
+が成り立つ。
+
+すなわち、$1-\varepsilon<1$ を満たす $a$ が存在する。したがって、
+
+$$
+\qquad
+1=\sup A.
+$$
+
+$$
+\sup(0,1)=1
+$$
+
+$$
+\qquad
+(\A a \in (0,1))[0<a<1]
+$$
+
+$$
+\qquad
+(\A a \in (0,1))[a \leq 1]
+$$
+
+が成り立つ。
+
+任意の $\varepsilon > 0$ に対して、
+
+$$
+\qquad
+1-\varepsilon<1
+$$
+
+が成り立つ。
+
+<div class="proposition-box">
+
+**命題：$\inf(-A)=-\sup A,\, \sup(-A)=-\inf A$**
+
+集合 $A \subseteq \R$ を上に有界とし、$-A=\{-a \mid a \in A\}$ とするとき、以下が成り立つ。
+
+- $\inf(-A)=-\sup A$
+- $\sup(-A)=-\inf A$
+
+</div>
+
+<details class="proof-box">
+<summary>証明</summary>
+
+$\inf(-A)=-\sup A$ のみ証明する。
+
+**下界であることの証明**
+
+上界の定義式より、
+
+$$
+\qquad
+(\A a \in A)[a \leq \sup A]
+$$
+
+両辺に $-1$ を掛けて、
+
+$$
+\qquad
+(\A a \in A)[-a \geq -\sup A]
+$$
+
+不等式の左右を入れ替えて、
+
+$$
+\qquad
+(\A a \in A)[-\sup A \leq -a]
+$$
+
+「$a \in A$ に対して得られる $-a$」を「$-A$ の元 $-a$」と考えても同じだから、
+
+$$
+\qquad
+(\A -a \in -A)[-\sup A \leq -a]
+$$
+
+よって、$-\sup A$ は $-A$ の下界である。
+
+**下限であることの証明**
+
+上限の定義の2番目の式より、
+
+$$
+\qquad
+(\A \varepsilon > 0)
+(\E a \in A)
+[\sup A-\varepsilon<a]
+$$
+
+両辺に $-1$ を掛けて、
+
+$$
+\qquad
+(\A \varepsilon > 0)
+(\E a \in A)
+[-(\sup A-\varepsilon)>-a]
+$$
+
+左右を入れ替えて、
+
+$$
+\qquad
+(\A \varepsilon > 0)
+(\E a \in A)
+[-a<-(\sup A-\varepsilon)]
+$$
+
+$$
+\qquad
+(\A \varepsilon > 0)
+(\E a \in A)
+[-a<-\sup A+\varepsilon]
+$$
+
+「$a \in A$ に対して得られる $-a$」を「$-A$ の元 $-a$」と考えても同じだから、
+
+$$
+\qquad
+(\A \varepsilon > 0)
+(\E -a \in -A)
+[-a<-\sup A+\varepsilon]
+$$
+
+よって、「$-\sup A$ が $-A$ の下界であること」と加えて考えれば、$-\sup A$ は $-A$ の下限である。
+
+**結論**
+
+したがって、
+
+$$
+\qquad
+\inf(-A)=-\sup A
+$$
+
+が成り立つ。
+
+また同様にして、
+
+$$
+\qquad
+\sup(-A)=-\inf A
+$$
+
+も得られる。$\Box$
+
+</details>

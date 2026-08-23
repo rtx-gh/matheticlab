@@ -1,0 +1,172 @@
+---
+title: foo
+description: foo
+---
+
+$1$ 変数微分積分学には、「置換積分」という積分変数を別の変数で置き換えることで、計算を容易にする手法が存在した。本記事では、置換積分の多変数版である「重積分の変数変換」について解説する。
+
+実 $1$ 変数関数 $f(x)$ の $x=g(t)$ による置換積分は、
+
+$$
+\qquad
+\dint_a^b f(x) \dd x
+=
+\dint_\alpha^\beta
+f(g(t))
+\ddv{x}{t}
+\dd t
+$$
+
+で定義された。
+
+これの実多変数関数 ver. とも呼べるものが「重積分」である。
+
+<div class="definition-box">
+
+**定義：重積分**
+
+$I_1=[a,b],\, I_2=[c,d],\, D=I_1\times I_2$ とし、$f \colon D \to \R$ を有界な $2$ 変数関数とする。各区間を
+
+$$
+\qquad
+a=x_0<x_1<x_2<\cdots<x_m=b,
+$$
+
+$$
+\qquad
+c=y_0<y_1<y_2<\cdots<y_n=d
+$$
+
+かつ
+
+$$
+D_{i,j}
+=
+[x_{i-1},x_i]\times[y_{j-1},y_j]
+\qquad
+(1\leq i\leq m,\,1\leq j\leq n)
+$$
+
+とすることで、$D$ を $mn$ 個の長方形領域に分ける。
+
+さらに
+
+$$
+\delta x_i=x_i-x_{i-1},
+\qquad
+\delta y_j=y_j-y_{j-1}
+$$
+
+とし、
+
+$$
+|\delta|
+=
+\max
+\{
+\delta x_i,\delta y_j
+\mid
+1\leq i\leq m,\,
+1\leq j\leq n
+\}
+$$
+
+と定め、各領域から $t_{i,j}\in D_{i,j}$ を一つ選ぶ。
+
+このときのリーマン和
+
+$$
+\qquad
+\dsum_{\substack{
+1\leq i\leq m\\
+1\leq j\leq n
+}}
+f(t_{i,j})
+\delta x_i
+\delta y_j
+$$
+
+について、
+
+$$
+\qquad
+\dlim_{|\delta|\to0^+}
+\dsum_{\substack{
+1\leq i\leq m\\
+1\leq j\leq n
+}}
+f(t_{i,j})
+\delta x_i
+\delta y_j
+$$
+
+が $\{D_{i,j}\},\{t_{i,j}\}$ によらず同じ値に収束するとき、その収束値を
+
+$$
+\qquad
+\displaystyle
+\iint_D f(x,y)\dd x\dd y
+$$
+
+とかき、これを $f$ の $D$ 上の重積分と呼ぶ。
+
+</div>
+
+<div class="definition-box">
+
+**定義：ヤコビ行列、ヤコビアン**
+
+</div>
+
+<div class="theorem-box">
+
+**定理：重積分の変数変換**
+
+$D\subseteq\R^2$ を $2$ 次元領域とし、$\phi,\psi\colon D\to\R$ は $C^1$ 級とする。
+
+変数変換
+
+$$
+x=\phi(u,v),
+\qquad
+y=\psi(u,v)
+$$
+
+により、$xy$ 平面上の領域 $D$ と $uv$ 平面上の領域 $E$ が1対1に写り合っているとする。
+
+このとき、$D$ 上広義積分可能な連続関数 $f(x,y)$ に対して、
+
+$$
+\qquad
+\dint_D
+f(x,y)
+\dd x
+\dd y
+=
+\dint_E
+f(\phi(u,v),\psi(u,v))
+\left|
+\dpdv{(x,y)}{(u,v)}
+\right|
+\dd u
+\dd v
+$$
+
+が成り立つ。
+
+</div>
+
+<details class="proof-box">
+<summary>証明</summary>
+
+</details>
+
+この定理におけるヤコビアン
+
+$$
+\left|
+\dpdv{(x,y)}{(u,v)}
+\right|
+$$
+
+は、$\ddv{x}{t}$ に対応する。

@@ -1,0 +1,128 @@
+---
+title: 線形代数学の応用
+description: 連立方程式、行列式、幾何学的変換、微分方程式への線形代数学の応用
+---
+
+## 主な応用
+
+- 連立方程式
+- 行列式
+- 幾何学的変換（移動・回転・拡大縮小・せん断・反転）
+- 微分方程式
+
+## 幾何学的変換
+
+### 回転
+
+$$
+\begin{pmatrix}
+\cos\theta & -\sin\theta \\
+\sin\theta & \cos\theta
+\end{pmatrix}
+$$
+
+### 拡大縮小
+
+$$
+\begin{pmatrix}
+\lambda & 0 \\
+0 & \mu
+\end{pmatrix}
+$$
+
+### せん断
+
+$$
+\begin{pmatrix}
+1 & k \\
+0 & 1
+\end{pmatrix}
+$$
+
+## 微分作用素
+
+関数 $f$ に対して、
+
+$$
+D(f)=f'
+$$
+
+とする。
+
+微分作用素 $D$ は線形であり、
+
+$$
+D(af+bg)
+=
+aD(f)+bD(g)
+$$
+
+が成り立つ。
+
+## 行列指数関数
+
+$A\in\mathbb{R}^{n\times n}$ とする。
+
+行列指数関数 $\mathrm{e}^{At}$ は、
+
+$$
+\frac{d}{dt}\mathrm{e}^{At}
+=
+A\mathrm{e}^{At}
+$$
+
+を満たす。
+
+スカラーの指数関数
+
+$$
+\mathrm{e}^{t}
+=
+\sum_{i=0}^{\infty}
+\frac{t^i}{i!}
+$$
+
+と同様に、行列指数関数を
+
+$$
+\mathrm{e}^{At}
+=
+\sum_{i=0}^{\infty}
+\frac{t^iA^i}{i!}
+$$
+
+と定義する。
+
+すなわち、
+
+$$
+\mathrm{e}^{At}
+=
+I_n
++tA
++\frac{t^2}{2!}A^2
++\frac{t^3}{3!}A^3
++\cdots
+$$
+
+である。
+
+## 線形微分方程式
+
+線形微分方程式
+
+$$
+\frac{dx}{dt}
+=
+Ax
+$$
+
+に対して、初期値 $x(0)$ を与えると、その解は
+
+$$
+x(t)
+=
+\mathrm{e}^{At}x(0)
+$$
+
+と表される。

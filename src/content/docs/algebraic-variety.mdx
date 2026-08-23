@@ -1,0 +1,580 @@
+---
+title: 代数多様体
+description: アフィン代数多様体、射影多様体、零点定理、アフィンスキーム
+---
+
+# 代数多様体
+
+## アフィン代数多様体
+
+### 定義：アフィン代数的集合
+
+$$
+A=\{p\in S\mid f_1(p)=f_2(p)=\cdots=f_r(p)=0\}
+$$
+
+また、
+
+$$
+V(F)
+=
+\left\{
+(a_1,\ldots,a_n)\in\mathbb A_k^n
+\;\middle|\;
+f_i(a_1,\ldots,a_n)=0
+\right\}.
+$$
+
+### 定義：可約・既約・アフィン代数多様体
+
+代数的閉体 $k$ 上の $n$ 次元アフィン空間 $\mathbb A_k^n$ 内の代数的集合 $V$ が、
+代数的集合 $V_1,V_2$ を用いて
+
+$$
+V=V_1\cup V_2
+\qquad
+(V\neq V_1,\;V\neq V_2)
+$$
+
+と表せるとき、$V$ を **可約（reducible）** と呼ぶ。
+
+可約でない $V$ を **既約（irreducible）** と呼ぶ。
+
+また、既約な代数的集合を **アフィン代数多様体（affine algebraic variety）** と呼ぶ。
+
+### 命題
+
+以下の命題は同値である。
+
+1. $V$ のイデアル $I(V)$ は素イデアルである。
+2. 代数的集合 $V$ は既約である。
+
+<details>
+<summary><strong>証明</strong></summary>
+
+#### 十分性
+
+$V$ が可約であれば $I(V)$ は素イデアルでない。
+
+したがって、その対偶をとることにより、
+
+$$
+I(V)\text{ が素イデアル}
+\implies
+V\text{ は既約}
+$$
+
+が得られる。
+
+#### 必要性
+
+$V$ は既約であるが、$I(V)$ は素イデアルでないと仮定する。
+
+すると、ある多項式 $f_1,f_2$ が存在して
+
+$$
+f_1f_2\in I(V),
+\qquad
+f_1\notin I(V),
+\qquad
+f_2\notin I(V)
+$$
+
+となる。
+
+$I(V)$ と $f_1$ から生成されるイデアルを $J_1$、
+$I(V)$ と $f_2$ から生成されるイデアルを $J_2$ とする。
+
+$f_1,f_2\notin I(V)$ より、
+
+$$
+V(J_1)\subsetneq V,
+\qquad
+V(J_2)\subsetneq V.
+$$
+
+一方、
+
+$$
+f_1f_2\in I(V)
+$$
+
+であるから、$V$ の各点では
+
+$$
+f_1f_2=0
+$$
+
+となる。
+
+したがって、
+
+$$
+V=V(J_1)\cup V(J_2).
+$$
+
+これは $V$ が既約であることに反する。
+
+よって、
+
+$$
+V\text{ が既約}
+\implies
+I(V)\text{ は素イデアル}
+$$
+
+である。
+
+</details>
+
+### 定義：座標環
+
+$n$ 次元アフィン空間 $\mathbb A_k^n$ 内の代数的集合 $V$ に対して、
+
+$$
+k[V]
+:=
+k[x_1,x_2,\ldots,x_n]/I(V)
+$$
+
+を $V$ の **座標環（coordinate ring）** という。
+
+代数的集合 $V$ が既約であるための必要十分条件は、
+その座標環 $k[V]$ が整域となることである。
+
+---
+
+### 定義：代数的集合のイデアル
+
+$V\subseteq k^n$ に対して、
+
+$$
+I(V)
+:=
+\left\{
+f\in k[x_1,x_2,\ldots,x_n]
+\;\middle|\;
+\forall(a_1,\ldots,a_n)\in V,\;
+f(a_1,\ldots,a_n)=0
+\right\}
+$$
+
+を $V$ の **イデアル** と呼ぶ。
+
+---
+
+### 定理：ヒルベルトの零点定理
+
+代数的閉体 $k$ 上の多項式環
+
+$$
+k[x_1,x_2,\ldots,x_n]
+$$
+
+のイデアル $J$ に対して、
+
+$$
+I(V(J))=\sqrt{J}
+$$
+
+が成り立つ。
+
+<details>
+<summary><strong>証明</strong></summary>
+
+#### $\sqrt J\subseteq I(V(J))$
+
+$f\in\sqrt J$ とする。
+
+根基の定義より、ある自然数 $m$ が存在して
+
+$$
+f^m\in J
+$$
+
+となる。
+
+$a\in V(J)$ ならば、
+
+$$
+f^m(a)=0.
+$$
+
+したがって、
+
+$$
+f(a)=0.
+$$
+
+よって、
+
+$$
+f\in I(V(J)).
+$$
+
+したがって、
+
+$$
+\sqrt J\subseteq I(V(J)).
+$$
+
+#### $I(V(J))\subseteq\sqrt J$
+
+$f\in I(V(J))$ とする。
+
+$f\in\sqrt J$、すなわち、ある自然数 $m$ に対して
+
+$$
+f^m\in J
+$$
+
+となることを示せばよい。
+
+新しい変数 $x_0$ を導入し、
+
+$$
+k[x_0,x_1,\ldots,x_n]
+$$
+
+において、
+
+$$
+1-x_0f(x_1,\ldots,x_n)
+$$
+
+と $J$ から生成されるイデアル $\widetilde J$ を考える。
+
+$$
+V(\widetilde J)\neq\varnothing
+$$
+
+と仮定し、
+
+$$
+(a_0,a_1,\ldots,a_n)\in V(\widetilde J)
+$$
+
+とする。
+
+$J\subseteq\widetilde J$ なので、
+
+$$
+(a_1,\ldots,a_n)\in V(J).
+$$
+
+$f\in I(V(J))$ より、
+
+$$
+f(a_1,\ldots,a_n)=0.
+$$
+
+一方、
+
+$$
+1-x_0f\in\widetilde J
+$$
+
+なので、
+
+$$
+0
+=
+1-a_0f(a_1,\ldots,a_n)
+=
+1
+$$
+
+となり矛盾する。
+
+したがって、
+
+$$
+V(\widetilde J)=\varnothing.
+$$
+
+よって $\widetilde J$ は単位元 $1$ を含む。
+
+したがって、
+
+$$
+1
+=
+h(x_0,x_1,\ldots,x_n)
+(1-x_0f(x_1,\ldots,x_n))
++
+\sum_{j=1}^{l}
+g_j(x_0,x_1,\ldots,x_n)
+f_j(x_1,\ldots,x_n),
+$$
+
+ただし、
+
+$$
+h,g_j\in k[x_0,x_1,\ldots,x_n],
+\qquad
+f_j\in J.
+$$
+
+</details>
+
+---
+
+## 射影多様体
+
+### 定義：射影代数的集合
+
+斉次多項式の族 $F=\{F_i\}$ に対して、
+
+$$
+V_h(F)
+=
+\left\{
+[a_0:\cdots:a_n]\in\mathbb P_k^n
+\;\middle|\;
+F_i(a_0,\ldots,a_n)=0
+\right\}
+$$
+
+を射影代数的集合という。
+
+---
+
+# 補助命題
+
+## 命題：代数的集合のイデアル
+
+「$k^n$ の元 $(a_1,a_2,\ldots,a_n)$ のうち、$V$ に含まれるものすべてに対して
+
+$$
+f(a_1,a_2,\ldots,a_n)=0
+$$
+
+が成り立つ多項式 $f$ のなす集合」はイデアルをなす。
+
+すなわち、
+
+$$
+I(V)
+=
+\left\{
+f\in k[x_1,\ldots,x_n]
+\;\middle|\;
+\forall a\in V,\;f(a)=0
+\right\}
+$$
+
+は
+
+$$
+k[x_1,\ldots,x_n]
+$$
+
+のイデアルである。
+
+<details>
+<summary><strong>証明</strong></summary>
+
+</details>
+
+---
+
+## 定義：イデアルの根基
+
+可換環 $R$ のイデアル $I$ に対して、
+
+$$
+\sqrt I
+:=
+\left\{
+x\in R
+\;\middle|\;
+\exists m\in\mathbb N,\;x^m\in I
+\right\}
+$$
+
+を $I$ の **根基** と呼ぶ。
+
+---
+
+## 補題：$x^m=0\implies x=0$
+
+次の補題は、整域の基本性質
+
+$$
+ab=0
+\implies
+(a=0\lor b=0)
+$$
+
+の繰り返し適用である。
+
+### 補題
+
+$R$ を整域とするとき、$x\in R$ に対して、
+
+$$
+x^m=0
+\implies
+x=0
+$$
+
+が成り立つ。
+
+<details>
+<summary><strong>証明</strong></summary>
+
+$$
+x^m=x\cdot x^{m-1}=0.
+$$
+
+$R$ は整域であるため零因子を持たない。したがって、
+
+$$
+x=0
+\qquad\text{または}\qquad
+x^{m-1}=0.
+$$
+
+$x=0$ ならば証明は終了する。
+
+$x^{m-1}=0$ ならば、
+
+$$
+x^{m-1}=x\cdot x^{m-2}=0
+$$
+
+より、
+
+$$
+x=0
+\qquad\text{または}\qquad
+x^{m-2}=0.
+$$
+
+この操作を有限回繰り返すことにより、最終的に
+
+$$
+x=0
+$$
+
+を得る。
+
+$\Box$
+
+</details>
+
+---
+
+# スキーム
+
+## 定義：環付き空間・局所環付き空間
+
+位相空間 $X$ と、その上の環の層 $\mathcal O_X$ の組
+
+$$
+(X,\mathcal O_X)
+$$
+
+を **環付き空間（ringed space）** と呼ぶ。
+
+さらに、各点 $x\in X$ における茎
+
+$$
+\mathcal O_{X,x}
+$$
+
+が局所環であるとき、
+
+$$
+(X,\mathcal O_X)
+$$
+
+を **局所環付き空間（locally ringed space）** と呼ぶ。
+
+---
+
+## 定義：アフィンスキーム
+
+可換環 $R$ に対して、
+
+$$
+\operatorname{Spec}R
+$$
+
+に自然な構造層 $\mathcal O_{\operatorname{Spec}R}$ を入れた局所環付き空間
+
+$$
+(\operatorname{Spec}R,\mathcal O_{\operatorname{Spec}R})
+$$
+
+を **アフィンスキーム（affine scheme）** と呼ぶ。
+
+アフィンスキームは局所環付き空間の例である。
+
+### 大域切断
+
+アフィンスキームでは、
+
+$$
+\Gamma(\operatorname{Spec}R,\mathcal O_{\operatorname{Spec}R})
+\cong R
+$$
+
+が成り立つ。
+
+また、基本開集合 $D(f)$ 上では、
+
+$$
+\Gamma(D(f),\mathcal O_{\operatorname{Spec}R})
+\cong R_f
+$$
+
+となる。
+
+---
+
+## 定義：大域切断・局所切断
+
+位相空間 $X$ 上の層 $\mathcal F$ に対して、
+
+$$
+\mathcal F(X)
+$$
+
+の元を $\mathcal F$ の **大域切断（global section）** と呼ぶ。
+
+大域切断全体は
+
+$$
+\Gamma(X,\mathcal F)
+$$
+
+と表す。
+
+また、開集合 $U\subseteq X$ に対して、
+
+$$
+\mathcal F(U)
+$$
+
+の元を $U$ 上の **局所切断（local section）** と呼ぶ。
+
+---
+
+## アフィンスキームの性質
+
+アフィンスキーム $X=\operatorname{Spec}R$ と準連接層 $\mathcal F$ に対して、
+
+$$
+H^i(X,\mathcal F)=0
+\qquad(i>0)
+$$
+
+が成り立つ。
+
+また、
+
+$$
+\Gamma(\operatorname{Spec}R,\mathcal O_{\operatorname{Spec}R})
+\cong R.
+$$

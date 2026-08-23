@@ -1,0 +1,239 @@
+---
+title: foo
+description: foo
+---
+
+<div class="theorem-box">
+
+**定理：テイラーの定理**
+
+$$
+f(a+h,b+k)
+=
+\dsum_{n=0}^\infty
+\dfrac1{n!}
+\qty(
+h\pdv x+k\pdv y
+)^n
+f(a,b)
++R_n
+$$
+
+$$
+R_n
+=
+\dfrac1{n!}
+\left(
+h\dpdv x+k\dpdv y
+\right)^n
+f(a+\theta h,b+\theta k)
+$$
+
+</div>
+
+<div class="definition-box">
+
+**定義：テイラー展開**
+
+$$
+f(a+h,b+k)
+=
+\dsum_{n=0}^\infty
+\dfrac1{n!}
+\qty(
+h\pdv x+k\pdv y
+)^n
+f(a,b)
+$$
+
+</div>
+
+<div class="definition-box">
+
+**定義：停留点**
+
+$$
+f_x(a,b)=f_y(a,b)=0
+$$
+
+を満たすような点 $(a,b)$ を $f$ の**停留点**と呼ぶ。
+
+</div>
+
+<div class="example-box">
+
+**例：**
+
+1. $f(x,y)=y^2-x^3=0$
+
+   ![](https://matheticlab.com/wp-content/uploads/2025/10/2c79a5224dee5076bc10006d732cb7b7.png)
+
+2. $f(x,y)=y^2+x^2(x+2)=0$
+
+   ![](https://matheticlab.com/wp-content/uploads/2025/10/e5d5379e1559b8ace269f808ce4ed860.png)
+
+</div>
+
+$$
+f_x(x,y)=-3x^2
+$$
+
+$$
+f_y(x,y)=2y
+$$
+
+$$
+f_x(x,y)=-3x^2=0
+$$
+
+$$
+x=0
+$$
+
+$$
+f_y(x,y)=2y=0
+$$
+
+$$
+y=0
+$$
+
+よって、$f(x,y)$ の停留点は $(0,0).$
+
+$$
+f_x(x,y)=3x^2+4x
+$$
+
+$$
+f_y(x,y)=2y
+$$
+
+$$
+f_x(x,y)=3x^2+4x=0
+$$
+
+$$
+x(3x+4)=0
+$$
+
+$$
+x=0 \lor 3x+4=0
+$$
+
+$$
+x=0,-\dfrac43
+$$
+
+$$
+f_y(x,y)=2y=0
+$$
+
+$$
+y=0
+$$
+
+よって、$f(x,y)$ の停留点は
+
+$$
+(0,0),\qty(-\dfrac43,0).
+$$
+
+<div class="definition-box">
+
+**定義：ヘッセ行列（Hessian matrix）**
+
+$$
+H
+=
+\begin{vmatrix}
+f_{xx} & f_{xy} \\
+f_{xy} & f_{yy}
+\end{vmatrix}
+$$
+
+</div>
+
+<div class="definition-box">
+
+**定義：ヘッシアン**
+
+$$
+H
+=
+\begin{vmatrix}
+f_{xx}(a,b) & f_{xy}(a,b) \\
+f_{xy}(a,b) & f_{yy}(a,b)
+\end{vmatrix}
+=
+f_{xx}(a,b)f_{yy}(a,b)-f_{xy}^2(a,b)
+$$
+
+</div>
+
+<div class="proposition-box">
+
+**命題：$2$ 変数関数の極値の判定**
+
+$H<0$ のとき点 $(a,b)$ で極値を取らない。
+
+$H=0$ のとき点 $(a,b)$ が極値かどうか判定できない。
+
+$H>0$ のとき点 $(a,b)$ で極値を取る。
+
+</div>
+
+<div class="example-box">
+
+**例：**
+
+1. $y^2-x^2(x+2)=0$
+
+2. $y^2-x^3=0$
+
+</div>
+
+$$
+D=f_{xx}f_{yy}-f_{xy}^2
+$$
+
+$$
+f(x,y)=y^2-x^3-2x^2
+$$
+
+$$
+f_{xx}=-6x-4
+$$
+
+$$
+f_{yy}=2
+$$
+
+$$
+f_{xy}=0
+$$
+
+$$
+D=(-6x-4)\cdot2-0^2
+$$
+
+$$
+f_{xx}=-3\cdot2x
+$$
+
+$$
+f_{yy}=
+$$
+
+$$
+f_{xy}=
+$$
+
+<div class="proposition-box">
+
+**命題：$2$ 変数関数の極値の判定**
+
+$f_{xx}(a,b)>0$ のとき点 $(a,b)$ で極小値を取る。
+
+$f_{xx}(a,b)<0$ のとき点 $(a,b)$ で極大値を取る。
+
+</div>
