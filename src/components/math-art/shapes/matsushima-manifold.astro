@@ -1,0 +1,110 @@
+---
+export interface Props {
+  /** Rendered width and height in CSS pixels. */
+  size?: number;
+
+  /** Number of overlapping closed curves. */
+  number?: number;
+
+  /** Accessible label for the generated SVG. */
+  label?: string;
+
+  /** Stroke width of each curve. */
+  strokeWidth?: number;
+
+  /** Stroke opacity of each curve. */
+  opacity?: number;
+}
+
+const {
+  size = 640,
+  number = 112,
+  label = "Three-lobed geometric line study",
+  strokeWidth = 0.72,
+  opacity = 0.78,
+} = Astro.props;
+
+const viewSize = 420;
+const centre = viewSize / 2;
+const samples = 360;
+
+const curveCount = Math.max(1, Math.floor(number));
+
+const curves = Array.from({ length: curveCount }, (_, index) => {
+  const phase = (index / curveCount) * Math.PI * 2;
+
+  // Every path is the same tall ellipse. Its centre travels around a small
+  // circle while the ellipse counter-rotates at half that angular speed.
+  // This 1 : -1/2 coupling creates the three-lobed envelope.
+  const radiusX = 31;
+  const radiusY = 111;
+  const orbitRadius = 54;
+  const orbitAngle = phase - 0.18;
+  const rotation = -phase / 2 + 0.48;
+
+  const ellipseCentreX = centre + orbitRadius * Math.cos(orbitAngle);
+  const ellipseCentreY = centre + orbitRadius * Math.sin(orbitAngle);
+
+  const points = Array.from({ length: samples + 1 }, (_, pointIndex) => {
+    const t = (pointIndex / samples) * Math.PI * 2;
+
+    const localX = radiusX * Math.cos(t);
+    const localY = radiusY * Math.sin(t);
+
+    const x =
+      ellipseCentreX +
+      localX * Math.cos(rotation) -
+      localY * Math.sin(rotation);
+
+    const y =
+      ellipseCentreY +
+      localX * Math.sin(rotation) +
+      localY * Math.cos(rotation);
+
+    return `${x.toFixed(2)},${y.toFixed(2)}`;
+  });
+
+  return `M${points.join(" L")} Z`;
+});
+---
+
+<svg
+  class="math-art"
+  width={size}
+  height={size}
+  viewBox={`0 0 ${viewSize} ${viewSize}`}
+  role="img"
+  aria-label={label}
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <g
+    fill="none"
+    stroke="currentColor"
+    stroke-width={strokeWidth}
+    stroke-opacity={opacity}
+  >
+    {
+      curves.map((path) => (
+        <path
+          d={path}
+          vector-effect="non-scaling-stroke"
+        />
+      ))
+    }
+  </g>
+</svg>
+
+<style>
+  .math-art {
+    display: block;
+    width: 100%;
+    max-width: 640px;
+    height: auto;
+    aspect-ratio: 1;
+    color: #34291f;
+  }
+
+  :global(html[data-theme="dark"]) .math-art {
+    color: #e4ddd5;
+  }
+</style>

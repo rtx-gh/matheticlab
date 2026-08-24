@@ -1,0 +1,16 @@
+.math-art-background {
+  position: fixed;
+  right: 4vw;
+  bottom: 4vh;
+
+  width: min(45vw, 520px);
+
+  opacity: 0.08;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.math-art-background svg {
+  width: 100%;
+  height: auto;
+}

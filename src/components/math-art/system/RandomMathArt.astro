@@ -1,0 +1,10 @@
+---
+import { mathArtShapes } from "./registry";
+
+const Shape =
+  mathArtShapes[
+    Math.floor(Math.random() * mathArtShapes.length)
+  ];
+---
+
+<Shape />
