@@ -274,3 +274,30 @@ html[data-theme="light"][data-color-theme="pink"] {
   margin-top: 0.5rem;
   margin-left: 1.5rem;
 }
+
+.field-heading {
+  font-size: 1.7rem;
+  font-weight: 700;
+  margin-block: 2rem 0.75rem;
+}
+
+/* 「集合と論理」の上余白だけ消す */
+.field-heading:first-of-type {
+  margin-top: 0;
+}
+
+.field-heading.logic {
+  color: #8a5a44;
+}
+
+.field-heading.algebra {
+  color: #e91e63;
+}
+
+.field-heading.analysis {
+  color: #1685a5;
+}
+
+.field-heading.geometry {
+  color: #2e8b57;
+}

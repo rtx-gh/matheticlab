@@ -1,16 +1,15 @@
 ---
 title: Mathetic Lab
+head:
+  - tag: style
+    content: |
+      .content-panel:has(#_top) {
+        display: none !important;
+      }
 description: 大学数学のデータベース
 template: splash
 ---
 
 import FieldAccordion from '../../components/FieldAccordion.astro';
-import MatsushimaManifold from '../../components/math-art/shapes/matsushima-manifold.astro';
-
-<div class="home-math-art">
-  <MatsushimaManifold />
-</div>
-
-## 分野
 
 <FieldAccordion />
