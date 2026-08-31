@@ -1,25 +1,159 @@
 ---
 import FieldGroup from "./FieldGroup.astro";
-import { fields } from "../data/fields";
+import { educationLevels } from "../data/fields";
 ---
 
-<div class="accordion">
-  {fields.map((field) => <FieldGroup field={field} />)}
+<div class="math-browser" data-math-browser>
+  <div class="education-tabs" role="tablist" aria-label="学習段階">
+    {
+      educationLevels.map((level, index) => (
+        <button
+          type="button"
+          class="education-tab"
+          data-education-tab={level.id}
+          role="tab"
+          aria-selected={index === 0 ? "true" : "false"}
+        >
+          {level.title}
+        </button>
+      ))
+    }
+  </div>
+
+  {
+    educationLevels.map((level, levelIndex) => (
+      <section
+        class="education-panel"
+        data-education-panel={level.id}
+        hidden={levelIndex !== 0}
+      >
+        {level.fields.length > 0 ? (
+          <>
+            <div class="field-tabs" role="tablist" aria-label={`${level.title}の大分類`}>
+              {level.fields.map((field, fieldIndex) => (
+                <button
+                  type="button"
+                  class={`field-tab ${field.className}`}
+                  data-field-tab={field.id}
+                  role="tab"
+                  aria-selected={fieldIndex === 0 ? "true" : "false"}
+                >
+                  {field.title}
+                </button>
+              ))}
+            </div>
+
+            <div class="field-panels">
+              {level.fields.map((field, fieldIndex) => (
+                <section
+                  class={`field-panel ${field.className}`}
+                  data-field-panel={field.id}
+                  hidden={fieldIndex !== 0}
+                  aria-label={field.title}
+                >
+                  <FieldGroup field={field} />
+                </section>
+              ))}
+            </div>
+          </>
+        ) : (
+          <div class="education-empty">
+            <p>{level.title}の項目はまだありません。</p>
+          </div>
+        )}
+      </section>
+    ))
+  }
 </div>
 
 <script>
-  document
-    .querySelectorAll<HTMLDetailsElement>(".accordion details")
-    .forEach((details) => {
-      details.addEventListener("toggle", () => {
-        if (!details.open) return;
+  const setupMathBrowser = (browser: HTMLElement) => {
+    const educationTabs = Array.from(
+      browser.querySelectorAll<HTMLButtonElement>("[data-education-tab]"),
+    );
+    const educationPanels = Array.from(
+      browser.querySelectorAll<HTMLElement>("[data-education-panel]"),
+    );
 
-        requestAnimationFrame(() => {
-          details.scrollIntoView({
-            behavior: "smooth",
-            block: "start",
-          });
+    const selectEducation = (id: string) => {
+      educationTabs.forEach((tab) => {
+        tab.setAttribute(
+          "aria-selected",
+          String(tab.dataset.educationTab === id),
+        );
+      });
+
+      educationPanels.forEach((panel) => {
+        panel.hidden = panel.dataset.educationPanel !== id;
+      });
+    };
+
+    educationTabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        const id = tab.dataset.educationTab;
+        if (id) selectEducation(id);
+      });
+    });
+
+    educationPanels.forEach((educationPanel) => {
+      const fieldTabs = Array.from(
+        educationPanel.querySelectorAll<HTMLButtonElement>("[data-field-tab]"),
+      );
+      const fieldPanels = Array.from(
+        educationPanel.querySelectorAll<HTMLElement>("[data-field-panel]"),
+      );
+
+      const selectField = (id: string) => {
+        fieldTabs.forEach((tab) => {
+          tab.setAttribute("aria-selected", String(tab.dataset.fieldTab === id));
+        });
+
+        fieldPanels.forEach((panel) => {
+          panel.hidden = panel.dataset.fieldPanel !== id;
+        });
+      };
+
+      fieldTabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          const id = tab.dataset.fieldTab;
+          if (id) selectField(id);
         });
       });
     });
+
+    browser
+      .querySelectorAll<HTMLElement>("[data-field-browser]")
+      .forEach((fieldBrowser) => {
+        const sectionButtons = Array.from(
+          fieldBrowser.querySelectorAll<HTMLButtonElement>("[data-section-button]"),
+        );
+        const sectionPanels = Array.from(
+          fieldBrowser.querySelectorAll<HTMLElement>("[data-section-panel]"),
+        );
+
+        const selectSection = (index: string) => {
+          sectionButtons.forEach((button) => {
+            button.setAttribute(
+              "aria-selected",
+              String(button.dataset.sectionButton === index),
+            );
+          });
+
+          sectionPanels.forEach((panel) => {
+            panel.hidden = panel.dataset.sectionPanel !== index;
+          });
+        };
+
+        sectionButtons.forEach((button) => {
+          button.addEventListener("click", () => {
+            const index = button.dataset.sectionButton;
+            if (index !== undefined) selectSection(index);
+          });
+        });
+      });
+  };
+
+  document
+    .querySelectorAll<HTMLElement>("[data-math-browser]")
+    .forEach(setupMathBrowser);
 </script>

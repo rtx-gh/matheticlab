@@ -1,4 +1,7 @@
 ---
+import katex from "katex";
+import macros from "katex-physics";
+import { katexMacros } from "../../katex-macros.ts";
 import type { Field } from "../data/fields";
 
 interface Props {
@@ -6,86 +9,61 @@ interface Props {
 }
 
 const { field } = Astro.props;
+
+function renderMath(text: string) {
+  return text.replace(/\$([^$]+)\$/g, (_, math) =>
+    katex.renderToString(math, {
+      throwOnError: false,
+      trust: true,
+      strict: "ignore",
+      macros: {
+        ...katexMacros,
+        ...macros,
+      },
+    }),
+  );
+}
 ---
 
-<section class="field-group" aria-labelledby={`field-${field.id}`}>
-  <h2
-    id={`field-${field.id}`}
-    class={`field-heading ${field.className}`}
-  >
-    {field.title}
-  </h2>
+<div class="field-browser" data-field-browser={field.id}>
+  <nav class="field-section-nav" aria-label={`${field.title}の分野`}>
+    {
+      field.sections.map((section, index) => (
+        <button
+          type="button"
+          class="field-section-button"
+          data-section-button={index}
+          aria-selected={index === 0 ? "true" : "false"}
+        >
+          {section.title}
+        </button>
+      ))
+    }
+  </nav>
 
-  {
-    field.sections.map((section) => (
-      <details name={`${field.id}-sections`}>
-        <summary>
-          <span class="accordion-arrow" aria-hidden="true"></span>
-          <span>{section.title}</span>
-        </summary>
+  <div class="field-section-content">
+    {
+      field.sections.map((section, index) => (
+        <section
+          class="field-section-panel"
+          data-section-panel={index}
+          hidden={index !== 0}
+          aria-label={section.title}
+        >
 
-        {section.items && section.items.length > 0 && (
-          <ul class="topic-list">
-            {section.items.map((item) => (
-              <li class={`topic-item level-${item.level ?? 0}`}>
-                {item.title}
-              </li>
-            ))}
-          </ul>
-        )}
-      </details>
-    ))
-  }
-</section>
-
-<style>
-  .topic-list {
-    margin: 0.75rem 0;
-    padding: 0;
-    list-style: none;
-  }
-
-  .topic-item {
-    position: relative;
-    margin-block: 0.35rem;
-    padding-left: 1.25rem;
-  }
-
-  .topic-item::before {
-    position: absolute;
-    left: 0;
-    content: "•";
-  }
-
-  .topic-item.level-1 {
-    margin-left: 1.75rem;
-  }
-
-  .topic-item.level-1::before {
-    content: "◦";
-  }
-
-  .topic-item.level-2 {
-    margin-left: 3.5rem;
-  }
-
-  .topic-item.level-2::before {
-    content: "▪";
-  }
-
-  .topic-item.level-3 {
-    margin-left: 5.25rem;
-  }
-
-  .topic-item.level-3::before {
-    content: "▪";
-  }
-
-  .topic-item.level-4 {
-    margin-left: 7rem;
-  }
-
-  .topic-item.level-4::before {
-    content: "▪";
-  }
-</style>
+          {section.items && section.items.length > 0 ? (
+            <ul class="topic-list">
+              {section.items.map((item) => (
+                <li class={`topic-item level-${item.level ?? 0}`}>
+                  <Fragment set:html={renderMath(item.title)} />
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p class="field-empty">項目はまだありません。</p>
+          )}
+        </section>
+      ))
+    }
+  </div>
+</div>

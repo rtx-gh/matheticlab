@@ -205,135 +205,375 @@ html[data-theme="light"][data-color-theme="pink"] {
 }
  
 
-.accordion details {
-  margin: 0.7rem 0;
-  scroll-margin-top: 5rem;
+/* ========================================
+   数学分野ブラウザ
+   学習段階 → 大分類 → 分野 → 記事ツリー
+   ======================================== */
+
+.math-browser {
+  width: 100%;
+  margin-top: 1rem;
 }
 
-.accordion summary {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-
-  cursor: pointer;
-  font-size: inherit;
-  font-weight: 600;
-
-  /* 分野名は常にピンク */
-  color: var(--sl-color-accent-high);
-
-  /* 標準マーカーを消す */
-  list-style: none !important;
-}
-
-/* ブラウザ標準の矢印を消す */
-.accordion summary::-webkit-details-marker {
+.math-browser [hidden] {
   display: none !important;
 }
 
-.accordion summary::marker {
-  content: "";
+/* 大学数学 / 高校数学 / 中学数学 */
+.education-tabs {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.65rem;
+  margin-bottom: 1rem;
 }
 
-/* Starlight側が追加している矢印も消す */
-.accordion summary::before,
-.accordion summary::after {
-  content: none !important;
-  display: none !important;
-}
-
-.accordion summary:hover {
-  opacity: 0.7;
-}
-
-
-/* 自作の > */
-.accordion-arrow {
-  display: block;
-
-  width: 0.45rem;
-  height: 0.45rem;
-
-  border-right: 2px solid currentColor;
-  border-bottom: 2px solid currentColor;
-
-  color: var(--sl-color-accent-high);
-
-  flex-shrink: 0;
-
-  /* 閉じた状態：> */
-  transform: rotate(-45deg);
-
-  /* 回転アニメーション */
-  transition: transform 0.25s ease;
-}
-
-
-/* 開いた状態：下向き */
-.accordion details[open] .accordion-arrow {
-  transform: rotate(45deg);
-}
-
-
-.accordion ul {
-  margin-top: 0.5rem;
-  margin-left: 1.5rem;
-}
-
-.field-heading {
-  font-size: 1.7rem;
+.education-tab {
+  box-sizing: border-box;
+  height: 3rem !important;
+  min-height: 3rem !important;
+  margin: 0 !important;
+  padding: 0 0.75rem;
+  appearance: none;
+  border: 1px solid var(--sl-color-gray-4);
+  border-radius: 0.35rem;
+  background: transparent;
+  color: var(--sl-color-text);
+  font: inherit;
   font-weight: 700;
-  margin-block: 2rem 0.75rem;
+  cursor: pointer;
+  transition:
+    background-color 0.18s ease,
+    border-color 0.18s ease,
+    color 0.18s ease;
 }
 
-/* こちらへ変更 */
-.accordion > .field-group:first-child > .field-heading {
-  margin-top: 0;
+.education-tab:hover {
+  border-color: #555;
+  background: color-mix(in srgb, #555 10%, transparent);
 }
 
-.field-heading.logic {
+.education-tab[aria-selected="true"] {
+  border-color: #555;
+  background: #555;
+  color: white;
+}
+
+/* 集合と論理 / 代数学 / 解析学 / 幾何学 */
+.field-tabs {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.55rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--sl-color-gray-5);
+}
+
+.field-tab {
+  box-sizing: border-box;
+  height: 3rem !important;
+  min-height: 3rem !important;
+  margin: 0 !important;
+  padding: 0 0.75rem;
+  appearance: none;
+  border: 1px solid var(--sl-color-gray-4);
+  border-radius: 0.35rem;
+  background: transparent;
+  color: var(--sl-color-text);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    background-color 0.18s ease,
+    border-color 0.18s ease,
+    color 0.18s ease;
+}
+
+.field-tab.logic:hover,
+.field-tab.logic[aria-selected="true"] {
+  border-color: #8a5a44;
+}
+
+.field-tab.algebra:hover,
+.field-tab.algebra[aria-selected="true"] {
+  border-color: #e91e63;
+}
+
+.field-tab.analysis:hover,
+.field-tab.analysis[aria-selected="true"] {
+  border-color: #1685a5;
+}
+
+.field-tab.geometry:hover,
+.field-tab.geometry[aria-selected="true"] {
+  border-color: #2e8b57;
+}
+
+/* 非アクティブ */
+.field-tab.logic {
+  border-color: #8a5a44;
   color: #8a5a44;
 }
 
-.field-heading.algebra {
+.field-tab.algebra {
+  border-color: #e91e63;
   color: #e91e63;
 }
 
-.field-heading.analysis {
+.field-tab.analysis {
+  border-color: #1685a5;
   color: #1685a5;
 }
 
-.field-heading.geometry {
+.field-tab.geometry {
+  border-color: #2e8b57;
   color: #2e8b57;
+}
+
+/* hover */
+.field-tab.logic:hover {
+  background: color-mix(in srgb, #8a5a44 10%, transparent);
+}
+
+.field-tab.algebra:hover {
+  background: color-mix(in srgb, #e91e63 10%, transparent);
+}
+
+.field-tab.analysis:hover {
+  background: color-mix(in srgb, #1685a5 10%, transparent);
+}
+
+.field-tab.geometry:hover {
+  background: color-mix(in srgb, #2e8b57 10%, transparent);
+}
+
+/* アクティブ */
+.field-tab.logic[aria-selected="true"] {
+  background: #8a5a44;
+  color: white;
+}
+
+.field-tab.algebra[aria-selected="true"] {
+  background: #e91e63;
+  color: white;
+}
+
+.field-tab.analysis[aria-selected="true"] {
+  background: #1685a5;
+  color: white;
+}
+
+.field-tab.geometry[aria-selected="true"] {
+  background: #2e8b57;
+  color: white;
+}
+
+.field-panel.logic {
+  --field-color: #8a5a44;
+  --field-tint: color-mix(in srgb, #8a5a44 12%, transparent);
+}
+
+.field-panel.algebra {
+  --field-color: #e91e63;
+  --field-tint: color-mix(in srgb, #e91e63 12%, transparent);
+}
+
+.field-panel.analysis {
+  --field-color: #1685a5;
+  --field-tint: color-mix(in srgb, #1685a5 12%, transparent);
+}
+
+.field-panel.geometry {
+  --field-color: #2e8b57;
+  --field-tint: color-mix(in srgb, #2e8b57 12%, transparent);
+}
+
+/* 左：分野一覧 / 右：記事ツリー */
+.field-browser {
+  display: grid;
+  grid-template-columns: minmax(12rem, 0.34fr) minmax(0, 1fr);
+  min-height: 25rem;
+  margin-top: 1rem;
+  border: 1px solid var(--sl-color-gray-5);
+  border-radius: 0.45rem;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--sl-color-bg) 94%, transparent);
+}
+
+.field-section-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.18rem;
+  padding: 0.7rem;
+  border-right: 1px solid var(--sl-color-gray-5);
+  background: color-mix(in srgb, var(--sl-color-bg-sidebar) 62%, transparent);
+}
+
+.field-section-button {
+  width: 100%;
+  padding: 0.7rem 0.8rem;
+  border: 0;
+  border-left: 3px solid transparent;
+  border-radius: 0.25rem;
+  background: transparent;
+  color: var(--sl-color-text);
+  font: inherit;
+  font-weight: 600;
+  line-height: 1.35;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    background-color 0.16s ease,
+    border-color 0.16s ease,
+    color 0.16s ease;
+}
+
+.field-section-button:hover {
+  background: var(--field-tint);
+}
+
+.field-section-button[aria-selected="true"] {
+  border-left-color: var(--field-color);
+  background: var(--field-tint);
+  color: var(--field-color);
+  font-weight: 700;
+}
+
+.field-section-content {
+  min-width: 0;
+  padding: 0 1.4rem 1.5rem;
+}
+
+.field-section-title {
+  margin: 0 0 1rem;
+  color: var(--field-color);
+  font-size: 1.35rem;
+  font-weight: 700;
+}
+
+.topic-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.topic-item {
+  position: relative;
+  margin-block: 0.42rem;
+  padding-left: 1.3rem;
+  line-height: 1.35;
+} 
+
+.topic-item.level-0 {
+  margin-top: 0;
+  font-weight: 650;
+}
+
+.topic-item.level-0 + .topic-item.level-0 {
+  margin-top: 0.8rem;
+}
+
+.topic-item.level-1 {
+  margin-left: 1.6rem;
+}
+
+.topic-item.level-2 {
+  margin-left: 3.2rem;
+}
+
+.topic-item.level-3 {
+  margin-left: 4.8rem;
+}
+
+.topic-item.level-4 {
+  margin-left: 6.4rem;
 }
 
 .topic-item::before {
   position: absolute;
-  top: 0.15em;
+  top: 0.13em;
   left: 0;
-  content: "•";
-  font-size: 1.2em;
   line-height: 1;
 }
 
-/* ● */
 .topic-item.level-0::before {
   content: "•";
   font-size: 1.25em;
 }
 
-/* ○ */
 .topic-item.level-1::before {
   content: "◦";
   font-size: 1.4em;
 }
 
-/* ■ */
 .topic-item.level-2::before,
 .topic-item.level-3::before,
 .topic-item.level-4::before {
   content: "▪";
-  font-size: 1.2em;
+  font-size: 1.15em;
+}
+
+.field-empty,
+.education-empty {
+  color: var(--sl-color-gray-2);
+}
+
+.education-empty {
+  padding: 2rem 1rem;
+  border: 1px solid var(--sl-color-gray-5);
+  border-radius: 0.45rem;
+  text-align: center;
+}
+
+@media (max-width: 50rem) {
+  .education-tabs,
+  .field-tabs {
+    display: flex;
+    overflow-x: auto;
+    scrollbar-width: thin;
+  }
+
+  .education-tab,
+  .field-tab {
+    flex: 0 0 auto;
+    min-width: 8.5rem;
+  }
+
+  .field-browser {
+    grid-template-columns: 1fr;
+  }
+
+  .field-section-nav {
+    flex-direction: row;
+    overflow-x: auto;
+    border-right: 0;
+    border-bottom: 1px solid var(--sl-color-gray-5);
+  }
+
+  .field-section-button {
+    flex: 0 0 auto;
+    width: auto;
+    min-width: max-content;
+    border-left: 0;
+    border-bottom: 3px solid transparent;
+  }
+
+  .field-section-button[aria-selected="true"] {
+    border-left-color: transparent;
+    border-bottom-color: var(--field-color);
+  }
+
+  .field-section-content {
+    min-width: 0;
+    padding: 0.15rem 1.4rem 1.5rem;
+  }
+
+  .topic-item:first-child {
+    margin-top: 0;
+  }
+
+  .topic-item.level-1 { margin-left: 1rem; }
+  .topic-item.level-2 { margin-left: 2rem; }
+  .topic-item.level-3 { margin-left: 3rem; }
+  .topic-item.level-4 { margin-left: 4rem; }
 }
 
 @media (min-width: 50rem) {

@@ -54,7 +54,7 @@ const topicItems = (strings: TemplateStringsArray): TopicItem[] => {
   });
 };
 
-export const fields: readonly Field[] = [
+const universityFields: readonly Field[] = [
   {
     id: "logic",
     title: "集合と論理",
@@ -489,3 +489,34 @@ export const fields: readonly Field[] = [
     ],
   },
 ];
+
+export type EducationLevel = {
+  id: "university" | "high-school" | "junior-high";
+  title: string;
+  fields: readonly Field[];
+};
+
+/**
+ * 学習段階ごとの数学分野。
+ * 高校数学・中学数学は、項目を追加するまで空配列として表示する。
+ */
+export const educationLevels: readonly EducationLevel[] = [
+  {
+    id: "university",
+    title: "大学数学",
+    fields: universityFields,
+  },
+  {
+    id: "high-school",
+    title: "高校数学",
+    fields: [],
+  },
+  {
+    id: "junior-high",
+    title: "中学数学",
+    fields: [],
+  },
+];
+
+// 既存コードとの互換性が必要な場合に使える大学数学の分野一覧。
+export const fields = universityFields;
