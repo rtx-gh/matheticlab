@@ -11,7 +11,6 @@ import { katexMacros } from "./katex-macros.ts";
 export default defineConfig({
 	// GitHub Pages
 	site: 'https://matheticlab.com',
-	base: '/matheticlab',
 
 	integrations: [
 		starlight({
@@ -59,8 +58,10 @@ export default defineConfig({
 				[
         			rehypeKatex,
         			{
-    				  throwOnError: true,
-    				  globalGroup: true,
+					  throwOnError: true,
+					  globalGroup: true,
+					  trust: true,
+					  strict: "ignore",
         			  macros: {
         			    ...katexMacros,
         			    ...macros,

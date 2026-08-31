@@ -441,4 +441,7 @@ export const katexMacros = {
 
   "\\vector":
     "\\overrightarrow{\\mathrm{#1}}",
+
+  "\\rotatebox":
+    "\\htmlStyle{display:inline-block;transform:rotate(#1deg);transform-origin:center;}{#2}",
 };

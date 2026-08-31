@@ -1,0 +1,150 @@
+---
+title: ガウス積分
+description: ガウス積分の公式とその証明
+---
+
+## ガウス積分
+
+### 定理
+
+$a>0$ とする。このとき、
+
+$$
+\int_{-\infty}^{\infty} \e^{-ax^2}\dd x
+=
+\sqrt{\dfrac{\pi}{a}}
+$$
+
+が成り立つ。
+
+<details>
+<summary>証明</summary>
+
+$$
+I
+:=
+\int_{-\infty}^{\infty}\e^{-ax^2}\dd x
+$$
+
+とおく。
+
+被積分関数は正だから $I>0$ である。また、
+
+$$
+\begin{aligned}
+I^2
+&=
+\left(
+\int_{-\infty}^{\infty}
+\e^{-ax^2}\dd x
+\right)
+\left(
+\int_{-\infty}^{\infty}
+\e^{-ay^2}\dd y
+\right)
+\\
+&=
+\int_{-\infty}^{\infty}
+\int_{-\infty}^{\infty}
+\e^{-a(x^2+y^2)}
+\dd x\dd y.
+\end{aligned}
+$$
+
+ここで、
+
+$$
+x=r\cos\theta,
+\qquad
+y=r\sin\theta
+$$
+
+と極座標変換する。
+
+このときヤコビアンは $r$ だから、
+
+$$
+\begin{aligned}
+I^2
+&=
+\int_0^\infty
+\int_0^{2\pi}
+\e^{-ar^2}r
+\dd\theta\dd r
+\\
+&=
+2\pi
+\int_0^\infty
+\e^{-ar^2}r
+\dd r
+\\
+&=
+2\pi
+\left[
+\dfrac{\e^{-ar^2}}{-2a}
+\right]_0^\infty
+\\
+&=
+\lim_{N\to\infty}
+2\pi
+\left[
+\dfrac{\e^{-ar^2}}{-2a}
+\right]_0^N
+\\
+&=
+\lim_{N\to\infty}
+2\pi
+\left(
+\dfrac{\e^{-aN^2}}{-2a}
+-
+\dfrac{\e^{-a\cdot0^2}}{-2a}
+\right)
+\\
+&=
+\pi
+\left(
+\dfrac{\displaystyle\lim_{N\to\infty}\e^{-aN^2}}{-a}
++
+\dfrac{\e^{-a\cdot0^2}}{a}
+\right).
+\end{aligned}
+$$
+
+$a>0$ より、
+
+$$
+\lim_{N\to\infty}\e^{-aN^2}=0
+$$
+
+だから、
+
+$$
+\begin{aligned}
+I^2
+&=
+\pi
+\left(
+\dfrac{0}{-a}
++
+\dfrac{1}{a}
+\right)
+\\
+&=
+\dfrac{\pi}{a}.
+\end{aligned}
+$$
+
+$I>0$ であるから、
+
+$$
+\boxed{
+\int_{-\infty}^{\infty}
+\e^{-ax^2}\dd x
+=
+\sqrt{\dfrac{\pi}{a}}
+}
+$$
+
+となる。$\Box$
+
+</details>

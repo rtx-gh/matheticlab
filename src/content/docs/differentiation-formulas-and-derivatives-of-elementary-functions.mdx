@@ -1,0 +1,1204 @@
+---
+title: 微分公式と初等関数の導関数
+description: 微分の基本公式と、べき関数・指数関数・対数関数・三角関数・逆三角関数・双曲線関数・逆双曲線関数の導関数をまとめる。
+---
+
+## 前提知識
+
+- 関数と合成関数
+- 極限と導関数の定義
+- 三角関数と逆三角関数
+- 指数関数・対数関数
+- 双曲線関数
+- 微分可能ならば連続であること
+
+## 概要
+
+微分計算では、導関数の定義から毎回極限を計算する代わりに、**微分の線形性・積の微分・商の微分・連鎖律・逆関数の微分**などの一般公式と、各初等関数の導関数を組み合わせる。
+
+この記事では、これらの公式とその証明を整理し、べき関数、指数関数、対数関数、三角関数、逆三角関数、双曲線関数、逆双曲線関数までを扱う。
+
+## 歴史的経緯
+
+微分法は17世紀後半にニュートンとライプニッツによって独立に体系化された。現在広く使われる $\dd y/\dd x$ 型の記法はライプニッツに由来する。積の微分が「ライプニッツ則」と呼ばれるのもこのためである。
+
+その後、極限概念の厳密化によって、微分公式は導関数の極限による定義から体系的に証明されるようになった。
+
+微分とは？導関数とは？
+
+## 
+	微分公式
+
+微分公式を証明するにあたって、関数同士の四則演算は以下のように書き換えられることを留意していただきたい。
+
+$f(x) + g(x) = (f + g)(x)$$f(x) - g(x) = (f - g)(x)$$f(x)g(x) = (fg)(x)$$\dfrac{f(x)}{g(x)} = \qty( \dfrac{f}{g} )(x)$
+
+### 
+	微分の線形性
+
+微分の和によって分配できる性質（加法性かほうせい）と係数を前に出すことができる性質（斉次性せいじせい）を合わせて線形性せんけいせいと呼ぶ。
+
+#### 加法性
+
+$\qty\big( f(x) + g(x) )' = f'(x) + g'(x)$
+
+証明
+
+$\qty\big( f(x)  + g(x))'$
+
+$= \qty\big( (f + g)(x) )'$
+
+$= \dlim_{\Delta x \to 0}\dfrac{(f + g)(x + \Delta x) - (f + g)(x) }{\Delta x}$
+
+$= \dlim_{\Delta x \to 0} \dfrac{ \qty\big( f(x + \Delta x) + g(x + \Delta x) ) - \qty\big( f(x) + g(x) ) }{\Delta x}$
+
+$= \dlim_{\Delta x \to 0}\dfrac{\qty\big( f(x + \Delta x) - f(x)) + \qty\big( g(x + \Delta x) - g(x) )}{\Delta x}$
+
+$= \dlim_{\Delta x \to 0} \qty( \dfrac{\qty\big( f(x + \Delta x) - f(x)) }{\Delta x} + \dfrac{\qty\big( g(x + \Delta x) - g(x) )}{\Delta x} )$
+
+$= \dlim_{\Delta x \to 0} \dfrac{\qty\big( f(x + \Delta x) - f(x)) }{\Delta x} + \dlim_{\Delta x \to 0}\dfrac{\qty\big( g(x + \Delta x) - g(x) )}{\Delta x}$
+
+$=f'(x) + g'(x).$
+
+#### 斉次性
+
+$\qty\big( af(x) )' = af'(x)$
+
+証明
+
+$\qty\big( af(x) )'$
+
+$= \dlim_{\Delta x \to 0}\dfrac{af(x + \Delta x) - af(x)}{\Delta x}$
+
+$= \dlim_{\Delta x \to 0}\dfrac{a\qty\big( f(x + \Delta x) - f(x) )}{\Delta x}$
+
+$=a\dlim_{\Delta x \to 0}\dfrac{f(x + \Delta x) - f(x)}{\Delta x}$
+
+$=af'(x)$
+
+###  積の微分（ライプニッツ則）
+
+$\qty\big( f(x)g(x) )' = f'(x)g(x) + f(x)g'(x)$
+
+証明
+
+$\qty\big( f(x)g(x) )'$
+
+$= (fg)'(x)$
+
+$= \dlim_{\Delta x \to 0} \dfrac{ (fg)(x + \Delta x) - (fg)(x) }{\Delta x}$
+
+$= \dlim_{\Delta x \to 0} \dfrac{ f(x + \Delta x)g(x + \Delta x) - f(x)g(x) }{\Delta x}$
+
+$= \dlim_{\Delta x \to 0} \dfrac{ f(x + \Delta x)g(x + \Delta x) - f(x)g(x)  + \qty\big( f(x)g(x + \Delta x) - f(x)g(x + \Delta x) )}{\Delta x}$
+
+$= \dlim_{\Delta x \to 0} \dfrac{ f(x + \Delta x)g(x + \Delta x) - f(x)g(x + \Delta x) }{\Delta x} + \dlim_{\Delta x \to 0} \dfrac{ f(x)g(x + \Delta x) - f(x)g(x) }{\Delta x}$
+
+$= \dlim_{\Delta x \to 0} \qty( \dfrac{ f(x + \Delta x) - f(x) }{\Delta x} g(x + \Delta x) )
++ \dlim_{\Delta x \to 0} \qty( f(x) \dfrac{ g(x + \Delta x) - g(x) }{\Delta x} )$
+
+$= \dlim_{\Delta x \to 0} \dfrac{ f(x + \Delta x) - f(x) }{\Delta x}
+\dlim_{\Delta x \to 0} g(x + \Delta x)
++ \dlim_{\Delta x \to 0} f(x)
+\dlim_{\Delta x \to 0} \dfrac{ g(x + \Delta x) - g(x) }{\Delta x}$
+
+$= \dlim_{\Delta x \to 0} \dfrac{ f(x + \Delta x) - f(x) }{\Delta x}
+\dlim_{\Delta x \to 0} g(x + 0)
++ \dlim_{\Delta x \to 0} f(x)
+\dlim_{\Delta x \to 0} \dfrac{ g(x + \Delta x) - g(x) }{\Delta x}$
+
+$= f'(x)g(x) + f(x)g'(x). \Box$
+
+### 
+	商の微分
+
+#### 分子が1の場合
+
+$\qty( \dfrac{1}{f(x)} )' = - \dfrac{f'(x)}{ \qty\big( f(x) )^2 }$
+
+証明
+
+$\qty( \dfrac{1}{f(x)} )'$
+
+$= \qty( \qty\big(f(x))^{- 1} )'$
+
+$= \ddv{ \qty\big(f(x))^{- 1} }{f(x)} \ddv{f(x)}{x}$
+
+$= - f(x)^{- 2} f'(x)$
+
+$= - \dfrac{f'(x)}{\qty\big(f(x))^2} . \Box$
+
+#### 一般の場合
+
+$\qty( \dfrac{f(x)}{g(x)} )' = \dfrac{ f'(x)g(x) - f(x)g'(x) }{ \qty\big( g(x) )^2 }$
+
+「分子が $1$ の場合」を用いた証明
+
+この方法では、「分子が $1$ の場合」を許容していることに注意していただきたい。
+
+$\qty( \dfrac{f(x)}{g(x)} )'$
+
+$= \qty( f(x) \times \dfrac{1}{g(x)} )'$
+
+「積の微分」より、
+
+$\qty\big(f(x))'\qty(\dfrac{1}{g(x)}) + f(x) \qty(\dfrac{1}{g(x)})'$
+
+$= \dfrac{f'(x)}{g(x)} + f(x) \qty( - \dfrac{g'(x)}{\qty\big(g(x))^2})$
+
+$= \dfrac{f'(x)g(x)}{\qty\big( g(x) )^2} - \dfrac{f(x)g'(x)}{\qty\big(g(x))^2}$
+
+$= \dfrac{f'(x)g(x) - f(x)g'(x)}{\qty\big(g(x))^2}. \Box$
+
+導関数の定義を用いた証明
+
+この方法を用いると、遠回りだが、独立した公式として証明できる。
+
+$\qty( \dfrac{f(x)}{g(x)} )'$
+
+$= \qty(\dfrac{f}{g})'(x)$
+
+$= \dlim_{\Delta x \to 0} \dfrac{ \qty(\dfrac{f}{g})(x + \Delta x)
+- \qty(\dfrac{f}{g})(x) }{\Delta x}$
+
+$= \dlim_{\Delta x \to 0} \qty( \dfrac{ \dfrac{f(x + \Delta x)}{g(x + \Delta x)}
+- \dfrac{f(x)}{g(x)} }{\Delta x}
+\times \dfrac{g(x + \Delta x)g(x)}{g(x + \Delta x)g(x)} )$
+
+$= \dlim_{\Delta x \to 0} \dfrac{f(x + \Delta x)g(x) - f(x)g(x + \Delta x)}{\Delta x} \times \dfrac{1}{g(x + 0)g(x)}$
+
+$= \dlim_{\Delta x \to 0} \dfrac{f(x + \Delta x)g(x) - f(x)g(x + \Delta x)
++ \qty\big( f(x)g(x) - f(x)g(x) )}{\Delta x} \times \dfrac{1}{\qty\big( g(x) )^2}$
+
+$= \dlim_{\Delta x \to 0} \dfrac{f(x + \Delta x)g(x)  - f(x)g(x)}{\Delta x}
++ \dlim_{\Delta x \to 0} \dfrac{f(x)g(x) - f(x)g(x + \Delta x)}{\Delta x}
+\times \dfrac{1}{\qty\big( g(x) )^2}$
+
+$= \left( \dlim_{\Delta x \to 0} \dfrac{f(x + \Delta x) - f(x)}{\Delta x}
+\times \dlim_{\Delta x \to 0} g(x)
+- \dlim_{\Delta x \to 0} f(x)
+\times \dlim_{\Delta x \to 0} \dfrac{g(x + \Delta x) - g(x)}{\Delta x} \right)
+\times \dfrac{1}{\qty\big( g(x) )^2}$
+
+$= \dfrac{ f'(x)g(x) - f(x)g'(x) }{ \qty\big( g(x) )^2 }$
+
+###  合成関数の微分（連鎖律） 
+
+$\ddv{ f\qty\big(g(x)) }{x}= \ddv{f(x)}{g(x)} \ddv{g(x)}{x}$
+
+$\qty\Big( (f \circ g)(x) = f'\qty\big(g(x)) g'(x) )$
+
+合成関数 $f\qty\big(g(x))$ の $x$ による微分は、$f\qty\big(g(x))$ を $g(x)$ で微分したものと、$g(x)$ を $x$ で微分したものの積になる。
+
+誤った証明
+
+$\ddv{ f\qty\big(g(x)) }{x}$
+
+$=\dlim_{\Delta x \to 0} \dfrac{f\qty\big( g(x + \Delta x) ) - f\qty\big( g(x) )}{\Delta x}$
+
+$=\dlim_{\Delta x \to 0} \qty( \dfrac{f\qty\big( g(x + \Delta x) ) - f\qty\big( g(x) ) }{\Delta x}
+\times \dfrac{g(x + \Delta x) - g(x)}{g(x + \Delta x) - g(x)} )$
+
+$=\dlim_{\Delta x \to 0} \dfrac{f\qty\big( g(x + \Delta x) ) - f\qty\big( g(x) )}{g(x + \Delta x) - g(x)}
+\times \dlim_{\Delta x \to 0} \dfrac{g(x + \Delta x) - g(x)}{\Delta x}$
+
+$= \ddv{f(x)}{g(x)} \ddv{g(x)}{x}. \Box$
+
+（$g(x + \Delta x) - g(x)$ が $g(x)$ の増分になっていることは、$x$ の増分が $(x + \Delta x) - x = \Delta x$ によって導かれるのと同じことである。）
+
+この証明方法は、$g(x + \Delta x) - g(x) = 0$ のときに導関数を定義できない。$g(x + \Delta x) - g(x) = 0$ となる関数の例としては、定数関数である。
+
+$g(x + \Delta x) - g(x)$
+
+$= c(x + \Delta x)^0 - cx^0$
+
+$= c - c$
+
+$= 0.$
+
+証明
+
+$\Delta g(x) := g(x + \Delta x) - g(x)$ として、以下の関数 $p(\Delta x),\, q\qty\big(g(\Delta x))$ を導入することで、$\Delta g(x) = 0$ の場合にも $\ddv{f\qty\big(g(x))}{x}$ を定義できるようにする。
+
+$p(\Delta x) = 
+\begin{cases}
+\dfrac{g(x + \Delta x) - g(x)}{\Delta x} - g'(x) \quad (\text{$\Delta x \neq 0$ のとき}) \\[1.5ex]
+0 \quad (\text{$\Delta x = 0$ のとき})
+\end{cases}$
+
+$q\qty\big(g(\Delta x)) = 
+\begin{cases}
+\dfrac{ f(g(x + \Delta x)) - f\qty\big(g(x)) }{ g(x + \Delta x) - g(x) } - f'\qty\big(g(x)) \quad (\text{$\Delta g(x) \neq 0$ のとき}) \\[1.5ex]
+0 \quad (\text{$\Delta g(x) = 0$ のとき})
+\end{cases}$
+
+$p(\Delta x) = \dfrac{g(x + \Delta x) - g(x)}{\Delta x} - g'(x)$
+
+$\iff \dfrac{g(x + \Delta x) - g(x)}{\Delta x} = g'(x) + p(\Delta x)$
+
+$\iff g(x + \Delta x) - g(x) = \qty\big( g'(x) + p(\Delta x) )\Delta x$
+
+$q\qty\big(\Delta g(x)) = \dfrac{ f(g(x + \Delta x)) - f\qty\big(g(x)) }{ g(x + \Delta x) - g(x) } - f'\qty\big(g(x))$
+
+$\iff \dfrac{ f(g(x + \Delta x)) - f\qty\big(g(x)) }{ g(x + \Delta x) - g(x) } = f'\qty\big(g(x)) + q\qty\big(\Delta g(x))$
+
+$\iff f(g(x + \Delta x)) - f\qty\big(g(x)) = \qty\Big( f'\qty\big(g(x)) + q\qty\big(\Delta g(x)) ) \qty\big( g(x + \Delta x) - g(x) )$
+
+$(f \circ g)'(x) = \dlim_{\Delta x \to 0} \dfrac{f\qty\big( g(x + \Delta x) ) - f\qty\big( g(x) )}{\Delta x}$
+
+$= \dlim_{\Delta x \to 0} \dfrac{ \qty\Big( f'\qty\big(g(x)) + q\qty\big(\Delta g(x)) ) \qty\big( g(x + \Delta x) - g(x) ) }{\Delta x}$
+
+$= \dlim_{\Delta x \to 0} \dfrac{ \qty\Big( f'\qty\big(g(x)) + q\qty\big(\Delta g(x)) ) \qty\big( g'(x) + p(\Delta x) )\Delta x}{\Delta x}$
+
+$= \dlim_{\Delta x \to 0} \qty\Big( f'\qty\big(g(x)) + q\qty\big(\Delta g(x)) ) \dlim_{\Delta x \to 0} \qty\big( g'(x) + p(\Delta x) )$
+
+$\Delta x \to 0$ は $\Delta x = 0$ を意味し、$\Delta g(x) = g(x + \Delta x) - g(x) = 0$ のときは $\Delta x = 0$ のときに等しいから、$p(\Delta x),\, q\qty\big(\Delta g(x))$ の定義より、
+
+$= f'\qty\big(g(x)) g'(x). \Box$
+
+###  逆関数の微分 
+
+$\ddv{x}{y} = \dfrac{1}{\ddv{y}{x}}$
+
+証明
+
+$x$ と $y$ が互いに逆関数であるとは、$y = f(x),\, x = g(y)$ と表せることであるので、
+
+$x= g(y)$
+
+$\iff x = g\qty\big(f(x))$
+
+両辺を $x$ で微分すると、
+
+$1 =  \ddv{g\qty(\big(f(x))}{x}$
+
+「合成関数の微分」より
+
+$\iff 1 = \ddv{g\qty(\big(f(x))}{f(x)} \ddv{f(x)}{x}$
+
+$\iff \ddv{g\qty(\big(f(x))}{f(x)} = \dfrac{1}{\ddv{f(x)}{x}}$
+
+$y = f(x),\, x = g(y)$であるから、これを書き換えると、
+
+$\iff \ddv{g(y)}{y} = \dfrac{1}{\ddv{y}{x}}$
+
+$\iff \ddv{x}{y} = \dfrac{1}{\ddv{y}{x}}. \Box$
+
+###  媒介変数表示の微分 
+
+$x=x(t),\, y=y(t) \implies \ddv{y}{x} = \dfrac{ \ddv{y}{t} }{ \ddv{x}{t} }$
+
+「合成関数の微分」を用いた証明
+
+$y = f(t),\, x = g(t)$とし、$g(t)$に逆関数が存在して、$t = g^{- 1}(x)$と表せるとする。
+
+$\ddv{y}{x}$
+
+$= \ddv{f\qty\big( g^{- 1}(x) )}{x}$
+
+「合成関数の微分」より、
+
+$= \ddv{f\qty\big( g^{- 1}(x) )}{g^{- 1}(x)} \ddv{g^{- 1}(x)}{x}$
+
+$= \ddv{f(t)}{t} \ddv{t}{x}$
+
+$= \ddv{y}{t} \ddv{t}{x}$
+
+$= \ddv{y}{t} \times \dfrac{1}{\ddv{x}{t}}$
+
+$= \dfrac{\ddv{y}{t}}{\ddv{x}{t}}. \Box$
+
+導関数の定義を用いた証明
+
+「合成関数の微分」を用いずに、導関数の定義を用いて遠回りな方法で証明する。
+
+$\ddv{y}{x}$
+
+$ = \dlim_{\Delta x \to 0} \dfrac{ f\qty\big( g^{- 1}(x + \Delta x) ) - f\qty\big( g^{- 1}(x) ) }{\Delta x}$
+
+$ = \dlim_{\Delta x \to 0} \qty( \dfrac{ f\qty\big( g^{- 1}(x + \Delta x) ) - f\qty\big( g^{- 1}(x) ) }{g^{- 1}(x + \Delta x) - g^{- 1}(x)}
+\times \dfrac{g^{- 1}(x + \Delta x) - g^{- 1}(x)}{\Delta x}  )$
+
+$\Delta t = g^{- 1}(x + \Delta x) - g^{- 1}(x),\, \Delta x = g(t + \Delta t) - g(t)$となることから、$\Delta t = g^{- 1}(x + \Delta x) - g^{- 1}(x) \iff g^{- 1}(x + \Delta x) = g^{- 1}(x) + \Delta t$が得られ、かつ$g^{- 1}(x) = t$であるから、$x$ の極限を $t$ の極限に置き換え、
+
+$ = \dlim_{\Delta t \to 0} \qty( \dfrac{ f( t + \Delta t ) - f(t) }{\Delta t}
+\times \dfrac{\Delta t}{g(t + \Delta t) - g(t)} )$
+
+$ = \dlim_{\Delta t \to 0} \dfrac{ \dfrac{ f( t + \Delta t ) - f(t) }{\Delta t} }
+{ \dfrac{ g(t + \Delta t) - g(t) }{ \Delta t } }$
+
+$ = \dfrac{ \dlim_{\Delta t \to 0} \dfrac{ f( t + \Delta t ) - f(t) }{\Delta t} }
+{ \dlim_{\Delta t \to 0} \dfrac{ g(t + \Delta t) - g(t) }{ \Delta t } }$
+
+$= \dfrac{\ddv{y}{t}}{\ddv{x}{t}}. \Box$
+
+## 
+	初等関数の導関数
+
+### 
+	べき関数
+
+自然数・負の整数・分子が1の分数（単位分数）・有理数・実数の場合をそれぞれ示す。
+
+（実数の場合の証明には「指数関数の導関数」や「対数関数の導関数」を用いるから、独立した公式として証明できるのは、有理数の場合までである。）
+
+指数が自然数の場合の証明
+
+$\qty(x^n)' = nx^{n - 1}$
+
+$n$ を自然数とすると、$x^n$ は実数全体で定義される。
+
+例：$3^2, \pi^2$
+
+証明
+
+$\dlim_{\Delta x \to 0} \dfrac{(x + \Delta x)^n - x^n}{\Delta x}$
+
+二項定理より、
+
+$= \dlim_{\Delta x \to 0} \dfrac{ \qty( \bc{n}{0} x^0 (\Delta x)^{n - 0} + \bc{n
+
+$= \dlim_{\Delta x \to 0} \dfrac{ \qty( \bc{n}{0} x^0 (\Delta x)^{n - 0} + \bc{n}{1} x^1 (\Delta x)^{n - 1} + \cdots + \bc{n}{n - 1} x^{n - 1} (\Delta x)^{n - (n - 1)} + \bc{n}{n} x^n (\Delta x)^{n - n} ) - x^n}{\Delta x}$
+
+$= \dlim_{\Delta x \to 0} \dfrac{ \qty( (\Delta x)^n + nx (\Delta x)^{n - 1} + \cdots + nx^{n - 1} \Delta x + x^n ) - x^n}{\Delta x}$
+
+$= \dlim_{\Delta x \to 0} \dfrac{(\Delta x)^n + nx (\Delta x)^{n - 1} + \cdots + nx^{n - 1} \Delta x}{\Delta x}$
+
+$= \dlim_{\Delta x \to 0} \qty( (\Delta x)^{n - 1} + nx (\Delta x)^{n - 2} + \cdots + nx^{n - 1})$
+
+$\Delta x \to 0$ によって、$\Delta x$ を含む項はすべて $0$ になるから、
+
+$= nx^{n - 1}. \Box$
+
+指数が負の整数の場合の証明
+
+$(x^{- n})' = - nx^{- n - 1}$
+
+$- n$を負の整数とすると、$x^{- n}$ は $x$ が $0$ 以外の実数全体のとき定義される。
+
+例：$3^{- 2},\, \pi^{- 2}$
+
+証明
+
+$\qty(x^{- n})'$
+
+$= \qty(\dfrac{1}{x^n})'$
+
+「商の微分」より、
+
+$= - \dfrac{(x^n)'}{(x^n)^2}$
+
+「指数が自然数の場合」より、
+
+$= - \dfrac{nx^{n - 1}}{x^{2n}}$
+
+$= - nx^{(n - 1) - 2n}$
+
+$= - nx^{- n - 1}. \Box$
+
+指数が 分子が1の分数 の場合の証明
+
+$\qty( x^{\frac{1}{n}} )' = \dfrac1n x^{ \frac1n - 1 }$
+
+証明
+
+$n$ を整数とする。$x^{\frac{1}{n}}$ は $x$ が正の実数の範囲で定義される。
+
+$y = x^{\frac{1}{n}}$
+
+$\iff y = \sqrt[n]{x}$
+
+$\implies y^n = x$
+
+となる。
+
+$\ddv{ x^{\frac{1}{n}} }{x}$
+
+$= \ddv{y}{x}$
+
+「逆関数の微分」より、
+
+$= \dfrac{1}{ \ddv{x}{y} }$
+
+$x = y^n$ であるから、
+
+$= \dfrac{1}{ \ddv{y^n}{y} }$
+
+$= \dfrac{1}{ ny^{n - 1} }$
+
+$y = x^{\frac{1}{n}}$ であるから、
+
+$= \dfrac{1}{ n\qty( x^{\frac1n} )^{n - 1} }$
+
+$= \dfrac{1}{ nx^{\frac1n(n - 1)} }$
+
+$= \dfrac{1}{ nx^{ 1 - \frac1n } }$
+
+$= \dfrac1n \times \dfrac{1}{ x^{ 1 - \frac1n } }$
+
+$= \dfrac1n x^{ - \qty( 1 - \frac1n )}$
+
+$= \dfrac1n x^{ \frac1n - 1 }. \Box$
+
+指数が有理数の場合の証明
+
+$\qty( x^{\frac{m}{n}} )' = \dfrac{m}{n} x^{\frac{m}{n} - 1}$
+
+$m, n$を整数とする。$x$ が正の実数の範囲で定義される。
+
+例：$2^{\frac13}=\sqrt[3]2$ は定義可能だが、$(- 3)^{\frac12} = \sqrt{- 3}$ は複素数なので定義不能。（よって、$x >0$ の範囲でしか定義されない。）
+
+証明
+
+$\ddv{x^{\frac{m}{n}}}{x}$
+
+$= \ddv{ \qty(x^{\frac1n})^m }{x}$
+
+$= \ddv{\qty(x^{\frac1n})^m}{x^{\frac1n}} \ddv{x^{\frac1n}}{x}$
+
+「指数が自然数の場合」と「指数が 分子が1の分数 の場合」より、
+
+$= m\qty(x^{\frac1n})^{m - 1} \times \dfrac1n x^{\frac1n - 1}$
+
+$= mx^{\frac{m - 1}{n}} \times \dfrac1n x^{\frac1n - 1}$
+
+$= \frac{m}{n} x^{\frac{m - 1}n + (\frac1n - 1)}$
+
+$= \frac{m}{n} x^{\frac{m - 1}n + \frac{1 - n}n}$
+
+$= \frac{m}{n} x^{\frac{m - n}n + \frac{1 - n}n}$
+
+$= \frac{m}{n} x^{\frac{m}n - 1}. \Box$
+
+指数が実数の場合
+
+$\qty(x^\alpha)' = \alpha x^{\alpha - 1}$
+
+$\alpha$ を実数とすると、$x^\alpha$ は $x$ が正の実数の範囲で定義される。（有理数と同様に $x >0$ の範囲でしか定義されない。）
+
+「指数関数の導関数」を用いた証明
+
+$x^\alpha = \e^{\log_\e x^\alpha}$ となることを用いて証明する。
+
+$\qty(x^\alpha)'$
+
+$= \ddv{\e^{\log_\e x^\alpha}}{x}$
+
+「合成関数の微分」より、
+
+$= \ddv{\e^{\log_\e x^\alpha}}{\log_\e x^\alpha} \ddv{\log_\e x^\alpha}{x}$
+
+$= \ddv{\e^{\log_\e x^\alpha}}{\log_\e x^\alpha} \ddv{\alpha\log_\e x}{x}$
+
+「微分の線形性」より、
+
+$= \ddv{\e^{\log_\e x^\alpha}}{\log_\e x^\alpha} \times \alpha \ddv{\log_\e x}{x}$
+
+$= \e^{\log_\e x^\alpha} \times \alpha\qty(\dfrac1x)$
+
+$= x^\alpha \times \dfrac{\alpha}{x}$
+
+$= \alpha x^{\alpha - 1}. \Box$
+
+「対数関数の導関数」を用いた証明
+
+$f(x) = x^\alpha$
+
+両辺の絶対値の対数を取ると、
+
+$\implies \log_\e \bigl| f(x) \bigr| = \log_\e\abs{x^\alpha}$
+
+べき関数は $x >0$ のとき $f(x) > 0$ であるから、
+
+$\iff \log_\e f(x) = \log_\e x^\alpha$
+
+$\iff \log_\e f(x) = \alpha\log_\e x$
+
+両辺を微分すると、
+
+$\implies \qty\big(\log_\e f(x))' = \qty(\alpha\log_\e x)'$
+
+「合成関数の微分」と「微分の線形性」より、
+
+$\iff \ddv{\log_\e f(x)}{x} = \alpha \qty(\log_\e x)'$
+
+$\iff \ddv{\log_\e f(x)}{f(x)} \ddv{f(x)}{x} = \alpha\qty(\dfrac1x)$
+
+$\iff \qty(\dfrac1{f(x)}) f'(x) = \dfrac{\alpha}x$
+
+$\iff f'(x) = \dfrac{\alpha f(x)}{x}$
+
+$\iff f'(x) = \dfrac{\alpha x^\alpha}{x}$
+
+$\iff f'(x) = \alpha x^{\alpha - 1}. \Box$
+
+### $\frac1x$ の導関数
+
+$\qty(\dfrac 1x)' = - \dfrac{1}{x^2}$
+
+証明
+
+$\qty(\dfrac1x)'$
+
+$= \qty(x^{- 1})'$
+
+「べき関数の導関数」より、
+
+$= (- 1)x^{- 1}$
+
+$= - x^{- 1}. \Box$
+
+### $\sqrt x$ の導関数
+
+$\qty(\sqrt x)' = \dfrac{1}{2\sqrt x}$
+
+証明
+
+$\qty(\sqrt x)'$
+
+$= \qty(x^{\frac12})'$
+
+「べき関数の導関数」より、
+
+$= \qty(\dfrac12)x^{\frac12 - 1}$
+
+$= \qty(\dfrac12)x^{- \frac12}$
+
+$= \dfrac{1}{2\sqrt x}. \Box$
+
+###  指数関数
+
+$\qty(a^x)' = a^x \log_\e a$
+
+証明
+
+$\dlim_{\Delta x \to 0} \dfrac{a^{x + \Delta x} - a^x}{\Delta x}$
+
+$= \dlim_{\Delta x \to 0} \dfrac{a^x a^{\Delta x} - a^x}{\Delta x}$
+
+$= \dlim_{\Delta x \to 0} \dfrac{a^x \qty( a^{\Delta x} - 1 )}{\Delta x}$
+
+「極限の線形性」と $a^{\Delta x} = \e^{\log_\e a^{\Delta x}}$ より、
+
+$= a^x \dlim_{\Delta x \to 0} \dfrac{\e^{\log_\e a^{\Delta x}} - 1}{\Delta x}$
+
+$= a^x \dlim_{\Delta x \to 0} \dfrac{ \e^{\log_\e a^{\Delta x}} - 1 }{\log_\e a^{\Delta x}} \dfrac{\log_\e a^{\Delta x}}{\Delta x}$
+
+$= a^x \dlim_{\Delta x \to 0} \dfrac{ \e^{\log_\e a^{\Delta x}} - 1 }{\log_\e a^{\Delta x}}
+\dfrac{\Delta x \log_\e a}{\Delta x}$
+
+「極限の線形性」より、
+
+$= a^x \log_\e a \dlim_{\Delta x \to 0} \dfrac{ \e^{\log_\e a^{\Delta x}} - 1 }{\log_\e a^{\Delta x}}$
+
+「ネイピア数の性質」より、$\dlim_{\Delta x \to 0} \dfrac{ \e^{\log_\e a^{\Delta x}} - 1 }{\log_\e a^{\Delta x}} - 1 = 1$ が成り立つから、
+
+$= a^x \log_\e a. \Box$
+
+###  底が$\e$の指数関数 
+
+$\qty(\e^x)' = \e^x$
+
+証明
+
+$\qty(\e^x)'$
+
+$= \e^x \log_\e \e$
+
+$= \e^x. \Box$
+
+###  対数関数
+
+$(\log_a x)' = \dfrac{1}{x\log_\e a}$
+
+導関数の定義を用いた証明
+
+$(\log_a x)'$
+
+$= \dlim_{\Delta x \to 0} \dfrac{\log_a (x + \Delta x) - \log_a x}{\Delta x}$
+
+$= \dlim_{\Delta x \to 0} \dfrac{ \log_a \frac{x + \Delta x}{x} }{\Delta x}$
+
+$= \dlim_{\Delta x \to 0} \dfrac1{\Delta x} \log_a \qty(1 + \dfrac{\Delta x}{x})$
+
+$= \dlim_{\Delta x \to 0} \log_a \qty(1 + \dfrac{\Delta x}{x})^{\frac1{\Delta x}}$
+
+$= \dlim_{\Delta x \to 0} \log_a \qty(1 + \dfrac{\Delta x}{x})^{\frac1{\Delta x} \times \frac{x}{x}}$
+
+$= \dlim_{\Delta x \to 0} \log_a \qty(1 + \dfrac{\Delta x}{x})^{\frac{x}{\Delta x} \times \frac{1}{x}}$
+
+$= \dlim_{\Delta x \to 0} \log_a \qty( \qty(1 + \dfrac{\Delta x}{x})^{\frac{x}{\Delta x}} )^{\frac1x}$
+
+ネイピア数の定義より、$\dlim_{\Delta x \to 0} \qty(1 + \dfrac{\Delta x}{x})^{\frac{x}{\Delta x}} = \e$ となるから、
+
+$= \log_a \e^{\frac1x}$
+
+$= \dfrac1x \log_a \e$
+
+「底の変換公式」より、$\log_a \e = \dfrac{ \log_\e \e }{ \log_\e a } = \dfrac1{ \log_\e a }$ とできるから、
+
+$= \dfrac{1}{x\log_\e a}. \Box$
+
+「逆関数の微分」を用いた証明
+
+$(\log_a x)'$
+
+$y = \log_a x$ とすれば、$x = a^y$ となるから、「逆関数の微分」より、
+
+$= \dfrac1{ \ddv{a^y}{y} }$
+
+$= \dfrac1{ a^y \log_\e a }$
+
+$a^y = x$ であるから、
+
+$= \dfrac1{ x\log_\e a }. \Box$
+
+###  底が$\e$の対数関数 
+
+$(\log_\e x)' = \dfrac1x$
+
+証明
+
+$(\log_\e x)'$
+
+$= \dfrac{1}{x\log_\e \e}$
+
+$ = \dfrac1x. \Box$
+
+### 
+三角関数
+
+#### 正弦関数
+
+$(\sin x)' = \cos x$
+
+加法定理を用いた証明
+
+$(\sin x)'$
+
+$= \dfrac{\sin(x + \Delta x) - \sin \Delta x}{\Delta x}$
+
+$= \dlim_{\Delta x \to 0} \dfrac{\qty\big( \sin x \cos \Delta x + \cos x \sin \Delta x ) - \sin x}{\Delta x}$
+
+$= \dlim_{\Delta x \to 0} \dfrac{\sin x \qty\big(\cos \Delta x - 1) + \cos x \sin \Delta x}{\Delta x}$
+
+$= \dlim_{\Delta x \to 0} \qty( \sin x \dfrac{\cos \Delta x - 1}{\Delta x} + \cos x \dfrac{\sin \Delta x}{\Delta x} )$
+
+$= \sin x \dlim_{\Delta x \to 0} \dfrac{\cos \Delta x - 1}{\Delta x} + \cos x \dlim_{\Delta x \to 0} \dfrac{\sin \Delta x}{\Delta x}$
+
+$\dfrac{\cos \Delta x - 1}{\Delta x} = 0$ 1 が成り立ち、「sinc関数の極限」より、$\dlim_{\Delta x \to 0} \frac{\sin \Delta x}{\Delta x} = 1$ が成り立つから、
+
+$= \sin x \times 0 + \cos x \times 1$
+
+$\cos x. \Box$
+
+和積の公式を用いた証明
+
+$(\sin x)'$
+
+$= \dlim_{\Delta x \to 0} \dfrac{\sin(x + \Delta x) - \sin \Delta x}{\Delta x}$
+
+「和積の公式」より、
+
+$= \dlim_{\Delta x \to 0} \dfrac{ 2\cos \frac{(x + \Delta x) + x}{2} \sin \frac{(x + \Delta x) - x }{2} }{\Delta x}$
+
+$= \dlim_{\Delta x \to 0} \qty( \dfrac{ 2\cos \frac{2x + \Delta x}{2} \sin \frac{\Delta x}{2} }{\Delta x} \times \dfrac{\frac12}{\frac12} )$
+
+$= \dlim_{\Delta x \to 0} \qty( \cos \qty( x + \frac{\Delta x}{2} ) \dfrac{ \sin \frac{\Delta x}{2} }{\frac{\Delta x}{2}} )$
+
+$= \dlim_{\Delta x \to 0} \cos \qty( x + \frac{\Delta x}{2} )
+\dlim_{\Delta x \to 0} \dfrac{ \sin \frac{\Delta x}{2} }{\frac{\Delta x}{2}}$
+
+「sinc関数の極限」より、$\dfrac{ \sin \frac{\Delta x}{2} }{\frac{\Delta x}{2}} = 1$ が成り立つから、
+
+$= \cos \qty( x + \dfrac02 ) \times 1$
+
+$= \cos x. \Box$
+
+#### 余弦関数
+
+$(\cos x)' = - \sin x$
+
+加法定理を用いた証明
+
+$(\cos x)'$
+
+$= \dlim_{\Delta x \to 0} \dfrac{\cos(x + \Delta x) - \cos x}{\Delta x}$
+
+$= \dlim_{\Delta x \to 0} \dfrac{(\cos x \cos \Delta x - \sin x \sin \Delta x) - \cos x}{\Delta x}$
+
+$= \dlim_{\Delta x \to 0} \dfrac{\cos x \cos \Delta x - \cos x}{\Delta x} + \dfrac{- \sin x \sin \Delta x}{\Delta x}$
+
+$= \dlim_{\Delta x \to 0} \cos x \dfrac{\cos \Delta x - 1}{\Delta x} - \sin x \dfrac{\sin \Delta x}{\Delta x}$
+
+1 より $\dlim_{\Delta x \to 0} \dfrac{\cos \Delta x - 1}{\Delta x} = 0$ が成り立ち、「sinc関数の極限」より、$\dlim_{\Delta x \to 0} \dfrac{\sin \Delta x}{\Delta x}$ が成り立つから、
+
+$= 0 - \sin x$
+
+$= - \sin x. \Box$
+
+和積の公式を用いた証明
+
+$(\cos x)'$
+
+$= \dlim_{\Delta x \to 0} \dfrac{\cos(x + \Delta x) - \cos x}{\Delta x}$
+
+「和積の公式」より、
+
+$= \dlim_{\Delta x \to 0} \frac{- 2\sin \frac{(x + \Delta x) + x}{2} \sin \frac{(x + \Delta x) - x}{2}}{\Delta x}$
+
+$= \dlim_{\Delta x \to 0} \dfrac{- 2\sin \frac{2x + \Delta x}{2} \sin \dfrac{\Delta x}{2}}{\Delta x}$
+
+$= \dlim_{\Delta x \to 0} \dfrac{- 2\sin \qty( x + \frac{\Delta x}{2} ) \sin \frac{\Delta x}{2}}{\Delta x}$
+
+$= \dlim_{\Delta x \to 0} \qty( \sin \qty( x + \dfrac{\Delta x}{2} ) \dfrac{- 2 \sin \frac{\Delta x}{2}}{\Delta x} \times \dfrac{\frac12}{\frac12} )$
+
+$= \dlim_{\Delta x \to 0} \sin \qty( x + \dfrac{\Delta x}{2} )
+\dlim_{\Delta x \to 0} \dfrac{ - \sin \frac{\Delta x}{2} }{ \frac{\Delta x}{2} } $
+
+$= \sin \qty( x + \dfrac02 )
+\left( - \dlim_{\Delta x \to 0} \dfrac{ \sin \frac{\Delta x}{2} }{ \frac{\Delta x}{2} } \right)$
+
+「sinc関数の極限」より、$\dlim_{\Delta x \to 0} \dfrac{ \sin \frac{\Delta x}{2} }{ \frac{\Delta x}{2} } = 1$ となるから、
+
+$\sin x \times (- 1)$
+
+$- \sin x. \Box$
+
+$\cos x = \sin(x + \frac{\pi}{2})$ を用いた証明
+
+$(\cos x)'$
+
+$= \qty( \sin \qty(x + \dfrac{\pi}{2}) )'$
+
+「合成関数の微分」より、
+
+$= \ddv{ \sin \qty(x + \frac{\pi}{2}) }{ \qty(x + \frac{\pi}{2}) }
+\ddv{ \qty(x + \frac{\pi}{2}) }{x}$
+
+「微分の線形性」より、
+
+$= \cos  \qty(x + \dfrac{\pi}{2}) \left( \ddv{x}{x} + \ddv{\qty(\frac{\pi}{2})}{x} \right)$
+
+$= \cos  \qty(x + \dfrac{\pi}{2}) \times (1 + 0)$
+
+$= \cos  \qty(x + \dfrac{\pi}{2})$
+
+$= - \sin x. \Box$
+
+#### 正接関数
+
+$(\tan x)' = \dfrac1{(\cos x)^2}$
+
+加法定理を用いた証明
+
+$(\tan x)'$
+
+$= \dlim_{\Delta x \to 0} \dfrac{ \tan(x + \Delta x) - \tan x}{\Delta x}$
+
+$= \dlim_{\Delta x \to 0} \dfrac{ \frac{\tan x + \tan \Delta x}{1 - \tan x \tan \Delta x} - \frac{\tan x(1 - \tan x \tan \Delta x)}{1 - \tan x \tan \Delta x} }{\Delta x}$
+
+$= \dlim_{\Delta x \to 0} \dfrac{ \frac{\tan x + \tan \Delta x}{1 - \tan x \tan \Delta x} + \frac{- \tan x + (\tan x)^2 \tan \Delta x}{1 - \tan x \tan \Delta x}}{\Delta x}$
+
+$= \dlim_{\Delta x \to 0} \dfrac{ \frac{ \tan \Delta x + (\tan x)^2 \tan \Delta x}{1 - \tan x \tan \Delta x}}{\Delta x}$
+
+$= \dlim_{\Delta x \to 0} \qty( \dfrac{1}{\Delta x} \dfrac{\tan \Delta x \qty( 1 + (\tan x)^2)}{1 - \tan x \tan \Delta x} )$
+
+$= \dlim_{\Delta x \to 0} \qty( \dfrac{\tan \Delta x}{\Delta x} \dfrac1{1 - \tan x \tan \Delta x} \qty( 1 + (\tan x)^2) )$
+
+$= \dlim_{\Delta x \to 0} \qty( \dfrac{ \frac{\sin \Delta x}{\cos \Delta x} }{\Delta x} \dfrac{\cos \Delta x}{\cos \Delta x}
+\dfrac1{1 - \tan x \tan \Delta x} \qty( 1 + (\tan x)^2) )$
+
+「三角関数の基本公式」より、$1 + (\tan x)^2 = \frac1{(\cos x)^2}$ が成り立つから、
+
+$= \dlim_{\Delta x \to 0} \qty( \dfrac{\sin \Delta x}{\Delta x} 
+\dfrac1{\cos \Delta x}
+\dfrac1{1 - \tan x \tan \Delta x}
+\dfrac1{(\cos x)^2} )$
+
+「極限の性質」より、
+
+$= \dlim_{\Delta x \to 0} \qty( \dfrac{\sin \Delta x}{\Delta x} )
+\dlim_{\Delta x \to 0} \qty( \dfrac1{\cos \Delta x} )
+\dlim_{\Delta x \to 0} \qty( \dfrac1{1 - \tan x \tan \Delta x} )
+\dlim_{\Delta x \to 0} \qty( \dfrac1{(\cos x)^2} )$
+
+「sinc関数の極限」より、$\dlim_{\Delta x \to 0} \dfrac{\sin \Delta x}{\Delta x} = 1$ が成り立つから、
+
+$1 \times \dfrac{1}{\cos 0} \times \dfrac1{1 - \tan x \tan 0} \times \dfrac1{(\cos x)^2}$
+
+$1 \times \dfrac1{1 - \tan x \times 0} \times \dfrac1{(\cos x)^2}$
+
+$\dfrac1{(\cos x)^2}. \Box$
+
+「商の微分」を用いた証明
+
+$(\tan x)'$
+
+$= \qty( \dfrac{\sin x}{\cos x} )'$
+
+「商の微分」より、
+
+$= \dfrac{(\sin x)'\cos x - \sin x(\cos x)'}{ (\cos x)^2 }$
+
+$(\sin x)' = \cos x,\, (\cos x)' = - \sin x$ が成り立つから、
+
+$= \dfrac{(\cos x)^2 - \sin x(- \sin x)}{ (\cos x)^2 }$
+
+$= \dfrac{(\cos x)^2 - \qty\big(- (\sin x)^2)}{ (\cos x)^2 }$
+
+$= \dfrac{(\cos x)^2 + (\sin x)^2}{ (\cos x)^2 }$
+
+$= \dfrac1{ (\cos x)^2 }. \Box$
+
+###  逆三角関数 
+
+#### 逆正弦関数
+
+$(\arcsin x)' = \dfrac1{\sqrt{1 -  x^2}}$
+
+証明
+
+$y = \arcsin x$ とすると、$x = \sin y$ となるから、
+
+$(\arcsin x)'$
+
+$= \ddv{\arcsin x}{x}$
+
+$= \ddv{y}{x}$
+
+$= \dfrac1{\dv{x}{y}}$
+
+$= \dfrac1{\dv{\sin y}{y}}$
+
+$= \dfrac1{\cos y}$
+
+$= \dfrac1{ \sqrt{1 - (\sin y)^2} }$
+
+$= \dfrac1{ \sqrt{1 - x^2} }. \Box$
+
+#### 逆余弦関数
+
+$(\arccos x)' = - \dfrac1{\sqrt{1 -  x^2}}$
+
+証明
+
+$(\arccos x)'$
+
+$= \ddv{\arccos x}{x}$
+
+$= \ddv{y}{x}$
+
+$= \dfrac1{\dv{x}{y}}$
+
+$= \dfrac1{\dv{\cos y}{y}}$
+
+$= \dfrac1{- \sin y}$
+
+$- \dfrac1{ \sqrt{1 - (\cos y)^2} }$
+
+$x = \cos y$ であるから、
+
+$= - \dfrac1{\sqrt{1 -  x^2}}$
+
+#### 逆正接関数
+
+$(\arctan x)' = \dfrac1{1 + x^2}$
+
+証明
+
+$(\arctan x)'$
+
+$= \ddv{\arctan x}{x}$
+
+$= \dfrac1{\dv{x}{\arctan x}}$
+
+$= \dfrac1{\dv{\tan y}{y}}$
+
+$= \dfrac1{\frac1{(\cos y)^2}}$
+
+$= (\cos y)^2$
+
+$= \dfrac1{1 + (\tan y)^2}$
+
+$= \dfrac1{1 + x^2}. \Box$
+
+### 
+	双曲線関数
+
+#### 双曲線正弦関数
+
+$(\sinh x)' = \cosh x$
+
+証明
+
+$(\sinh x)'$
+
+$= \qty(\dfrac{ \e^x - \e^{-x} }{2})'$
+
+$= \dfrac{(\e^x)' - (\e^{-x})'}{2}$
+
+$= \dfrac{\e^x - (- \e^{-x})}{2}$
+
+$= \dfrac{\e^x + \e^{-x}}{2}$
+
+$ = \cosh x. \Box$
+
+#### 双曲線余弦関数
+
+$(\cosh x)' = \sinh x$
+
+証明
+
+$(\cosh x)'$
+
+$= \qty(\dfrac{\e^x + \e^{-x}}{2})'$
+
+$= \dfrac{(\e^x)' + (\e^{-x})'}{2}$
+
+$= \dfrac{\e^x + (- \e^{-x})}{2}$
+
+$= \dfrac{\e^x - \e^{-x}}{2}$
+
+$= \sinh x. \Box$
+
+#### 双曲線正接関数
+
+$(\tanh x)' = \dfrac1{(\cosh x)^2}$
+
+「商の微分」を用いた証明
+
+$(\tanh x)'$
+
+$= \qty( \dfrac{ \e^x - \e^{-x} }{ \e^x + \e^{-x} } )'$
+
+$= \dfrac{\qty(\e^x - \e^{-x})'
+\qty(\e^x + \e^{-x}) 
+- \qty(\e^x - \e^{-x})
+\qty(\e^x + \e^{-x})'}
+{ (\e^x + \e^{-x})^2 }$
+
+$= \dfrac{\qty\Big(\e^x - \qty(- \e^{-x}))
+\qty(\e^x + \e^{-x}) 
+- \qty(\e^x - \e^{-x})
+\qty\Big(\e^x + \qty(- \e^{-x}))}
+{ (\e^x + \e^{-x})^2 }$
+
+$= \dfrac{\qty(\e^x + \e^{-x})^2
+- \qty(\e^x - \e^{-x})^2}
+{ (\e^x + \e^{-x})^2 }$
+
+$= \dfrac{\qty(\e^{2x} + 2 + \e^{-2x})
+- \qty(\e^{2x} - 2 + \e^{-2x})}
+{ (\e^x + \e^{-x})^2 }$
+
+$= \dfrac4{ (\e^x + \e^{-x})^2 }$
+
+$= \dfrac1{ \qty( \frac{\e^x + \e^{-x}}{2} )^2 }$
+
+$= \dfrac1{ (\cosh x)^2 }$
+
+$\tanh$ の性質を用いた証明
+
+$(\tanh x)'$
+
+$= \qty( \dfrac{\sinh x}{\cosh x} )'$
+
+「商の微分」より、
+
+$= \dfrac{(\sinh x)' \cosh x - \sinh x(\cosh x)'}{ (\cosh x)^2 }$
+
+$= \dfrac{(\cosh x)^2 - (\sinh x)^2}{ (\cosh x)^2 }$
+
+$(\cosh x)^2 - (\sinh x)^2 = 1$ より、
+
+$= \dfrac1{ (\cosh x)^2 }. \Box$
+
+### 
+	逆双曲線関数
+
+#### 逆双曲線正弦関数
+
+$(\arcsinh x)' = \dfrac1{\sqrt{x^2 + 1}}$
+
+証明
+
+$(\arcsinh x)'$
+
+$= \dfrac1{\ddv{x}{y}}$
+
+$= \dfrac1{\ddv{\sinh y}{y}}$
+
+$= \dfrac1{\cosh y}$
+
+$= \dfrac1{ \sqrt{(\sinh y)^2 + 1} }$
+
+$= \dfrac1{ \sqrt{x^2 + 1} }. \Box$
+
+#### 逆双曲線余弦関数
+
+$(\arccosh x)' = \dfrac1{\sqrt{x^2 - 1}}$
+
+証明
+
+$(\arccosh x)'$
+
+$= \dfrac1{\ddv{x}{y}}$
+
+$= \dfrac1{\ddv{\cosh y}{y}}$
+
+$= \dfrac1{\sinh y}$
+
+$= \dfrac1{ \sqrt{(\cosh y)^2 - 1} }$
+
+$= \dfrac1{\sqrt{x^2 - 1}}. \Box$
+
+#### 逆双曲線正接関数
+
+$(\arctanh x)' = \dfrac1{1 - x^2}$
+
+証明
+
+$(\arctanh x)'$
+
+「逆関数の微分」より、
+
+$= \dfrac1{\dv{\tanh y}{y}}$
+
+$= \dfrac1{\frac1{(\cosh y)^2}}$
+
+「双曲線関数の公式」$\frac1{(\cosh y)^2} = 1 - (\tanh y)^2$ より、
+
+$= \dfrac1{1 - (\tanh y)^2}$
+
+$= \dfrac1{1 - x^2}. \Box$
+
+$\dlim_{\Delta x \to 0} \dfrac{\cos \Delta x - 1}{\Delta x}$
+
+$= \dlim_{\Delta x \to 0} \dfrac{\cos \Delta x - 1}{\Delta x} \dfrac{\cos \Delta x + 1}{\cos \Delta x + 1}$
+
+$= \dlim_{\Delta x \to 0} \dfrac{(\cos \Delta x)^2 - 1}{\Delta x(\cos \Delta x + 1)}$
+
+$= \dlim_{\Delta x \to 0} \qty( \sin \Delta x \dfrac{\sin \Delta x}{\Delta x} \dfrac{1}{\cos \Delta x + 1} )$
+
+$= \dlim_{\Delta x \to 0} \qty( \sin \Delta x )
+\dlim_{\Delta x \to 0} \qty( \dfrac{\sin \Delta x}{\Delta x} )
+\dlim_{\Delta x \to 0} \qty( \dfrac{1}{\cos \Delta x + 1} )$
+
+「sinc関数の極限」より、$\dlim_{\Delta x \to 0} \frac{\sin \Delta x}{\Delta x} = 1$ となるから、
+
+$= \sin 0 \times 1 \times \dfrac{1}{\cos 0 + 1}$
+
+$= 0 \times 1 \times \dfrac12$
+
+$= 0$
+
+## 例と反例
+
+### 例：積の微分
+
+$f(x)=x^2\e^x$ とすると、
+
+$$
+f'(x)
+=
+2x\e^x+x^2\e^x
+=
+\e^x(x^2+2x).
+$$
+
+### 例：連鎖律
+
+$f(x)=\sin(x^2)$ とすると、
+
+$$
+f'(x)=2x\cos(x^2).
+$$
+
+### 反例：積を項別に微分して掛けてはいけない
+
+一般には
+
+$$
+(fg)' \neq f'g'
+$$
+
+である。たとえば $f(x)=g(x)=x$ とすると、
+
+$$
+(fg)'=(x^2)'=2x
+$$
+
+である一方、
+
+$$
+f'g'=1
+$$
+
+となる。
+
+## 応用例
+
+微分公式は、関数の増減・極値・接線・近似を調べるだけでなく、微分方程式、物理学における速度・加速度、最適化、確率・統計、数値解析などの基礎となる。
+
+特に連鎖律は合成された量の変化率を扱う際の基本原理であり、多変数解析では偏微分や全微分へ一般化される。
+
+## 例題
+
+### 例題1
+
+$$
+f(x)=\frac{x^2+1}{x-1}
+$$
+
+を微分せよ。
+
+#### 解答
+
+商の微分より、
+
+$$
+f'(x)
+=
+\frac{2x(x-1)-(x^2+1)}{(x-1)^2}
+=
+\frac{x^2-2x-1}{(x-1)^2}.
+$$
+
+### 例題2
+
+$$
+f(x)=\log_\e(\sin x)
+$$
+
+を微分せよ。
+
+#### 解答
+
+連鎖律より、
+
+$$
+f'(x)
+=
+\frac{1}{\sin x}\cos x
+=
+\frac{\cos x}{\sin x}.
+$$
+
+### 例題3
+
+$$
+f(x)=\arctan(x^2)
+$$
+
+を微分せよ。
+
+#### 解答
+
+逆正接関数の導関数と連鎖律より、
+
+$$
+f'(x)
+=
+\frac{2x}{1+x^4}.
+$$

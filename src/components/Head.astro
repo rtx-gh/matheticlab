@@ -10,18 +10,21 @@ import Default from '@astrojs/starlight/components/Head.astro';
 
 		if (!sidebar) return;
 
+		document.body.classList.add('sidebar-closed');
+
 		const button = document.createElement('button');
 
 		button.className = 'sidebar-toggle';
-		button.textContent = '‹';
-		button.setAttribute('aria-label', 'サイドバーを閉じる');
+		button.textContent = '☰';
+		button.setAttribute('aria-label', 'サイドバーを開く');
+		button.setAttribute('aria-expanded', 'false');
 
 		document.body.appendChild(button);
 
 		button.addEventListener('click', () => {
 			const closed = document.body.classList.toggle('sidebar-closed');
 
-			button.textContent = closed ? '›' : '‹';
+			button.setAttribute('aria-expanded', String(!closed));
 			button.setAttribute(
 				'aria-label',
 				closed ? 'サイドバーを開く' : 'サイドバーを閉じる'

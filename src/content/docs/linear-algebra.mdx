@@ -5,97 +5,208 @@ description: foo
 
 import MatsushimaManifold from "../../components/math-art/shapes/matsushima-manifold.astro";
 
+前提知識
 
-#### 問題
+概要
 
-$V$ を有限次元複素ベクトル空間とし、$f \colon V \to V$ を線形写像であって
+歴史的経緯
 
-$$
-\ker f^2 = \im f
-$$
+例と反例
 
-を満たすものとする。このとき、
-$V$ の次元は $3$ の倍数であることを示せ。
+応用例
 
-#### 次元定理を用いた記号整理
 
-次元定理を用いると、
+### 問題
 
-$\dim V = \dim \ker f + \dim \im f$
+	$V$ を体 $K$ 上の有限次元ベクトル空間、$f \colon V \to V$ を線形写像する。
 
-が成り立つ。
+	$$
+	\qquad \ker f^2 = \im f
+	$$
 
-$n := \dim V,\, r := \dim \im f,\, k := \dim \ker f$
+	が成り立つとき、$V$ の次元は $3$ の倍数であることを示せ。
 
-とする。すなわち、
+	・ヒント1：$\ker f$ と $\ker f^2$ の包含関係を調べる。
+	
+	・ヒント2：$f^2$ に次元定理を用いる。
 
-$n = k + r$
+	・ヒント3：$f$ の $\im f$ への制限写像 $\varphi:= f|_{\im f} \colon \im f \to V$ を考える。
 
-#### $\ker f \subseteq \im f$ について
+	・ヒント4：$\ker \varphi,\, \im \varphi$ が何に等しいかを調べる。
 
-$x \in \ker f$
+	・ヒント5：$\varphi$ に次元定理を用いる。
 
-$\iff f(x) = 0$
+### 次元定理による記号整理
 
-両辺を $f$ で送ると、
+	次元定理を用いると、
 
-$f^2(x) = f(0)$
+	$$
+	\underbrace{\dim \ker f}_{\substack{\\[-.4em]\Vert\\[.25em]
+	\textstyle k
+	}}
+	+
+	\underbrace{\dim \im f}_{\substack{\\[-.4em]\Vert\\[.55em]
+	\textstyle r
+	\mkern-2mu}}
+	=
+	\underbrace{\dim \vphantom{f}\mkern-2mu V}_{\substack{\\[-.4em]\Vert\\[.55em]\mkern2mu
+	\textstyle n
+	}}
+	$$
 
-線形写像の性質より、
+	が成り立つ。
 
-$f(0) = 0$
+### $\ker f \subseteq \im f$ が成り立つことの証明
 
-$x \in \ker f \implies x \in \ker f^2$
+	核の定義より、
 
-$\ker f^2 = \im f$ より、
+	$$
+	\qquad x \in \ker f \iff f(x) = 0 \tag{1}
+	$$
 
-$x \in \ker f \implies x \in \im f$
+	が成り立つ。両辺を $f$ で送ると、
 
-$\iff \ker f \subseteq \im f$
+	$\qquad f^2(x) = f(0)$
 
-#### $f^2$ に対する次元定理
+	となる。線形写像の性質より、$f(0) = 0$ が成り立つから、
 
-$f^2$ の行き先は、$V \xrightarrow{f} V \xrightarrow{f} V$ となるから、$V \xrightarrow{f^2} V$ である。
+	$\qquad f^2(x) = 0$
 
-よって、次元定理を用いると、
+	が得られる。
 
-$\qquad \dim \ker f^2 + \dim \im f^2 = \dim V$
+	$$
+	\qquad f^2(x) = 0 \iff x \in \ker f^2 \tag{2}
+	$$
 
-$\dim V = n$ であるから、
+	であるから、$(1) \implies (2)$、すなわち、
 
-$\qquad \dim \ker f^2 + \dim \im f^2 = n$
+	$\qquad x \in \ker f \implies x \in \ker f^2$
 
-$\ker f^2 = \im f$ と $\dim \im f = r$より、
+	が得られた。問題の前提条件 $\ker f^2 = \im f$ より、
 
-$\qquad r + \dim \im f^2 = n$
+	$\qquad \phantom{\iff} 	x \in \ker f \implies x \in \im f$
 
-$\dim \im f^2 = n-r$
+	$$
+	\qquad \iff 			\ker f \subseteq \im f. \tag{3}
+	$$
 
-#### $\im f$ への制限写像を考える
+### $f^2$ に対する次元定理
 
-##### $\im \varphi$ の次元
+	$V \xrightarrow{f} V \xrightarrow{f} V$ となるから、$f^2$ の行き先は、$V \xrightarrow{f^2} V$ である。
 
-$\varphi := f|_{\im f} \colon \im f \to V$
+	よって、$f^2 \colon V \to V$ に次元定理を用いると、
 
-$\qquad \im \varphi$
+	$\qquad \dim \ker f^2 + \dim \im f^2 = \dim V$
 
-$\qquad = \qty{\varphi(f(x)) \in V \mid x \in V}$
+	$\dim V = n$ であるから、
 
-$\varphi は $f$ の $\im f$ への制限写像であったから、
+	$\qquad \dim \ker f^2 + \dim \im f^2 = n$
 
-$\qquad = \qty{f(f(x)) \in V \mid x \in V}$
+	前提 $\ker f^2 = \im f$ と $\dim \im f = r$より、
 
-$\qquad = \qty{f^2(x) \in V \mid x \in V}$
+	$\qquad r + \dim \im f^2 = n$
 
-$\qquad = \im f^2$
+	$\qquad \dim \im f^2 = n-r$
 
-となる。よって、$\dim \im f^2 = n-r$ より、
+### $\im f$ への制限写像を考える
 
-$\qquad \dim \im \varphi = n - r$
+### $\im \varphi$ の次元
 
-##### $\ker \varphi$ の次元
+	$f$ の $\im f$ への制限
 
-$\ker \varphi = \im f \cap \ker f$
+	$\varphi := f|_{\im f} \colon \im f \to V$
 
-$\dim \ker \varphi = k$
+	を考える。
 
+	$\qquad \im \varphi				= \qty{\varphi(y) \in V \mid y \in \im y}$
+
+	$\qquad \vphantom{\im \varphi} = \qty{\varphi(y) \in V \mid y \in \im y}$
+
+	$y \in \im f$ に対して、$y \overset{\varphi}{\mapsto} f(y)$ であるから、
+
+	$\qquad \vphantom{\im \varphi} = \qty{f(y) \in V \mid y \in \im y}$
+
+	$\qquad \vphantom{\im \varphi} = \qty{f(f(x)) \in V \mid x \in V}$
+
+	$\qquad \vphantom{\im \varphi} = \qty{f^2(x) \in V \mid x \in V}$
+
+	$\qquad \vphantom{\im \varphi} = \im f^2$
+
+	となる。つまり、
+
+	$\qquad \im \varphi = \im f^2$
+	
+	が得られた。よって、$\dim \im f^2 = n-r$ より、
+
+	$$
+	\qquad \dim \im \varphi = n - r. \tag{4}
+	$$
+
+### $\ker \varphi$ の次元
+
+	まずは $\ker\varphi$ の値を求める。
+
+	$\qquad \ker \varphi = \qty{y \mid y \in \im f \land \varphi(y) = 0}$
+
+	先ほどと同じく、$y \in \im f$ に対して、$y \overset{\varphi}{\mapsto} f(y)$ であるから、
+
+	$\qquad \vphantom{\ker \varphi} = \qty{y \mid y \in \im f \land f(y) = 0}$
+
+
+	$\qquad \vphantom{\ker \varphi} = \qty{y \mid y \in \im f } \cap \qty{y \mid f(y) = 0}$
+
+	$\qquad \vphantom{\ker \varphi} = \im f \cap \ker f$
+
+	次に、$\dim\ker\varphi$ の値を求める。
+
+	$\qquad \dim \ker \varphi = \im f \cap \ker f$
+
+	$(3)$ より、$\im f \cap \ker f = \ker f$ であるから、
+
+	$\qquad \vphantom{\dim \ker \varphi} = \ker f$
+
+	$$
+	\qquad \vphantom{\dim \ker \varphi} = k. \tag{5}
+	$$
+
+### $\dim V$ が $3$ の倍数になることの証明
+
+	$\varphi \colon \im f \to V$ に次元定理を用いると、
+
+	$\qquad \dim \ker \varphi + \dim \im\varphi = \dim \im f \quad$ (右辺は $\varphi$ の定義域になる点に注意)
+
+	$(4), (5)$ より、
+
+	$\qquad k + (n - r) = r$
+
+	$$
+	\qquad k = 2r - n. \tag{6}
+	$$
+
+	$f$ への次元定理の結果より、
+	
+	$\qquad \dim\ker f + \dim\im f = \dim V$
+
+	$\qquad k + r = n$
+
+	$$
+	\qquad k = n-r. \tag{7}
+	$$
+
+	$\qquad n - r = 2r - n$
+
+	$\qquad 2n = 3r.$
+
+	ベクトル空間の次元は自然数であるから、$n, r$ も自然数である。
+	
+	割り切ることの定義より、$r \in \Z$ が存在して、$2n = 3 \times r$ と表せるから、$3$ は $2n$ を割り切る。
+	
+	ユークリッドの補題より、
+	
+	$\qquad 3|2n \implies (3|2 \lor 3|n)$
+
+	$3|2$ は成り立たないから、
+
+	$\qquad 3|2n \implies 3|n.$
+
+	したがって、空間 $V$ の次元 $n$ は $3$ の倍数である。$\ \Box$

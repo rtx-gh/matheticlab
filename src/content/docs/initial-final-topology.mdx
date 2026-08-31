@@ -1,0 +1,742 @@
+---
+title: 始位相と終位相
+description: 写像族によって誘導される始位相と終位相の定義、普遍性、例と応用
+---
+
+## 前提知識
+
+- 集合と写像
+- 逆像
+- 位相空間
+- 開集合
+- 開基・準開基
+- 連続写像
+- 射影
+- 商集合
+
+## 概要
+
+**始位相**（initial topology）と**終位相**（final topology）は、写像族が連続になるように定義域または終域へ位相を導入する方法である。
+
+始位相では、
+
+$$
+f_\lambda \colon X\to Y_\lambda
+$$
+
+という向きの写像族を考え、すべての $f_\lambda$ が連続になるような $X$ 上の**最も粗い位相**を定める。
+
+一方、終位相では、
+
+$$
+f_\lambda\colon X_\lambda\to Y
+$$
+
+という向きの写像族を考え、すべての $f_\lambda$ が連続になるような $Y$ 上の**最も細かい位相**を定める。
+
+したがって、
+
+$$
+\text{始位相：}\quad
+X\longrightarrow Y_\lambda
+$$
+
+$$
+\text{終位相：}\quad
+X_\lambda\longrightarrow Y
+$$
+
+という写像の向きの違いを意識すると区別しやすい。
+
+## 歴史的経緯
+
+始位相と終位相は、位相空間上の構成を統一的に扱うための概念である。
+
+積位相、部分空間位相、商位相などは個別に定義することもできるが、それぞれ始位相または終位相の特殊な場合として理解できる。
+
+さらに圏論的には、始位相と終位相はそれぞれ initial structure と final structure の代表例であり、「ある射の族が射になるような最弱または最強の構造を入れる」という一般的な考え方の位相空間における具体例である。
+
+## 始位相
+
+### 定義：始位相（initial topology）
+
+各 $\lambda\in\Lambda$ に対して位相空間
+
+$$
+(Y_\lambda,\mathcal O_\lambda)
+$$
+
+が与えられているとする。
+
+さらに集合 $X$ と写像族
+
+$$
+f_\lambda\colon X\to Y_\lambda
+\qquad
+(\lambda\in\Lambda)
+$$
+
+を考える。
+
+すべての $f_\lambda$ が連続写像となる $X$ 上の最も粗い位相 $\mathcal O_X$ を、$\{f_\lambda\}_{\lambda\in\Lambda}$ によって誘導される**始位相**と呼ぶ。
+
+具体的には、
+
+$$
+\mathcal S
+=
+\left\{
+f_\lambda^{-1}(O_\lambda)
+\mathrel{}\middle|\mathrel{}
+\lambda\in\Lambda,\,
+O_\lambda\in\mathcal O_\lambda
+\right\}
+$$
+
+を準開基とする位相である。
+
+すなわち、元の記述
+
+$$
+\mathcal O_X
+=
+\left\{
+f_\lambda^{-1}(O_\lambda)
+\mid
+\lambda\in\Lambda,\,
+O_\lambda\in\mathcal O_\lambda
+\right\}
+$$
+
+については、右辺そのものが一般に位相になるとは限らないため、正確にはこの集合族を**準開基とする位相**が $\mathcal O_X$ である。
+
+### 命題：始位相の存在
+
+任意の写像族
+
+$$
+f_\lambda\colon X\to Y_\lambda
+$$
+
+に対して始位相は存在する。
+
+#### 証明
+
+各 $f_\lambda$ を連続にするためには、任意の
+
+$$
+O_\lambda\in\mathcal O_\lambda
+$$
+
+について、
+
+$$
+f_\lambda^{-1}(O_\lambda)
+$$
+
+が $X$ の開集合でなければならない。
+
+したがって、
+
+$$
+\mathcal S
+=
+\left\{
+f_\lambda^{-1}(O_\lambda)
+\mid
+\lambda\in\Lambda,\,
+O_\lambda\in\mathcal O_\lambda
+\right\}
+$$
+
+を含む位相を考えればよい。
+
+$\mathcal S$ を準開基として生成される位相は $\mathcal S$ を含む最も粗い位相であるから、すべての $f_\lambda$ を連続にする最も粗い位相である。
+
+よって始位相は存在する。
+
+$$
+\Box
+$$
+
+### 定理：始位相の普遍性
+
+$X$ に $\{f_\lambda\}_{\lambda\in\Lambda}$ による始位相を入れる。
+
+任意の位相空間 $Z$ と写像
+
+$$
+g\colon Z\to X
+$$
+
+に対して、
+
+$$
+g\text{ が連続}
+$$
+
+であるための必要十分条件は、すべての $\lambda\in\Lambda$ に対して
+
+$$
+f_\lambda\circ g
+\colon
+Z\to Y_\lambda
+$$
+
+が連続であることである。
+
+#### 証明
+
+$g$ が連続ならば、$f_\lambda$ は始位相の定義によって連続であるから、
+
+$$
+f_\lambda\circ g
+$$
+
+も連続である。
+
+逆に、すべての $f_\lambda\circ g$ が連続であるとする。
+
+始位相の準開基の元
+
+$$
+f_\lambda^{-1}(O_\lambda)
+$$
+
+に対して、
+
+$$
+g^{-1}\left(f_\lambda^{-1}(O_\lambda)\right)
+=
+(f_\lambda\circ g)^{-1}(O_\lambda)
+$$
+
+である。
+
+$f_\lambda\circ g$ は連続であるから、この集合は $Z$ の開集合である。
+
+したがって、始位相の準開基の各元の逆像が開集合となるため、$g$ は連続である。
+
+$$
+\Box
+$$
+
+## 終位相
+
+### 定義：終位相（final topology）
+
+各 $\lambda\in\Lambda$ に対して位相空間
+
+$$
+(X_\lambda,\mathcal O_\lambda)
+$$
+
+が与えられているとする。
+
+さらに集合 $Y$ と写像族
+
+$$
+f_\lambda\colon X_\lambda\to Y
+\qquad
+(\lambda\in\Lambda)
+$$
+
+を考える。
+
+すべての $f_\lambda$ が連続写像となる $Y$ 上の最も細かい位相 $\mathcal O_Y$ を、$\{f_\lambda\}_{\lambda\in\Lambda}$ によって誘導される**終位相**と呼ぶ。
+
+具体的には、
+
+$$
+\mathcal O_Y
+=
+\left\{
+O\subseteq Y
+\mathrel{}\middle|\mathrel{}
+\forall\lambda\in\Lambda,\,
+f_\lambda^{-1}(O)\in\mathcal O_\lambda
+\right\}
+$$
+
+である。
+
+### 命題：終位相の存在
+
+任意の写像族
+
+$$
+f_\lambda\colon X_\lambda\to Y
+$$
+
+に対して終位相は存在する。
+
+#### 証明
+
+$$
+\mathcal O_Y
+=
+\left\{
+O\subseteq Y
+\mid
+\forall\lambda\in\Lambda,\,
+f_\lambda^{-1}(O)\in\mathcal O_\lambda
+\right\}
+$$
+
+とする。
+
+まず、
+
+$$
+f_\lambda^{-1}(\emptyset)=\emptyset,
+\qquad
+f_\lambda^{-1}(Y)=X_\lambda
+$$
+
+より、
+
+$$
+\emptyset,Y\in\mathcal O_Y.
+$$
+
+また、任意の集合族 $(O_i)_{i\in I}\subseteq\mathcal O_Y$ に対して、
+
+$$
+f_\lambda^{-1}
+\left(
+\bigcup_{i\in I}O_i
+\right)
+=
+\bigcup_{i\in I}f_\lambda^{-1}(O_i)
+$$
+
+は開集合である。
+
+さらに、$O_1,\ldots,O_n\in\mathcal O_Y$ に対して、
+
+$$
+f_\lambda^{-1}
+\left(
+\bigcap_{k=1}^nO_k
+\right)
+=
+\bigcap_{k=1}^nf_\lambda^{-1}(O_k)
+$$
+
+も開集合である。
+
+したがって、$\mathcal O_Y$ は位相である。
+
+また、各 $f_\lambda$ を連続にする任意の位相では、
+
+$$
+f_\lambda^{-1}(O)\in\mathcal O_\lambda
+$$
+
+となる任意の $O$ を開集合として採用できる範囲は $\mathcal O_Y$ を超えない。
+
+よって $\mathcal O_Y$ はすべての $f_\lambda$ を連続にする最も細かい位相である。
+
+$$
+\Box
+$$
+
+### 定理：終位相の普遍性
+
+$Y$ に $\{f_\lambda\}_{\lambda\in\Lambda}$ による終位相を入れる。
+
+任意の位相空間 $Z$ と写像
+
+$$
+g\colon Y\to Z
+$$
+
+に対して、
+
+$$
+g\text{ が連続}
+$$
+
+であるための必要十分条件は、すべての $\lambda\in\Lambda$ に対して
+
+$$
+g\circ f_\lambda
+\colon
+X_\lambda\to Z
+$$
+
+が連続であることである。
+
+#### 証明
+
+$g$ が連続ならば、各 $f_\lambda$ も連続であるから、
+
+$$
+g\circ f_\lambda
+$$
+
+は連続である。
+
+逆に、すべての $g\circ f_\lambda$ が連続であるとする。
+
+任意の開集合 $O\subseteq Z$ に対して、
+
+$$
+f_\lambda^{-1}(g^{-1}(O))
+=
+(g\circ f_\lambda)^{-1}(O)
+$$
+
+は $X_\lambda$ の開集合である。
+
+したがって、終位相の定義より、
+
+$$
+g^{-1}(O)
+$$
+
+は $Y$ の開集合である。
+
+よって $g$ は連続である。
+
+$$
+\Box
+$$
+
+## 始位相と終位相の比較
+
+始位相と終位相は互いに双対的な形を持つ。
+
+| | 始位相 | 終位相 |
+|---|---|---|
+| 写像 | $f_\lambda\colon X\to Y_\lambda$ | $f_\lambda\colon X_\lambda\to Y$ |
+| 位相を入れる集合 | $X$ | $Y$ |
+| 条件 | $f_\lambda$ を連続にする | $f_\lambda$ を連続にする |
+| 選ぶ位相 | 最も粗い | 最も細かい |
+| 代表例 | 部分空間位相・積位相 | 商位相 |
+
+覚え方としては、
+
+$$
+\boxed{
+\text{始位相：位相を入れる空間から写像が出ていく}
+}
+$$
+
+$$
+\boxed{
+\text{終位相：位相を入れる空間へ写像が入ってくる}
+}
+$$
+
+と整理できる。
+
+## 例と反例
+
+### 例1：部分空間位相は始位相
+
+位相空間 $Y$ の部分集合 $X\subseteq Y$ と包含写像
+
+$$
+i\colon X\hookrightarrow Y
+$$
+
+を考える。
+
+$i$ によって $X$ に誘導される始位相は、
+
+$$
+\mathcal O_X
+=
+\{X\cap O\mid O\in\mathcal O_Y\}
+$$
+
+であり、これは通常の部分空間位相である。
+
+### 例2：積位相は始位相
+
+位相空間族 $(X_\lambda)_{\lambda\in\Lambda}$ と座標射影
+
+$$
+\pi_\lambda
+\colon
+\prod_{\mu\in\Lambda}X_\mu
+\to
+X_\lambda
+$$
+
+を考える。
+
+すべての $\pi_\lambda$ を連続にする始位相は積位相である。
+
+したがって、積位相は射影写像族によって誘導される始位相として特徴づけられる。
+
+### 例3：商位相は終位相
+
+位相空間 $X$ と全射
+
+$$
+q\colon X\to Y
+$$
+
+を考える。
+
+$q$ による終位相は、
+
+$$
+\mathcal O_Y
+=
+\{O\subseteq Y\mid q^{-1}(O)\text{ が }X\text{ で開}\}
+$$
+
+である。
+
+これは $Y$ 上の商位相である。
+
+### 反例1：始位相で「最も細かい」を選ぶ
+
+$f_\lambda\colon X\to Y_\lambda$ をすべて連続にする位相のうち最も細かい位相を選んでも、始位相とは呼ばない。
+
+始位相は、それらを連続にする**最も粗い位相**である。
+
+### 反例2：終位相で「最も粗い」を選ぶ
+
+$f_\lambda\colon X_\lambda\to Y$ をすべて連続にする最も粗い位相を選んでも、終位相とは呼ばない。
+
+終位相は、それらを連続にする**最も細かい位相**である。
+
+## 応用例
+
+### 積位相の構成
+
+積空間
+
+$$
+\prod_{\lambda\in\Lambda}X_\lambda
+$$
+
+の位相を各座標射影が連続になるように定めることで、積位相を始位相として統一的に構成できる。
+
+### 部分空間位相の構成
+
+部分集合
+
+$$
+A\subseteq X
+$$
+
+に対する部分空間位相は、包含写像
+
+$$
+i\colon A\hookrightarrow X
+$$
+
+による始位相として理解できる。
+
+### 商位相の構成
+
+同値関係 $\sim$ による商集合
+
+$$
+X/{\sim}
+$$
+
+への標準射影
+
+$$
+q\colon X\to X/{\sim}
+$$
+
+による終位相として商位相を定義できる。
+
+### 位相空間の普遍性
+
+始位相と終位相を用いることで、ある写像が連続かどうかを、個々の開集合の逆像を直接調べる代わりに、構成に用いた写像との合成の連続性へ帰着できる。
+
+これは積空間や商空間を扱う際に特に有用である。
+
+## 例題
+
+### 例題1
+
+$\mathbb R$ に通常の位相を入れ、
+
+$$
+f\colon X\to\mathbb R
+$$
+
+を任意の写像とする。
+
+$f$ によって $X$ に誘導される始位相を記述せよ。
+
+#### 解答
+
+$\mathbb R$ の開集合 $O$ の逆像
+
+$$
+f^{-1}(O)
+$$
+
+をすべて含む最も粗い位相である。
+
+すなわち、
+
+$$
+\left\{
+f^{-1}(O)
+\mid
+O\subseteq\mathbb R\text{ は開集合}
+\right\}
+$$
+
+を準開基とする位相である。
+
+写像が1つの場合、逆像は任意和・有限交叉を保つため、この集合族自体が位相をなす。
+
+### 例題2
+
+位相空間 $X$ と全射
+
+$$
+q\colon X\to Y
+$$
+
+について、$q$ による終位相において $O\subseteq Y$ が開集合であるための必要十分条件を答えよ。
+
+#### 解答
+
+終位相の定義より、
+
+$$
+O\subseteq Y
+$$
+
+が開集合であるための必要十分条件は、
+
+$$
+q^{-1}(O)
+$$
+
+が $X$ の開集合であることである。
+
+すなわち、
+
+$$
+O\in\mathcal O_Y
+\iff
+q^{-1}(O)\in\mathcal O_X.
+$$
+
+### 例題3
+
+位相空間 $X_1,X_2$ に対して、
+
+$$
+X_1\times X_2
+$$
+
+の積位相が射影
+
+$$
+\pi_1\colon X_1\times X_2\to X_1,
+\qquad
+\pi_2\colon X_1\times X_2\to X_2
+$$
+
+による始位相であることを説明せよ。
+
+#### 解答
+
+始位相の準開基は、
+
+$$
+\pi_1^{-1}(U_1),
+\qquad
+\pi_2^{-1}(U_2)
+$$
+
+である。ただし、
+
+$$
+U_1\subseteq X_1,
+\qquad
+U_2\subseteq X_2
+$$
+
+は開集合である。
+
+それぞれ、
+
+$$
+\pi_1^{-1}(U_1)
+=
+U_1\times X_2,
+$$
+
+$$
+\pi_2^{-1}(U_2)
+=
+X_1\times U_2.
+$$
+
+その有限交叉は、
+
+$$
+(U_1\times X_2)
+\cap
+(X_1\times U_2)
+=
+U_1\times U_2
+$$
+
+となる。
+
+したがって、これらから生成される位相は積位相である。
+
+### 例題4
+
+$X$ に $\{f_\lambda\colon X\to Y_\lambda\}$ による始位相が入っているとする。
+
+写像
+
+$$
+g\colon Z\to X
+$$
+
+の連続性を判定するために何を確認すればよいか。
+
+#### 解答
+
+始位相の普遍性より、すべての $\lambda\in\Lambda$ について、
+
+$$
+f_\lambda\circ g
+\colon
+Z\to Y_\lambda
+$$
+
+が連続であることを確認すればよい。
+
+### 例題5
+
+$Y$ に $\{f_\lambda\colon X_\lambda\to Y\}$ による終位相が入っているとする。
+
+写像
+
+$$
+g\colon Y\to Z
+$$
+
+の連続性を判定するために何を確認すればよいか。
+
+#### 解答
+
+終位相の普遍性より、すべての $\lambda\in\Lambda$ について、
+
+$$
+g\circ f_\lambda
+\colon
+X_\lambda\to Z
+$$
+
+が連続であることを確認すればよい。

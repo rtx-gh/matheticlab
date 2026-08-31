@@ -1,0 +1,91 @@
+---
+import type { Field } from "../data/fields";
+
+interface Props {
+  field: Field;
+}
+
+const { field } = Astro.props;
+---
+
+<section class="field-group" aria-labelledby={`field-${field.id}`}>
+  <h2
+    id={`field-${field.id}`}
+    class={`field-heading ${field.className}`}
+  >
+    {field.title}
+  </h2>
+
+  {
+    field.sections.map((section) => (
+      <details name={`${field.id}-sections`}>
+        <summary>
+          <span class="accordion-arrow" aria-hidden="true"></span>
+          <span>{section.title}</span>
+        </summary>
+
+        {section.items && section.items.length > 0 && (
+          <ul class="topic-list">
+            {section.items.map((item) => (
+              <li class={`topic-item level-${item.level ?? 0}`}>
+                {item.title}
+              </li>
+            ))}
+          </ul>
+        )}
+      </details>
+    ))
+  }
+</section>
+
+<style>
+  .topic-list {
+    margin: 0.75rem 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .topic-item {
+    position: relative;
+    margin-block: 0.35rem;
+    padding-left: 1.25rem;
+  }
+
+  .topic-item::before {
+    position: absolute;
+    left: 0;
+    content: "•";
+  }
+
+  .topic-item.level-1 {
+    margin-left: 1.75rem;
+  }
+
+  .topic-item.level-1::before {
+    content: "◦";
+  }
+
+  .topic-item.level-2 {
+    margin-left: 3.5rem;
+  }
+
+  .topic-item.level-2::before {
+    content: "▪";
+  }
+
+  .topic-item.level-3 {
+    margin-left: 5.25rem;
+  }
+
+  .topic-item.level-3::before {
+    content: "▪";
+  }
+
+  .topic-item.level-4 {
+    margin-left: 7rem;
+  }
+
+  .topic-item.level-4::before {
+    content: "▪";
+  }
+</style>

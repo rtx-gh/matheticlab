@@ -1,0 +1,406 @@
+---
+title: 三角関数の極限公式
+description: sin, cos, tan に関する基本的な極限公式とその証明、注意点、応用例を解説する。
+---
+
+## 前提知識
+
+- 三角関数 $\sin x,\cos x,\tan x$ の定義と基本公式
+- 弧度法（ラジアン）
+- 関数の極限
+- はさみうちの原理
+- 三角関数の加法定理・半角公式
+
+## 概要
+
+三角関数の微分や、三角関数を含む極限を計算する際の出発点となる代表的な公式は
+
+$$
+\lim_{x\to0}\frac{\sin x}{x}=1
+$$
+
+である。
+
+ここから
+
+$$
+\lim_{x\to0}\frac{\tan x}{x}=1,
+\qquad
+\lim_{x\to0}\frac{1-\cos x}{x^2}=\frac12
+$$
+
+など、多くの極限公式を導くことができる。
+
+> **注意**：これらの公式で $x$ はラジアンで測る。度数法では同じ値にはならない。
+
+## 歴史的経緯
+
+三角関数の極限は、三角関数の微分を厳密に導くうえで重要な役割を持つ。古典的な微分積分学では、単位円上の図形の面積を比較して $\sin x<x<\tan x$ を示し、はさみうちの原理によって $\sin x/x$ の極限を求める方法が広く用いられる。
+
+一方、三角関数をべき級数や微分方程式から定義する立場では、幾何学的な議論とは異なる方法で同じ極限を導くことができる。どの証明を採用できるかは、三角関数・円周・弧長・微分をどの順序で定義したかに依存する。
+
+# sinc関数の極限
+
+## 定理
+
+$$
+\boxed{\lim_{x\to0}\frac{\sin x}{x}=1}
+$$
+
+この極限はしばしば **sinc 関数の基本極限**と呼ばれる。
+
+元記事ではこの値が $0$ と記されている箇所があるが、正しくは $1$ である。
+
+## 面積比較による証明
+
+まず $0<\theta<\dfrac{\pi}{2}$ とする。単位円上に点 $A=(1,0)$ と、中心角 $\theta$ に対応する点 $B$ を取る。また、$A$ における接線と半直線 $OB$ の交点を $C$ とする。
+
+三角形 $OAB$、扇形 $OAB$、三角形 $OAC$ の面積を比較すると、
+
+$$
+[\triangle OAB]
+<
+[\text{扇形 }OAB]
+<
+[\triangle OAC]
+$$
+
+である。
+
+各面積は
+
+$$
+\frac12\sin\theta,
+\qquad
+\frac12\theta,
+\qquad
+\frac12\tan\theta
+$$
+
+だから、
+
+$$
+\sin\theta<\theta<\tan\theta
+$$
+
+を得る。
+
+$\sin\theta>0$ より、
+
+$$
+1<\frac{\theta}{\sin\theta}<\frac1{\cos\theta}
+$$
+
+であり、逆数を取ると
+
+$$
+\cos\theta<\frac{\sin\theta}{\theta}<1.
+$$
+
+$\theta\to0+$ とすると
+
+$$
+\cos\theta\to1
+$$
+
+なので、はさみうちの原理より
+
+$$
+\lim_{\theta\to0+}\frac{\sin\theta}{\theta}=1.
+$$
+
+さらに
+
+$$
+\frac{\sin(-\theta)}{-\theta}
+=
+\frac{\sin\theta}{\theta}
+$$
+
+より $\sin\theta/\theta$ は偶関数だから、左極限も同じ値を持つ。したがって
+
+$$
+\boxed{\lim_{\theta\to0}\frac{\sin\theta}{\theta}=1}.
+$$
+
+## 証明における注意
+
+面積比較による証明では、扇形の面積
+
+$$
+S=\frac12r^2\theta
+$$
+
+や弧長
+
+$$
+l=r\theta
+$$
+
+を利用する。そのため、これらの公式を三角関数の微分や $\lim_{x\to0}\sin x/x=1$ を使って証明している場合、この証明をそのまま用いると循環論法になる。
+
+どこまでを既知の幾何学的事実として採用するかを明確にする必要がある。
+
+# $\tan x/x$ の極限
+
+## 定理
+
+$$
+\boxed{\lim_{x\to0}\frac{\tan x}{x}=1}
+$$
+
+## 証明
+
+$$
+\frac{\tan x}{x}
+=
+\frac{\sin x}{x}\frac1{\cos x}
+$$
+
+である。
+
+したがって、
+
+$$
+\lim_{x\to0}\frac{\tan x}{x}
+=
+\left(\lim_{x\to0}\frac{\sin x}{x}\right)
+\left(\lim_{x\to0}\frac1{\cos x}\right)
+=1\cdot1=1.
+$$
+
+# $(1-\cos x)/x^2$ の極限
+
+## 定理
+
+$$
+\boxed{\lim_{x\to0}\frac{1-\cos x}{x^2}=\frac12}
+$$
+
+## 証明
+
+半角公式
+
+$$
+1-\cos x=2\sin^2\frac{x}{2}
+$$
+
+を用いると、
+
+$$
+\begin{aligned}
+\frac{1-\cos x}{x^2}
+&=
+\frac{2\sin^2(x/2)}{x^2}\\
+&=
+\frac12
+\left(\frac{\sin(x/2)}{x/2}\right)^2.
+\end{aligned}
+$$
+
+$x\to0$ のとき $x/2\to0$ なので、
+
+$$
+\lim_{x\to0}\frac{1-\cos x}{x^2}
+=
+\frac12\cdot1^2
+=
+\frac12.
+$$
+
+# その他の基本極限
+
+上の公式から、定数 $a$ に対して次の公式も得られる。
+
+$$
+\boxed{\lim_{x\to0}\frac{\sin(ax)}{x}=a}
+$$
+
+実際、$a\neq0$ なら
+
+$$
+\frac{\sin(ax)}{x}
+=
+a\frac{\sin(ax)}{ax}
+$$
+
+である。
+
+同様に、
+
+$$
+\boxed{\lim_{x\to0}\frac{\tan(ax)}{x}=a}
+$$
+
+および
+
+$$
+\boxed{\lim_{x\to0}\frac{1-\cos(ax)}{x^2}=\frac{a^2}{2}}
+$$
+
+が成り立つ。
+
+さらに $a,b$ を定数とすると、$b\neq0$ の場合
+
+$$
+\boxed{
+\lim_{x\to0}\frac{\sin(ax)}{\sin(bx)}=\frac{a}{b}
+}
+$$
+
+である。
+
+## 例と反例
+
+### 例
+
+$$
+\lim_{x\to0}\frac{\sin 3x}{x}
+$$
+
+を求める。
+
+$$
+\frac{\sin3x}{x}
+=3\frac{\sin3x}{3x}
+$$
+
+だから、
+
+$$
+\lim_{x\to0}\frac{\sin3x}{x}=3.
+$$
+
+### 反例：度数法の場合
+
+$x$ を度数法で測る場合、
+
+$$
+\sin(x^\circ)=\sin\left(\frac{\pi x}{180}\right)
+$$
+
+なので、
+
+$$
+\lim_{x\to0}\frac{\sin(x^\circ)}{x}
+=
+\frac{\pi}{180}.
+$$
+
+したがって
+
+$$
+\lim_{x\to0}\frac{\sin x}{x}=1
+$$
+
+という公式は、角度をラジアンで表した場合の公式である。
+
+## 応用例
+
+この基本極限から三角関数の微分公式を導ける。
+
+たとえば、
+
+$$
+\begin{aligned}
+(\sin x)'
+&=
+\lim_{h\to0}\frac{\sin(x+h)-\sin x}{h}\\
+&=
+\sin x\lim_{h\to0}\frac{\cos h-1}{h}
++
+\cos x\lim_{h\to0}\frac{\sin h}{h}.
+\end{aligned}
+$$
+
+ここで
+
+$$
+\lim_{h\to0}\frac{\sin h}{h}=1,
+\qquad
+\lim_{h\to0}\frac{\cos h-1}{h}=0
+$$
+
+より、
+
+$$
+\boxed{(\sin x)'=\cos x}
+$$
+
+を得る。
+
+同様に
+
+$$
+\boxed{(\cos x)'=-\sin x}
+$$
+
+も導かれる。
+
+## 例題
+
+### 例題1
+
+次の極限を求めよ。
+
+$$
+\lim_{x\to0}\frac{\sin5x}{2x}.
+$$
+
+#### 解答
+
+$$
+\frac{\sin5x}{2x}
+=
+\frac52\frac{\sin5x}{5x}
+$$
+
+だから、
+
+$$
+\boxed{\frac52}.
+$$
+
+### 例題2
+
+次の極限を求めよ。
+
+$$
+\lim_{x\to0}\frac{1-\cos3x}{x^2}.
+$$
+
+#### 解答
+
+$$
+\lim_{x\to0}\frac{1-\cos(ax)}{x^2}=\frac{a^2}{2}
+$$
+
+に $a=3$ を代入して、
+
+$$
+\boxed{\frac92}.
+$$
+
+### 例題3
+
+次の極限を求めよ。
+
+$$
+\lim_{x\to0}\frac{\sin2x}{\sin7x}.
+$$
+
+#### 解答
+
+$$
+\frac{\sin2x}{\sin7x}
+=
+\frac{\sin2x}{2x}
+\frac{7x}{\sin7x}
+\frac27.
+$$
+
+したがって、
+
+$$
+\boxed{\frac27}.
+$$

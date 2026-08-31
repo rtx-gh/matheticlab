@@ -1,182 +1,32 @@
 ---
-title: foo
-description: foo
+title: ガウス積分
+description: ガウス積分について、前提知識、概要、歴史的経緯、例と反例、応用例、例題を含めて解説する。
 ---
 
-<div class="theorem-box">
+## 前提知識
 
-**定理：ガウス積分**
+ガンマ関数、広義積分、置換積分
 
-$$
-\dint_{-\infty}^\infty \e^{-ax^2} \dd x
-=
-\sqrt{\dfrac{\pi}{a}}
-$$
+## 概要
 
-</div>
+ガウス積分は指数関数 $\e^{-ax^2}$ の実数全体にわたる広義積分を評価する公式である。
 
-<details class="proof-box">
-<summary>証明</summary>
+## 歴史的経緯
 
-</details>
+ガウス積分は確率論・解析学・物理学で基本的な役割を持つ。
 
-ガンマ関数の定義より、
+## 本文
 
-$$
-\qquad
-\Gamma\qty(\dfrac12)
-=
-\dint_0^\infty
-\dfrac{\e^{-t}}{\sqrt t}
-\dd t
-$$
+$a>0$ のとき $\dint_{-\infty}^{\infty}\e^{-ax^2}\dd x=\sqrt{\dfrac{\pi}{a}}$。
 
-であり、$t=ax^2$ と置換すると、
+## 例と反例
 
-$$
-\qquad
-\phantom{\Gamma\qty(\dfrac12)}
-=
-\dint_0^\infty
-\dfrac{\e^{-t}}{\sqrt t}
-\dd t
-$$
+$a>0$ は収束する。$a\le0$ では同じ広義積分は収束しない。
 
-$$
-\qquad
-\phantom{=}
-\left(
-\dint_{-\infty}^\infty
-\e^{-ax^2}
-\dd x
-\right)^2
-$$
+## 応用例
 
-$$
-\qquad
-=
-\dint_{-\infty}^\infty
-\e^{-ax^2}
-\dd x
-\dint_{-\infty}^\infty
-\e^{-ay^2}
-\dd y
-$$
+正規分布の正規化、熱方程式、フーリエ変換。
 
-$$
-\qquad
-=
-\dint_{-\infty}^\infty
-\dint_{-\infty}^\infty
-\e^{-ay^2-ay^2}
-\dd x
-\dd y
-$$
+## 例題
 
-ここで $x=r\cos\theta,\, y=r\sin\theta$ と置換すると、ヤコビアンは $r$ だから、
-
-$$
-\qquad
-=
-\dint_0^\infty
-\dint_0^{2\pi}
-\e^{-ar^2}
-r
-\dd\theta
-\dd r
-$$
-
-$$
-\qquad
-=
-2\pi
-\dint_0^\infty
-\e^{-ar^2}
-r
-\dd r
-$$
-
-$$
-\qquad
-=
-2\pi
-\left[
-\dfrac{\e^{-ar^2}}{-2a}
-\right]_0^\infty
-$$
-
-$$
-\qquad
-=
-\dlim_{N \to \infty}
-2\pi
-\left[
-\dfrac{\e^{-ar^2}}{-2a}
-\right]_0^N
-$$
-
-$$
-\qquad
-=
-\dlim_{N \to \infty}
-2\pi
-\left(
-\dfrac{\e^{-aN^2}}{-2a}
--
-\dfrac{\e^{-a \cdot 0^2}}{-2a}
-\right)
-$$
-
-$$
-\qquad
-=
-\pi
-\left(
-\dfrac{\dlim_{N \to \infty}\e^{-aN^2}}{-a}
-+
-\dfrac{\e^{-a \cdot 0^2}}{a}
-\right)
-$$
-
-```latex
-\begin{tikzpicture}
-  \draw[<->,>=latex, semithick] (-4, 0)--(4, 0)node[right]{$N$}; %x軸
-  \draw[<->,>=latex, semithick] (0, -1)--(0, 3)node[above]{$f(N)$}; %y軸
-  \draw (0,0)node[below right]{O}; %原点
-  \draw[semithick, smooth, samples=100, domain = -4:4]
-    plot(\x, 2*exp(-\x*\x));
-  \node at (2.5, 2.5) {$f(N)=\mathrm{e}^{-aN^2}$};
-  \draw (-.1, 2) -- (.1, 2) node[thick, right] {$1$};
-\end{tikzpicture}
-```
-
-$N \to \infty \ (\mathrm{e}^{-aN^2} \to 0)$ が成り立つから、
-
-$$
-\qquad
-=
-\pi
-\left(
-\dfrac{0}{-a}
-+
-\dfrac{1}{a}
-\right)
-$$
-
-$$
-\qquad
-=
-\dfrac{\pi}{a}.
-$$
-
-したがって、
-
-$$
-\qquad
-\dint_{-\infty}^\infty
-\e^{-ax^2}
-\dd x
-=
-\sqrt{\dfrac{\pi}{a}}.
-\ \Box
-$$
+$\dint_{-\infty}^{\infty}\e^{-2x^2}\dd x$ を求めよ。

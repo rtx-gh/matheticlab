@@ -22,20 +22,25 @@
    ======================================== */
 
 .sidebar-toggle {
-	position: fixed;
-	left: var(--sl-sidebar-width);
-	top: 50%;
-	transform: translateY(-50%);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
 
-	z-index: 100;
+  width: 3rem;
+  height: var(--sl-nav-height);
 
-	width: 28px;
-	height: 50px;
+  border: 0;
+  border-right: 1px solid var(--sl-color-gray-5);
+  border-radius: 0;
 
-	border: 1px solid var(--sl-color-gray-5);
-	border-radius: 0 6px 6px 0;
+  background: var(--sl-color-bg-nav);
+  color: var(--sl-color-text);
 
-	cursor: pointer;
+  font-size: 1.25rem;
+  line-height: 1;
+
+  cursor: pointer;
 }
 
 
@@ -281,8 +286,8 @@ html[data-theme="light"][data-color-theme="pink"] {
   margin-block: 2rem 0.75rem;
 }
 
-/* 「集合と論理」の上余白だけ消す */
-.field-heading:first-of-type {
+/* こちらへ変更 */
+.accordion > .field-group:first-child > .field-heading {
   margin-top: 0;
 }
 
@@ -300,4 +305,72 @@ html[data-theme="light"][data-color-theme="pink"] {
 
 .field-heading.geometry {
   color: #2e8b57;
+}
+
+.topic-item::before {
+  position: absolute;
+  top: 0.15em;
+  left: 0;
+  content: "•";
+  font-size: 1.2em;
+  line-height: 1;
+}
+
+/* ● */
+.topic-item.level-0::before {
+  content: "•";
+  font-size: 1.25em;
+}
+
+/* ○ */
+.topic-item.level-1::before {
+  content: "◦";
+  font-size: 1.4em;
+}
+
+/* ■ */
+.topic-item.level-2::before,
+.topic-item.level-3::before,
+.topic-item.level-4::before {
+  content: "▪";
+  font-size: 1.2em;
+}
+
+@media (min-width: 50rem) {
+  body.sidebar-closed .main-frame {
+    grid-column: 1 / -1;
+    --sl-content-inline-start: 3rem;
+  }
+}
+
+.site-title {
+  margin-left: 3rem;
+}
+
+/* KaTeXの下線がStarlightに消される問題への対処 */
+.katex .underline .underline-line {
+  display: inline-block !important;
+  width: 100% !important;
+  min-height: 1px !important;
+  border-bottom: max(1px, 0.04em) solid currentColor !important;
+}
+
+.katex-display > .katex {
+  text-align: left;
+}
+/* KaTeXの数式番号を右端に配置 */
+.katex-display > .katex {
+  display: block;
+  width: 100%;
+}
+
+.katex-display > .katex > .katex-html {
+  position: relative;
+  display: block;
+  width: 100%;
+}
+
+.katex-display > .katex > .katex-html > .tag {
+  position: absolute !important;
+  right: 0 !important;
 }
