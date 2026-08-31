@@ -6,10 +6,6 @@ import Default from '@astrojs/starlight/components/Head.astro';
 
 <script>
 	document.addEventListener('DOMContentLoaded', () => {
-		const sidebar = document.querySelector('.sidebar-pane');
-
-		if (!sidebar) return;
-
 		document.body.classList.add('sidebar-closed');
 
 		const button = document.createElement('button');
