@@ -94,18 +94,24 @@ $= \dlim_{\Delta x \to 0} \dfrac{ f(x + \Delta x)g(x + \Delta x) - f(x)g(x)  + \
 
 $= \dlim_{\Delta x \to 0} \dfrac{ f(x + \Delta x)g(x + \Delta x) - f(x)g(x + \Delta x) }{\Delta x} + \dlim_{\Delta x \to 0} \dfrac{ f(x)g(x + \Delta x) - f(x)g(x) }{\Delta x}$
 
-$= \dlim_{\Delta x \to 0} \qty( \dfrac{ f(x + \Delta x) - f(x) }{\Delta x} g(x + \Delta x) )
-+ \dlim_{\Delta x \to 0} \qty( f(x) \dfrac{ g(x + \Delta x) - g(x) }{\Delta x} )$
+$$
+= \dlim_{\Delta x \to 0} \qty( \dfrac{ f(x + \Delta x) - f(x) }{\Delta x} g(x + \Delta x) )
++ \dlim_{\Delta x \to 0} \qty( f(x) \dfrac{ g(x + \Delta x) - g(x) }{\Delta x} )
+$$
 
-$= \dlim_{\Delta x \to 0} \dfrac{ f(x + \Delta x) - f(x) }{\Delta x}
+$$
+= \dlim_{\Delta x \to 0} \dfrac{ f(x + \Delta x) - f(x) }{\Delta x}
 \dlim_{\Delta x \to 0} g(x + \Delta x)
 + \dlim_{\Delta x \to 0} f(x)
-\dlim_{\Delta x \to 0} \dfrac{ g(x + \Delta x) - g(x) }{\Delta x}$
+\dlim_{\Delta x \to 0} \dfrac{ g(x + \Delta x) - g(x) }{\Delta x}
+$$
 
-$= \dlim_{\Delta x \to 0} \dfrac{ f(x + \Delta x) - f(x) }{\Delta x}
+$$
+= \dlim_{\Delta x \to 0} \dfrac{ f(x + \Delta x) - f(x) }{\Delta x}
 \dlim_{\Delta x \to 0} g(x + 0)
 + \dlim_{\Delta x \to 0} f(x)
-\dlim_{\Delta x \to 0} \dfrac{ g(x + \Delta x) - g(x) }{\Delta x}$
+\dlim_{\Delta x \to 0} \dfrac{ g(x + \Delta x) - g(x) }{\Delta x}
+$$
 
 $= f'(x)g(x) + f(x)g'(x). \Box$
 
@@ -158,27 +164,37 @@ $\qty( \dfrac{f(x)}{g(x)} )'$
 
 $= \qty(\dfrac{f}{g})'(x)$
 
-$= \dlim_{\Delta x \to 0} \dfrac{ \qty(\dfrac{f}{g})(x + \Delta x)
-- \qty(\dfrac{f}{g})(x) }{\Delta x}$
+$$
+= \dlim_{\Delta x \to 0} \dfrac{ \qty(\dfrac{f}{g})(x + \Delta x)
+- \qty(\dfrac{f}{g})(x) }{\Delta x}
+$$
 
-$= \dlim_{\Delta x \to 0} \qty( \dfrac{ \dfrac{f(x + \Delta x)}{g(x + \Delta x)}
+$$
+= \dlim_{\Delta x \to 0} \qty( \dfrac{ \dfrac{f(x + \Delta x)}{g(x + \Delta x)}
 - \dfrac{f(x)}{g(x)} }{\Delta x}
-\times \dfrac{g(x + \Delta x)g(x)}{g(x + \Delta x)g(x)} )$
+\times \dfrac{g(x + \Delta x)g(x)}{g(x + \Delta x)g(x)} )
+$$
 
 $= \dlim_{\Delta x \to 0} \dfrac{f(x + \Delta x)g(x) - f(x)g(x + \Delta x)}{\Delta x} \times \dfrac{1}{g(x + 0)g(x)}$
 
-$= \dlim_{\Delta x \to 0} \dfrac{f(x + \Delta x)g(x) - f(x)g(x + \Delta x)
-+ \qty\big( f(x)g(x) - f(x)g(x) )}{\Delta x} \times \dfrac{1}{\qty\big( g(x) )^2}$
+$$
+= \dlim_{\Delta x \to 0} \dfrac{f(x + \Delta x)g(x) - f(x)g(x + \Delta x)
++ \qty\big( f(x)g(x) - f(x)g(x) )}{\Delta x} \times \dfrac{1}{\qty\big( g(x) )^2}
+$$
 
-$= \dlim_{\Delta x \to 0} \dfrac{f(x + \Delta x)g(x)  - f(x)g(x)}{\Delta x}
+$$
+= \dlim_{\Delta x \to 0} \dfrac{f(x + \Delta x)g(x)  - f(x)g(x)}{\Delta x}
 + \dlim_{\Delta x \to 0} \dfrac{f(x)g(x) - f(x)g(x + \Delta x)}{\Delta x}
-\times \dfrac{1}{\qty\big( g(x) )^2}$
+\times \dfrac{1}{\qty\big( g(x) )^2}
+$$
 
-$= \left( \dlim_{\Delta x \to 0} \dfrac{f(x + \Delta x) - f(x)}{\Delta x}
+$$
+= \left( \dlim_{\Delta x \to 0} \dfrac{f(x + \Delta x) - f(x)}{\Delta x}
 \times \dlim_{\Delta x \to 0} g(x)
 - \dlim_{\Delta x \to 0} f(x)
 \times \dlim_{\Delta x \to 0} \dfrac{g(x + \Delta x) - g(x)}{\Delta x} \right)
-\times \dfrac{1}{\qty\big( g(x) )^2}$
+\times \dfrac{1}{\qty\big( g(x) )^2}
+$$
 
 $= \dfrac{ f'(x)g(x) - f(x)g'(x) }{ \qty\big( g(x) )^2 }$
 
@@ -196,11 +212,15 @@ $\ddv{ f\qty\big(g(x)) }{x}$
 
 $=\dlim_{\Delta x \to 0} \dfrac{f\qty\big( g(x + \Delta x) ) - f\qty\big( g(x) )}{\Delta x}$
 
-$=\dlim_{\Delta x \to 0} \qty( \dfrac{f\qty\big( g(x + \Delta x) ) - f\qty\big( g(x) ) }{\Delta x}
-\times \dfrac{g(x + \Delta x) - g(x)}{g(x + \Delta x) - g(x)} )$
+$$
+=\dlim_{\Delta x \to 0} \qty( \dfrac{f\qty\big( g(x + \Delta x) ) - f\qty\big( g(x) ) }{\Delta x}
+\times \dfrac{g(x + \Delta x) - g(x)}{g(x + \Delta x) - g(x)} )
+$$
 
-$=\dlim_{\Delta x \to 0} \dfrac{f\qty\big( g(x + \Delta x) ) - f\qty\big( g(x) )}{g(x + \Delta x) - g(x)}
-\times \dlim_{\Delta x \to 0} \dfrac{g(x + \Delta x) - g(x)}{\Delta x}$
+$$
+=\dlim_{\Delta x \to 0} \dfrac{f\qty\big( g(x + \Delta x) ) - f\qty\big( g(x) )}{g(x + \Delta x) - g(x)}
+\times \dlim_{\Delta x \to 0} \dfrac{g(x + \Delta x) - g(x)}{\Delta x}
+$$
 
 $= \ddv{f(x)}{g(x)} \ddv{g(x)}{x}. \Box$
 
@@ -220,17 +240,21 @@ $= 0.$
 
 $\Delta g(x) := g(x + \Delta x) - g(x)$ として、以下の関数 $p(\Delta x),\, q\qty\big(g(\Delta x))$ を導入することで、$\Delta g(x) = 0$ の場合にも $\ddv{f\qty\big(g(x))}{x}$ を定義できるようにする。
 
-$p(\Delta x) = 
+$$
+p(\Delta x) = 
 \begin{cases}
 \dfrac{g(x + \Delta x) - g(x)}{\Delta x} - g'(x) \quad (\text{$\Delta x \neq 0$ のとき}) \\[1.5ex]
 0 \quad (\text{$\Delta x = 0$ のとき})
-\end{cases}$
+\end{cases}
+$$
 
-$q\qty\big(g(\Delta x)) = 
+$$
+q\qty\big(g(\Delta x)) = 
 \begin{cases}
 \dfrac{ f(g(x + \Delta x)) - f\qty\big(g(x)) }{ g(x + \Delta x) - g(x) } - f'\qty\big(g(x)) \quad (\text{$\Delta g(x) \neq 0$ のとき}) \\[1.5ex]
 0 \quad (\text{$\Delta g(x) = 0$ のとき})
-\end{cases}$
+\end{cases}
+$$
 
 $p(\Delta x) = \dfrac{g(x + \Delta x) - g(x)}{\Delta x} - g'(x)$
 
@@ -316,19 +340,21 @@ $\ddv{y}{x}$
 
 $ = \dlim_{\Delta x \to 0} \dfrac{ f\qty\big( g^{- 1}(x + \Delta x) ) - f\qty\big( g^{- 1}(x) ) }{\Delta x}$
 
-$ = \dlim_{\Delta x \to 0} \qty( \dfrac{ f\qty\big( g^{- 1}(x + \Delta x) ) - f\qty\big( g^{- 1}(x) ) }{g^{- 1}(x + \Delta x) - g^{- 1}(x)}
-\times \dfrac{g^{- 1}(x + \Delta x) - g^{- 1}(x)}{\Delta x}  )$
+$$
+ = \dlim_{\Delta x \to 0} \qty( \dfrac{ f\qty\big( g^{- 1}(x + \Delta x) ) - f\qty\big( g^{- 1}(x) ) }{g^{- 1}(x + \Delta x) - g^{- 1}(x)}
+\times \dfrac{g^{- 1}(x + \Delta x) - g^{- 1}(x)}{\Delta x}  )
+$$
 
 $\Delta t = g^{- 1}(x + \Delta x) - g^{- 1}(x),\, \Delta x = g(t + \Delta t) - g(t)$となることから、$\Delta t = g^{- 1}(x + \Delta x) - g^{- 1}(x) \iff g^{- 1}(x + \Delta x) = g^{- 1}(x) + \Delta t$が得られ、かつ$g^{- 1}(x) = t$であるから、$x$ の極限を $t$ の極限に置き換え、
 
-$ = \dlim_{\Delta t \to 0} \qty( \dfrac{ f( t + \Delta t ) - f(t) }{\Delta t}
-\times \dfrac{\Delta t}{g(t + \Delta t) - g(t)} )$
+$$
+ = \dlim_{\Delta t \to 0} \qty( \dfrac{ f( t + \Delta t ) - f(t) }{\Delta t}
+\times \dfrac{\Delta t}{g(t + \Delta t) - g(t)} )
+$$
 
-$ = \dlim_{\Delta t \to 0} \dfrac{ \dfrac{ f( t + \Delta t ) - f(t) }{\Delta t} }
-{ \dfrac{ g(t + \Delta t) - g(t) }{ \Delta t } }$
+$ = \dlim_{\Delta t \to 0} \dfrac{ \dfrac{ f( t + \Delta t ) - f(t) }{\Delta t} }{ \dfrac{ g(t + \Delta t) - g(t) }{ \Delta t } }$
 
-$ = \dfrac{ \dlim_{\Delta t \to 0} \dfrac{ f( t + \Delta t ) - f(t) }{\Delta t} }
-{ \dlim_{\Delta t \to 0} \dfrac{ g(t + \Delta t) - g(t) }{ \Delta t } }$
+$ = \dfrac{ \dlim_{\Delta t \to 0} \dfrac{ f( t + \Delta t ) - f(t) }{\Delta t} }{ \dlim_{\Delta t \to 0} \dfrac{ g(t + \Delta t) - g(t) }{ \Delta t } }$
 
 $= \dfrac{\ddv{y}{t}}{\ddv{x}{t}}. \Box$
 
@@ -355,8 +381,6 @@ $n$ を自然数とすると、$x^n$ は実数全体で定義される。
 $\dlim_{\Delta x \to 0} \dfrac{(x + \Delta x)^n - x^n}{\Delta x}$
 
 二項定理より、
-
-$= \dlim_{\Delta x \to 0} \dfrac{ \qty( \bc{n}{0} x^0 (\Delta x)^{n - 0} + \bc{n
 
 $= \dlim_{\Delta x \to 0} \dfrac{ \qty( \bc{n}{0} x^0 (\Delta x)^{n - 0} + \bc{n}{1} x^1 (\Delta x)^{n - 1} + \cdots + \bc{n}{n - 1} x^{n - 1} (\Delta x)^{n - (n - 1)} + \bc{n}{n} x^n (\Delta x)^{n - n} ) - x^n}{\Delta x}$
 
@@ -584,8 +608,10 @@ $= a^x \dlim_{\Delta x \to 0} \dfrac{\e^{\log_\e a^{\Delta x}} - 1}{\Delta x}$
 
 $= a^x \dlim_{\Delta x \to 0} \dfrac{ \e^{\log_\e a^{\Delta x}} - 1 }{\log_\e a^{\Delta x}} \dfrac{\log_\e a^{\Delta x}}{\Delta x}$
 
-$= a^x \dlim_{\Delta x \to 0} \dfrac{ \e^{\log_\e a^{\Delta x}} - 1 }{\log_\e a^{\Delta x}}
-\dfrac{\Delta x \log_\e a}{\Delta x}$
+$$
+= a^x \dlim_{\Delta x \to 0} \dfrac{ \e^{\log_\e a^{\Delta x}} - 1 }{\log_\e a^{\Delta x}}
+\dfrac{\Delta x \log_\e a}{\Delta x}
+$$
 
 「極限の線形性」より、
 
@@ -706,8 +732,10 @@ $= \dlim_{\Delta x \to 0} \qty( \dfrac{ 2\cos \frac{2x + \Delta x}{2} \sin \frac
 
 $= \dlim_{\Delta x \to 0} \qty( \cos \qty( x + \frac{\Delta x}{2} ) \dfrac{ \sin \frac{\Delta x}{2} }{\frac{\Delta x}{2}} )$
 
-$= \dlim_{\Delta x \to 0} \cos \qty( x + \frac{\Delta x}{2} )
-\dlim_{\Delta x \to 0} \dfrac{ \sin \frac{\Delta x}{2} }{\frac{\Delta x}{2}}$
+$$
+= \dlim_{\Delta x \to 0} \cos \qty( x + \frac{\Delta x}{2} )
+\dlim_{\Delta x \to 0} \dfrac{ \sin \frac{\Delta x}{2} }{\frac{\Delta x}{2}}
+$$
 
 「sinc関数の極限」より、$\dfrac{ \sin \frac{\Delta x}{2} }{\frac{\Delta x}{2}} = 1$ が成り立つから、
 
@@ -753,11 +781,15 @@ $= \dlim_{\Delta x \to 0} \dfrac{- 2\sin \qty( x + \frac{\Delta x}{2} ) \sin \fr
 
 $= \dlim_{\Delta x \to 0} \qty( \sin \qty( x + \dfrac{\Delta x}{2} ) \dfrac{- 2 \sin \frac{\Delta x}{2}}{\Delta x} \times \dfrac{\frac12}{\frac12} )$
 
-$= \dlim_{\Delta x \to 0} \sin \qty( x + \dfrac{\Delta x}{2} )
-\dlim_{\Delta x \to 0} \dfrac{ - \sin \frac{\Delta x}{2} }{ \frac{\Delta x}{2} } $
+$$
+= \dlim_{\Delta x \to 0} \sin \qty( x + \dfrac{\Delta x}{2} )
+\dlim_{\Delta x \to 0} \dfrac{ - \sin \frac{\Delta x}{2} }{ \frac{\Delta x}{2} } 
+$$
 
-$= \sin \qty( x + \dfrac02 )
-\left( - \dlim_{\Delta x \to 0} \dfrac{ \sin \frac{\Delta x}{2} }{ \frac{\Delta x}{2} } \right)$
+$$
+= \sin \qty( x + \dfrac02 )
+\left( - \dlim_{\Delta x \to 0} \dfrac{ \sin \frac{\Delta x}{2} }{ \frac{\Delta x}{2} } \right)
+$$
 
 「sinc関数の極限」より、$\dlim_{\Delta x \to 0} \dfrac{ \sin \frac{\Delta x}{2} }{ \frac{\Delta x}{2} } = 1$ となるから、
 
@@ -773,8 +805,10 @@ $= \qty( \sin \qty(x + \dfrac{\pi}{2}) )'$
 
 「合成関数の微分」より、
 
-$= \ddv{ \sin \qty(x + \frac{\pi}{2}) }{ \qty(x + \frac{\pi}{2}) }
-\ddv{ \qty(x + \frac{\pi}{2}) }{x}$
+$$
+= \ddv{ \sin \qty(x + \frac{\pi}{2}) }{ \qty(x + \frac{\pi}{2}) }
+\ddv{ \qty(x + \frac{\pi}{2}) }{x}
+$$
 
 「微分の線形性」より、
 
@@ -806,22 +840,28 @@ $= \dlim_{\Delta x \to 0} \qty( \dfrac{1}{\Delta x} \dfrac{\tan \Delta x \qty( 1
 
 $= \dlim_{\Delta x \to 0} \qty( \dfrac{\tan \Delta x}{\Delta x} \dfrac1{1 - \tan x \tan \Delta x} \qty( 1 + (\tan x)^2) )$
 
-$= \dlim_{\Delta x \to 0} \qty( \dfrac{ \frac{\sin \Delta x}{\cos \Delta x} }{\Delta x} \dfrac{\cos \Delta x}{\cos \Delta x}
-\dfrac1{1 - \tan x \tan \Delta x} \qty( 1 + (\tan x)^2) )$
+$$
+= \dlim_{\Delta x \to 0} \qty( \dfrac{ \frac{\sin \Delta x}{\cos \Delta x} }{\Delta x} \dfrac{\cos \Delta x}{\cos \Delta x}
+\dfrac1{1 - \tan x \tan \Delta x} \qty( 1 + (\tan x)^2) )
+$$
 
 「三角関数の基本公式」より、$1 + (\tan x)^2 = \frac1{(\cos x)^2}$ が成り立つから、
 
-$= \dlim_{\Delta x \to 0} \qty( \dfrac{\sin \Delta x}{\Delta x} 
+$$
+= \dlim_{\Delta x \to 0} \qty( \dfrac{\sin \Delta x}{\Delta x} 
 \dfrac1{\cos \Delta x}
 \dfrac1{1 - \tan x \tan \Delta x}
-\dfrac1{(\cos x)^2} )$
+\dfrac1{(\cos x)^2} )
+$$
 
 「極限の性質」より、
 
-$= \dlim_{\Delta x \to 0} \qty( \dfrac{\sin \Delta x}{\Delta x} )
+$$
+= \dlim_{\Delta x \to 0} \qty( \dfrac{\sin \Delta x}{\Delta x} )
 \dlim_{\Delta x \to 0} \qty( \dfrac1{\cos \Delta x} )
 \dlim_{\Delta x \to 0} \qty( \dfrac1{1 - \tan x \tan \Delta x} )
-\dlim_{\Delta x \to 0} \qty( \dfrac1{(\cos x)^2} )$
+\dlim_{\Delta x \to 0} \qty( \dfrac1{(\cos x)^2} )
+$$
 
 「sinc関数の極限」より、$\dlim_{\Delta x \to 0} \dfrac{\sin \Delta x}{\Delta x} = 1$ が成り立つから、
 
@@ -972,25 +1012,23 @@ $(\tanh x)'$
 
 $= \qty( \dfrac{ \e^x - \e^{-x} }{ \e^x + \e^{-x} } )'$
 
-$= \dfrac{\qty(\e^x - \e^{-x})'
+$$
+= \dfrac{\qty(\e^x - \e^{-x})'
 \qty(\e^x + \e^{-x}) 
 - \qty(\e^x - \e^{-x})
 \qty(\e^x + \e^{-x})'}
-{ (\e^x + \e^{-x})^2 }$
+{ (\e^x + \e^{-x})^2 }
+$$
 
-$= \dfrac{\qty\Big(\e^x - \qty(- \e^{-x}))
-\qty(\e^x + \e^{-x}) 
-- \qty(\e^x - \e^{-x})
-\qty\Big(\e^x + \qty(- \e^{-x}))}
-{ (\e^x + \e^{-x})^2 }$
+$= \dfrac{\qty\Big(\e^x - \qty(- \e^{-x}))\qty(\e^x + \e^{-x}) - \qty(\e^x - \e^{-x}) \qty\Big(\e^x + \qty(- \e^{-x}))}{ (\e^x + \e^{-x})^2 }$
 
-$= \dfrac{\qty(\e^x + \e^{-x})^2
-- \qty(\e^x - \e^{-x})^2}
-{ (\e^x + \e^{-x})^2 }$
+$= \dfrac{\qty(\e^x + \e^{-x})^2 - \qty(\e^x - \e^{-x})^2}{ (\e^x + \e^{-x})^2 }$
 
-$= \dfrac{\qty(\e^{2x} + 2 + \e^{-2x})
+$$
+= \dfrac{\qty(\e^{2x} + 2 + \e^{-2x})
 - \qty(\e^{2x} - 2 + \e^{-2x})}
-{ (\e^x + \e^{-x})^2 }$
+{ (\e^x + \e^{-x})^2 }
+$$
 
 $= \dfrac4{ (\e^x + \e^{-x})^2 }$
 
@@ -1081,9 +1119,11 @@ $= \dlim_{\Delta x \to 0} \dfrac{(\cos \Delta x)^2 - 1}{\Delta x(\cos \Delta x +
 
 $= \dlim_{\Delta x \to 0} \qty( \sin \Delta x \dfrac{\sin \Delta x}{\Delta x} \dfrac{1}{\cos \Delta x + 1} )$
 
-$= \dlim_{\Delta x \to 0} \qty( \sin \Delta x )
+$$
+= \dlim_{\Delta x \to 0} \qty( \sin \Delta x )
 \dlim_{\Delta x \to 0} \qty( \dfrac{\sin \Delta x}{\Delta x} )
-\dlim_{\Delta x \to 0} \qty( \dfrac{1}{\cos \Delta x + 1} )$
+\dlim_{\Delta x \to 0} \qty( \dfrac{1}{\cos \Delta x + 1} )
+$$
 
 「sinc関数の極限」より、$\dlim_{\Delta x \to 0} \frac{\sin \Delta x}{\Delta x} = 1$ となるから、
 

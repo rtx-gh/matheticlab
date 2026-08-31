@@ -17,9 +17,9 @@ description: 三角関数が実数全体では逆関数を持たない理由と�
 
 代表的な逆三角関数は
 
-\[
+$$
 \arcsin x,\qquad \arccos x,\qquad \arctan x
-\]
+$$
 
 である。
 
@@ -35,59 +35,59 @@ $\sin^{-1}x$ のような表記も使われるが、これは通常 $1/\sin x$ �
 
 三角関数を適切な区間に制限すると、次の全単射が得られる。
 
-\[
+$$
 \sin\colon\left[-\frac\pi2,\frac\pi2\right]\to[-1,1],
-\]
+$$
 
-\[
+$$
 \cos\colon[0,\pi]\to[-1,1],
-\]
+$$
 
-\[
+$$
 \tan\colon\left(-\frac\pi2,\frac\pi2\right)\to\R.
-\]
+$$
 
 これらの逆関数として、
 
-\[
+$$
 \arcsin\colon[-1,1]\to\left[-\frac\pi2,\frac\pi2\right],
-\]
+$$
 
-\[
+$$
 \arccos\colon[-1,1]\to[0,\pi],
-\]
+$$
 
-\[
+$$
 \arctan\colon\R\to\left(-\frac\pi2,\frac\pi2\right)
-\]
+$$
 
 を定義する。
 
 したがって、
 
-\[
+$$
 y=\arcsin x
 \iff
 x=\sin y,
 \qquad
 -\frac\pi2\le y\le\frac\pi2,
-\]
+$$
 
-\[
+$$
 y=\arccos x
 \iff
 x=\cos y,
 \qquad
 0\le y\le\pi,
-\]
+$$
 
-\[
+$$
 y=\arctan x
 \iff
 x=\tan y,
 \qquad
 -\frac\pi2<y<\frac\pi2
-\]
+$$
 
 である。
 
@@ -99,23 +99,23 @@ x=\tan y,
 
 関数
 
-\[
+$$
 f\colon X\to Y
-\]
+$$
 
 が逆関数
 
-\[
+$$
 f^{-1}\colon Y\to X
-\]
+$$
 
 を持つためには、$f$ が**全単射**でなければならない。
 
 特に単射であること、すなわち
 
-\[
+$$
 f(x_1)=f(x_2)\implies x_1=x_2
-\]
+$$
 
 が必要である。
 
@@ -123,32 +123,32 @@ f(x_1)=f(x_2)\implies x_1=x_2
 
 $\sin$ は周期 $2\pi$ の周期関数なので、
 
-\[
+$$
 \sin(x+2n\pi)=\sin x
 \qquad(n\in\Z)
-\]
+$$
 
 が成り立つ。
 
 たとえば、
 
-\[
+$$
 \sin0=\sin\pi=0
-\]
+$$
 
 であるにもかかわらず、
 
-\[
+$$
 0\ne\pi
-\]
+$$
 
 である。
 
 したがって
 
-\[
+$$
 \sin\colon\R\to[-1,1]
-\]
+$$
 
 は単射ではなく、逆関数を持たない。
 
@@ -160,15 +160,15 @@ $\sin\theta=x$ を満たす角 $\theta$ をすべて考えると、一般には�
 
 たとえば
 
-\[
+$$
 \sin\theta=0
-\]
+$$
 
 の解は
 
-\[
+$$
 \theta=n\pi\qquad(n\in\Z)
-\]
+$$
 
 である。
 
@@ -180,68 +180,68 @@ $\sin\theta=x$ を満たす角 $\theta$ をすべて考えると、一般には�
 
 $\sin x$ は区間
 
-\[
+$$
 -\frac\pi2\le x\le\frac\pi2
-\]
+$$
 
 では単調増加であり、値域は
 
-\[
+$$
 [-1,1]
-\]
+$$
 
 である。
 
 したがって、制限写像
 
-\[
+$$
 \sin\colon
 \left[-\frac\pi2,\frac\pi2\right]
 \to[-1,1]
-\]
+$$
 
 は全単射となる。
 
 この逆関数を
 
-\[
+$$
 \arcsin\colon
 [-1,1]
 \to
 \left[-\frac\pi2,\frac\pi2\right]
-\]
+$$
 
 と定義する。
 
 つまり、
 
-\[
+$$
 \boxed{
 \arcsin x
 =
 \text{$[-\pi/2,\pi/2]$ 内で $\sin y=x$ を満たす唯一の $y$}
 }
-\]
+$$
 
 である。
 
 たとえば、
 
-\[
+$$
 \sin\frac\pi6=\frac12
-\]
+$$
 
 なので、
 
-\[
+$$
 \arcsin\frac12=\frac\pi6.
-\]
+$$
 
 一方、
 
-\[
+$$
 \sin\frac{5\pi}{6}=\frac12
-\]
+$$
 
 でもあるが、$5\pi/6$ は $[-\pi/2,\pi/2]$ に含まれないため、$\arcsin(1/2)$ の値には採用されない。
 
@@ -251,17 +251,17 @@ $\sin x$ は区間
 
 実数上では通常、
 
-\[
+$$
 -\frac\pi2\le\arcsin x\le\frac\pi2,
-\]
+$$
 
-\[
+$$
 0\le\arccos x\le\pi,
-\]
+$$
 
-\[
+$$
 -\frac\pi2<\arctan x<\frac\pi2
-\]
+$$
 
 となる値を採用する。
 
@@ -273,23 +273,23 @@ $\sin x$ は区間
 
 $\cos x$ を
 
-\[
+$$
 0\le x\le\pi
-\]
+$$
 
 に制限すると単調減少となり、
 
-\[
+$$
 \cos\colon[0,\pi]\to[-1,1]
-\]
+$$
 
 は全単射になる。
 
 その逆関数が
 
-\[
+$$
 \arccos\colon[-1,1]\to[0,\pi]
-\]
+$$
 
 である。
 
@@ -297,27 +297,27 @@ $\cos x$ を
 
 $\tan x$ を
 
-\[
+$$
 -\frac\pi2<x<\frac\pi2
-\]
+$$
 
 に制限すると単調増加であり、その値域は $\R$ 全体である。
 
 したがって、
 
-\[
+$$
 \tan\colon
 \left(-\frac\pi2,\frac\pi2\right)
 \to\R
-\]
+$$
 
 は全単射となり、その逆関数として
 
-\[
+$$
 \arctan\colon
 \R\to
 \left(-\frac\pi2,\frac\pi2\right)
-\]
+$$
 
 を定義できる。
 
@@ -325,20 +325,20 @@ $\tan x$ を
 
 定義から、
 
-\[
+$$
 \sin(\arcsin x)=x
 \qquad(-1\le x\le1),
-\]
+$$
 
-\[
+$$
 \cos(\arccos x)=x
 \qquad(-1\le x\le1),
-\]
+$$
 
-\[
+$$
 \tan(\arctan x)=x
 \qquad(x\in\R)
-\]
+$$
 
 が成り立つ。
 
@@ -346,15 +346,15 @@ $\tan x$ を
 
 たとえば
 
-\[
+$$
 \arcsin(\sin x)=x
-\]
+$$
 
 がそのまま成り立つのは
 
-\[
+$$
 -\frac\pi2\le x\le\frac\pi2
-\]
+$$
 
 の場合である。
 
@@ -362,13 +362,13 @@ $\tan x$ を
 
 $x=5\pi/6$ とすると、
 
-\[
+$$
 \sin\frac{5\pi}{6}=\frac12
-\]
+$$
 
 であるが、
 
-\[
+$$
 \arcsin\left(\sin\frac{5\pi}{6}\right)
 =
 \arcsin\frac12
@@ -376,7 +376,7 @@ $x=5\pi/6$ とすると、
 \frac\pi6
 \ne
 \frac{5\pi}{6}.
-\]
+$$
 
 これは $\arcsin$ が $[-\pi/2,\pi/2]$ を値域として定義されているためである。
 
@@ -386,31 +386,31 @@ $x=5\pi/6$ とすると、
 
 たとえば直角三角形で
 
-\[
+$$
 \sin\theta=\frac35,
 \qquad
 0\le\theta\le\frac\pi2
-\]
+$$
 
 ならば、
 
-\[
+$$
 \theta=\arcsin\frac35
-\]
+$$
 
 と表せる。
 
 また、積分
 
-\[
+$$
 \int\frac{1}{1+x^2}\dd x
-\]
+$$
 
 の原始関数として
 
-\[
+$$
 \arctan x+C
-\]
+$$
 
 が現れるなど、微分積分学でも重要である。
 
@@ -420,70 +420,70 @@ $x=5\pi/6$ とすると、
 
 次の値を求めよ。
 
-\[
+$$
 \arcsin\left(-\frac12\right).
-\]
+$$
 
 #### 解答
 
-\[
+$$
 \sin\left(-\frac\pi6\right)=-\frac12
-\]
+$$
 
 かつ
 
-\[
+$$
 -\frac\pi2\le-\frac\pi6\le\frac\pi2
-\]
+$$
 
 なので、
 
-\[
+$$
 \boxed{\arcsin\left(-\frac12\right)=-\frac\pi6}.
-\]
+$$
 
 ### 例題2
 
 次の値を求めよ。
 
-\[
+$$
 \arccos(-1).
-\]
+$$
 
 #### 解答
 
 $\arccos$ の値域は $[0,\pi]$ であり、
 
-\[
+$$
 \cos\pi=-1
-\]
+$$
 
 だから、
 
-\[
+$$
 \boxed{\arccos(-1)=\pi}.
-\]
+$$
 
 ### 例題3
 
-\[
+$$
 \arcsin(\sin(3\pi/4))
-\]
+$$
 
 を求めよ。
 
 #### 解答
 
-\[
+$$
 \sin\frac{3\pi}{4}=\frac{\sqrt2}{2}.
-\]
+$$
 
 $\arcsin$ は $[-\pi/2,\pi/2]$ 内の値を返すので、
 
-\[
+$$
 \boxed{
 \arcsin\left(\sin\frac{3\pi}{4}\right)
 =
 \frac\pi4
 }.
-\]
+$$
