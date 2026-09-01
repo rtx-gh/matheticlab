@@ -15,6 +15,7 @@ export default defineConfig({
 	integrations: [
 		starlight({
 			title: 'Mathetic Labฅ',
+			favicon: '/favicon.svg',
 
 			customCss: [
 				'./src/styles/custom.css',

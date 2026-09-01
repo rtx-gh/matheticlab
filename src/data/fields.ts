@@ -1,6 +1,7 @@
 export type TopicItem = {
   title: string;
   level: number;
+  href?: string;
 };
 
 export type AccordionSection = {
@@ -47,9 +48,13 @@ const topicItems = (strings: TemplateStringsArray): TopicItem[] => {
       );
     }
 
+    const content = match[2].trim();
+
+    const linkMatch = content.match(/^\[(.+?)\]\((.+?)\)$/);
     return {
-      title: match[2].trim(),
+      title: linkMatch ? linkMatch[1] : content,
       level: indent / 2,
+      href: linkMatch ? linkMatch[2] : undefined,
     };
   });
 };
@@ -60,7 +65,8 @@ const universityFields: readonly Field[] = [
     title: "集合と論理",
     className: "logic",
     sections: [
-      { title: "集合論",
+      {
+        title: "集合論",
         items: topicItems`
           - 集合
             - 外延的記法・内包的記法
@@ -77,7 +83,7 @@ const universityFields: readonly Field[] = [
             - 帰納的極限と射影的極限
             - 整列集合
           - ZF公理系と選択公理`
-       },
+      },
       { title: "数理論理学" },
     ],
   },
@@ -91,26 +97,42 @@ const universityFields: readonly Field[] = [
         title: "線形代数学",
         items: topicItems`
           - 平面と空間のベクトル
+            - 平面と空間のベクトル
+            - ベクトルの演算
+            - 内積と外積
+            - 平面と空間のベクトルの応用
+
           - 行列
-          - 置換
-          - 行列式とその性質
-          - 行列式の展開
-          - 連立一次方程式
-          - 行列式の積
+            - 行列の定義と性質
+            - 行列の演算
+            - 逆行列と行列式
 
-          - 数ベクトル空間
-            - 数ベクトル空間
-            - 線形独立・基底・次元
-            - 次元定理
+          - 行列式
+            - 置換
+            - 行列式
+            - 行列式の計算
+            - 小行列式と余因子
+            - 余因子展開
+            - 行列式の乗法性
+            - 逆行列と行列式
+            - クラメルの公式
 
-          - 体上のベクトル空間
+          - ベクトル空間
             - 体上のベクトル空間
-            - 基底と次元
+            - 部分ベクトル空間
+            - 線形結合と生成
+            - 線形独立と線形従属
+            - [基底・次元](/algebra/linear-algebra/dimension-of-vector-space/)
             - 線形写像
+              - 核と像
             - 次元定理
 
-          - 行列の標準化
           - 固有値と固有ベクトル
+            - 固有値と固有ベクトル
+            - 特性方程式
+            - 固有空間
+            - 対角化
+            - ジョルダン標準形
         `,
       },
 
@@ -119,23 +141,59 @@ const universityFields: readonly Field[] = [
         items: topicItems`
           - 群の定義と性質
           - 部分群
+          - 巡回群
+          - 置換群
+          - 剰余類とラグランジュの定理
           - 正規部分群と剰余群
-          - 群の準同型定理
+          - 群の直積
+          - 群準同型写像
+            - 像と核
+            - 群の準同型定理
           - 群の作用
-          - Sylowの定理
+          - シローの定理
         `,
       },
 
+
       {
-        title: "環論･可換環論",
+        title: "環論",
         items: topicItems`
+          - 環の定義と性質
+          - 部分環
+          - イデアルと剰余環
           - イデアル論
             - イデアルの定義と性質
             - イデアルの商と剰余環
             - イデアルの生成
             - 単項イデアル、素イデアル、極大イデアル
             - イデアルの分解
+          - 環準同型
+          - 整域
+          - 多項式環
+        `,
+      },
 
+      {
+        title: "環論･可換環論",
+        items: topicItems`
+        - 素イデアルと極大イデアル
+          - 局所化
+          - ネーター環
+          - 根基
+          - 整拡大
+          - 次元論
+          - ネーター環論
+            - ネーター環の定義と性質
+            - ネーター加群の定義と性質
+            - ネーター環のイデアルの性質
+            - ネーター環のイデアルの分解
+        
+        `,
+      },
+
+      {
+        title: "加群論",
+        items: topicItems`
           - 加群論
             - $R$-加群
               - $R$-加群の定義
@@ -154,13 +212,6 @@ const universityFields: readonly Field[] = [
               - テンソル積の定義と普遍性
 
             - 平坦加群
-
-          - ネーター環論
-            - ネーター環の定義と性質
-            - ネーター加群の定義と性質
-            - ネーター環のイデアルの性質
-            - ネーター環のイデアルの分解
-        
         `,
       },
 
@@ -245,13 +296,6 @@ const universityFields: readonly Field[] = [
         `,
       },
 
-      {
-        title: "環論",
-      },
-
-      {
-        title: "加群",
-      },
     ],
   },
 
@@ -429,7 +473,7 @@ const universityFields: readonly Field[] = [
           - 素数定理
           - リーマンゼータ関数
           - ディリクレ級数
-        `,  
+        `,
       },
 
       {
@@ -438,7 +482,7 @@ const universityFields: readonly Field[] = [
           - 偏微分方程式の定義と性質
           - 一次偏微分方程式
           - 二次偏微分方程式
-        `, 
+        `,
       },
     ],
   },
@@ -448,7 +492,8 @@ const universityFields: readonly Field[] = [
     title: "幾何学",
     className: "geometry",
     sections: [
-      { title: "位相空間論",
+      {
+        title: "位相空間論",
         items: topicItems`
           - 位相空間の定義と性質
           - 開集合・閉集合・内点・外点・境界点
@@ -458,16 +503,18 @@ const universityFields: readonly Field[] = [
           - 距離空間と位相空間
           - 完備距離空間と完備化
         `
-       },
-      { title: "位相幾何学",
+      },
+      {
+        title: "位相幾何学",
         items: topicItems`
           - 位相同値とホモトピー
           - ホモロジー群とコホモロジー群
           - 基本群と被覆空間
           - CW複体とセル複体
         `
-       },
-      { title: "多様体論",
+      },
+      {
+        title: "多様体論",
         items: topicItems`
           - 多様体の定義と性質
           - 微分可能多様体と滑らかな写像
@@ -476,8 +523,9 @@ const universityFields: readonly Field[] = [
           - 微分形式と外微分
           - ストークスの定理とグリーンの定理
         `
-       },
-      { title: "微分幾何学",
+      },
+      {
+        title: "微分幾何学",
         items: topicItems`
           - 曲線と曲率
           - 曲面とガウス曲率
@@ -485,7 +533,7 @@ const universityFields: readonly Field[] = [
           - リーマン曲率テンソルとリッチ曲率テンソル
           - リーマン幾何学の応用
         `
-       },
+      },
     ],
   },
 ];

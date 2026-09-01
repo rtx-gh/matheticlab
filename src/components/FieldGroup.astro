@@ -55,7 +55,13 @@ function renderMath(text: string) {
             <ul class="topic-list">
               {section.items.map((item) => (
                 <li class={`topic-item level-${item.level ?? 0}`}>
-                  <Fragment set:html={renderMath(item.title)} />
+                  {item.href ? (
+                    <a href={item.href}>
+                      <Fragment set:html={renderMath(item.title)} />
+                    </a>
+                  ) : (
+                    <Fragment set:html={renderMath(item.title)} />
+                  )}
                 </li>
               ))}
             </ul>
