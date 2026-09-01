@@ -1,0 +1,60 @@
+---
+interface Props {
+  title?: string;
+  open?: boolean;
+}
+
+const {
+  title = "証明",
+  open = false,
+} = Astro.props;
+---
+
+<details class="proof" open={open}>
+  <summary class="proof-title">
+    <span>{title}</span>
+  </summary>
+
+  <div class="proof-body">
+    <slot />
+
+    <div class="qed">□</div>
+  </div>
+</details>
+
+<style>
+  .proof {
+    margin: 1rem 0 1.5rem;
+    border-left: 3px solid var(--sl-color-gray-4);
+    padding-left: 1rem;
+  }
+
+  .proof-title {
+    cursor: pointer;
+    font-weight: 700;
+    line-height: 1.5;
+    user-select: none;
+  }
+
+  .proof-title:hover {
+    opacity: 0.75;
+  }
+
+  .proof-body {
+    margin-top: 0.8rem;
+  }
+
+  .proof-body :global(> :first-child) {
+    margin-top: 0;
+  }
+
+  .proof-body :global(> :last-child:not(.qed)) {
+    margin-bottom: 0;
+  }
+
+  .qed {
+    margin-top: 0.75rem;
+    text-align: right;
+    font-size: 1.1em;
+  }
+</style>
